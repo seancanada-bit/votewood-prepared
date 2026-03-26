@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parksville. Prepared. | Sean Wood for Mayor</title>
+<meta name="description" content="Real-time civic data dashboard for Parksville - water, fire, air quality, and regional context. Updated automatically from public government sources.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --teal: #1D919E;
+  --teal-dark: #166d78;
+  --yellow: #FFEB3B;
+  --white: #FFFFFF;
+  --card-bg: rgba(255,255,255,0.93);
+  --card-text: #14140D;
+  --radius: 12px;
+  --shadow: 0 2px 16px rgba(0,0,0,0.13);
+  --green-bg: #e8f5e9; --green-text: #2e7d32;
+  --amber-bg: #fff3e0; --amber-text: #e65100;
+  --orange-bg: #fbe9e7; --orange-text: #bf360c;
+  --red-bg: #ffebee; --red-text: #b71c1c;
+  --grey-bg: #f5f5f5; --grey-text: #757575;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: var(--teal);
+  color: var(--white);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--yellow); }
+
+/* Header */
+.header {
+  background: var(--teal-dark);
+  border-bottom: 3px solid var(--yellow);
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+.header a { text-decoration: none; font-weight: 700; }
+.header-right { font-weight: 700; letter-spacing: 0.5px; }
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 56px 24px 48px;
+  background: var(--teal);
+}
+.hero-eyebrow {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--yellow);
+  margin-bottom: 8px;
+}
+.hero h1 {
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 900;
+  margin-bottom: 16px;
+  line-height: 1.15;
+}
+.hero p {
+  max-width: 640px;
+  margin: 0 auto 24px;
+  font-size: 17px;
+  opacity: 0.92;
+}
+.live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.live-dot {
+  width: 8px; height: 8px;
+  background: var(--yellow);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Sections */
+.section {
+  padding: 48px 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.section-title {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--yellow);
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
+
+/* Card grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.card-grid-4 {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* Cards */
+.card {
+  background: var(--card-bg);
+  color: var(--card-text);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.card-label {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #666;
+  margin-bottom: 8px;
+}
+.card-value {
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.card-value-unit {
+  font-size: 16px;
+  font-weight: 400;
+  color: #888;
+}
+.card-detail {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 4px;
+}
+.card-meta {
+  font-size: 12px;
+  color: #999;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+}
+.card-full { grid-column: 1 / -1; }
+
+/* Status pills */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-right: 6px;
+  margin-bottom: 4px;
+}
+.pill-green  { background: var(--green-bg);  color: var(--green-text); }
+.pill-amber  { background: var(--amber-bg);  color: var(--amber-text); }
+.pill-orange { background: var(--orange-bg); color: var(--orange-text); }
+.pill-red    { background: var(--red-bg);    color: var(--red-text); }
+.pill-grey   { background: var(--grey-bg);   color: var(--grey-text); }
+
+/* Grade badge */
+.grade-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  font-size: 24px;
+  font-weight: 900;
+  background: var(--teal);
+  color: var(--white);
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+/* Score bar */
+.score-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+.score-label { width: 110px; font-weight: 700; color: #555; flex-shrink: 0; }
+.score-bar-bg {
+  flex: 1;
+  height: 8px;
+  background: #e8e8e8;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.score-bar-fill {
+  height: 100%;
+  background: var(--teal);
+  border-radius: 4px;
+  transition: width 0.6s ease;
+}
+.score-val { width: 36px; text-align: right; font-weight: 700; font-size: 13px; }
+
+/* Event list */
+.event-list {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 8px;
+}
+.event-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+.event-item:last-child { border-bottom: none; }
+.event-type {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #999;
+}
+
+/* Skeleton loading */
+.skeleton {
+  background: linear-gradient(90deg, #e8e8e8 25%, #f0f0f0 50%, #e8e8e8 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 6px;
+}
+.skeleton-lg { height: 42px; width: 120px; margin-bottom: 8px; }
+.skeleton-md { height: 20px; width: 180px; margin-bottom: 6px; }
+.skeleton-sm { height: 16px; width: 140px; }
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Narrative */
+.narrative {
+  background: var(--teal-dark);
+  border-top: 3px solid var(--yellow);
+  border-bottom: 3px solid var(--yellow);
+  padding: 56px 24px;
+  text-align: center;
+}
+.narrative h2 {
+  color: var(--yellow);
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+.narrative p {
+  max-width: 640px;
+  margin: 0 auto 16px;
+  font-size: 16px;
+  opacity: 0.92;
+  line-height: 1.7;
+}
+.cta-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 14px 32px;
+  background: var(--yellow);
+  color: var(--teal-dark);
+  font-weight: 900;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: transform 0.15s;
+}
+.cta-btn:hover { transform: translateY(-2px); }
+
+/* Footer */
+.footer {
+  background: var(--teal-dark);
+  padding: 32px 24px;
+  text-align: center;
+  font-size: 13px;
+  opacity: 0.85;
+  line-height: 1.8;
+}
+
+/* Stale / error state */
+.card-stale .card-value { opacity: 0.4; }
+.card-stale-msg {
+  text-align: center;
+  font-size: 13px;
+  color: var(--grey-text);
+  background: var(--grey-bg);
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+@media (max-width: 600px) {
+  .header { flex-direction: column; gap: 4px; text-align: center; }
+  .card-value { font-size: 28px; }
+  .section { padding: 32px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <a href="https://votewood.ca">&larr; votewood.ca</a>
+  <div class="header-right">SEAN WOOD &middot; PARKSVILLE. PREPARED.</div>
+</header>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-eyebrow">Parksville. Prepared.</div>
+  <h1>Real-time data. Responsible governance.</h1>
+  <p>The same public data used by emergency managers - updated automatically so you always have a current picture.</p>
+  <div class="live-pill">
+    <span class="live-dot"></span>
+    Refreshes every 10 minutes
+  </div>
+</div>
+
+<!-- Water Security -->
+<section class="section">
+  <h2 class="section-title">&#128167; Water Security</h2>
+  <div class="card-grid">
+    <div class="card" id="card-river">
+      <div class="card-label">River Flow - Englishman River</div>
+      <div class="card-value"><span class="skeleton skeleton-lg"></span></div>
+      <div id="river-pills"></div>
+      <div class="card-detail" id="river-level"></div>
+      <div class="card-meta">
+        <span id="river-updated"></span><br>
+        Source: Water Survey of Canada
+      </div>
+    </div>
+    <div class="card" id="card-snowpack">
+      <div class="card-label">Snowpack - Mt. Arrowsmith</div>
+      <div class="card-value"><span class="skeleton skeleton-lg"></span></div>
+      <div id="snowpack-pills"></div>
+      <div class="card-detail" id="snowpack-depth"></div>
+      <div class="card-meta">
+        <span id="snowpack-updated"></span><br>
+        Source: BC River Forecast Centre / RDN
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Emergency Preparedness -->
+<section class="section">
+  <h2 class="section-title">&#128293; Emergency Preparedness</h2>
+  <div class="card-grid">
+    <div class="card" id="card-fire">
+      <div class="card-label">Fire Weather Index</div>
+      <div class="card-value"><span class="skeleton skeleton-lg"></span></div>
+      <div id="fire-pills"></div>
+      <div class="card-detail" id="fire-detail"></div>
+      <div class="card-meta">
+        <span id="fire-updated"></span><br>
+        Source: BC Wildfire Service
+      </div>
+    </div>
+    <div class="card" id="card-roads">
+      <div class="card-label">Road Events - Parksville Area</div>
+      <div class="card-value"><span class="skeleton skeleton-lg"></span></div>
+      <div class="event-list" id="road-events-list"></div>
+      <div class="card-meta">
+        <span id="roads-updated"></span><br>
+        Source: DriveBC
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Wildfire -->
+<section class="section" id="section-wildfire">
+  <h2 class="section-title">&#127794; Wildfire Activity</h2>
+  <div class="card-grid">
+    <div class="card card-full" id="card-wildfire">
+      <div class="card-label">Active Fires - Vancouver Island Region</div>
+      <div style="display:flex;gap:32px;flex-wrap:wrap;align-items:baseline;">
+        <div>
+          <div class="card-value"><span class="skeleton skeleton-lg"></span></div>
+          <div class="card-detail">fires in wider region</div>
+        </div>
+        <div>
+          <div class="card-value" id="wildfire-vi" style="font-size:28px;"><span class="skeleton skeleton-lg"></span></div>
+          <div class="card-detail">on Vancouver Island</div>
+        </div>
+      </div>
+      <div id="wildfire-pills" style="margin-top:12px;"></div>
+      <div class="card-meta">
+        <span id="wildfire-updated"></span><br>
+        Source: BC Wildfire Service ESRI REST
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Air Quality -->
+<section class="section">
+  <h2 class="section-title">&#127788;&#65039; Air Quality</h2>
+  <div class="card-grid">
+    <div class="card card-full" id="card-aqhi">
+      <div class="card-label">Air Quality Health Index - Nanaimo</div>
+      <div class="card-value"><span class="skeleton skeleton-lg"></span></div>
+      <div id="aqhi-pills"></div>
+      <div class="card-detail" style="margin-top:8px;color:#888;font-size:13px;">
+        1-3 Low &nbsp;|&nbsp; 4-6 Moderate &nbsp;|&nbsp; 7-10 High &nbsp;|&nbsp; 10+ Very High
+      </div>
+      <div class="card-meta">
+        <span id="aqhi-updated"></span><br>
+        Source: Environment and Climate Change Canada
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- City Scores -->
+<section class="section">
+  <h2 class="section-title">&#127961;&#65039; Regional Context - Nanaimo</h2>
+  <div class="card-grid">
+    <div class="card card-full" id="card-scores">
+      <div style="display:flex;align-items:center;margin-bottom:16px;">
+        <div class="grade-badge" id="score-grade"><span class="skeleton" style="width:32px;height:32px;border-radius:50%;"></span></div>
+        <div>
+          <div class="card-label" style="margin-bottom:2px;">Bang for Your Duck Score</div>
+          <div class="card-value" style="font-size:28px;" id="score-composite"><span class="skeleton skeleton-md"></span></div>
+        </div>
+      </div>
+      <div id="score-bars"></div>
+      <div class="card-detail" style="margin-top:16px;font-style:italic;color:#888;">
+        Nanaimo is the closest Census Metropolitan Area to Parksville. These regional scores help frame our planning context.
+      </div>
+      <div class="card-meta">
+        <span id="scores-updated"></span><br>
+        Source: <a href="https://provincial-scorecard.onrender.com" target="_blank" rel="noopener" style="color:var(--teal);">Bang for Your Duck</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Demographics -->
+<section class="section">
+  <h2 class="section-title">&#128101; Who We're Planning For</h2>
+  <div class="card-grid card-grid-4">
+    <div class="card">
+      <div class="card-label">Population</div>
+      <div class="card-value">13,990</div>
+      <div class="card-meta">Source: Statistics Canada 2021 Census</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Seniors 65+</div>
+      <div class="card-value">43.6<span class="card-value-unit">%</span></div>
+      <div class="card-meta">Source: Statistics Canada 2021 Census</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Median Household Income</div>
+      <div class="card-value">$63,500</div>
+      <div class="card-meta">Source: Statistics Canada 2021 Census</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Core Housing Need</div>
+      <div class="card-value">14.2<span class="card-value-unit">%</span></div>
+      <div class="card-meta">Source: Statistics Canada 2021 Census</div>
+    </div>
+  </div>
+</section>
+
+<!-- Narrative -->
+<div class="narrative">
+  <h2>"Data is how a prepared community governs."</h2>
+  <p>This dashboard pulls from the same public data sources used by emergency managers, watershed planners, and municipal engineers. It refreshes automatically so residents always have a current picture of Parksville's water supply, fire risk, and regional health.</p>
+  <p>A mayor who can read this data - and act on it before a crisis - is what "Parksville. Prepared." means. Not a slogan. A standard.</p>
+  <a href="https://votewood.ca" class="cta-btn">See the full platform &rarr; votewood.ca</a>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  Authorized by Sean Wood, Independent Candidate &middot; 604-868-7914<br>
+  Data sources: Water Survey of Canada, BC River Forecast Centre, BC Wildfire Service,<br>
+  Environment and Climate Change Canada, DriveBC, Bang for Your Duck, Statistics Canada 2021 Census.
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  const API = 'api.php?table=all';
+  const REFRESH_MS = 10 * 60 * 1000; // 10 minutes
+  const STALE_MS = 24 * 60 * 60 * 1000; // 24 hours
+
+  function timeAgo(dateStr) {
+    if (!dateStr) return '';
+    const diff = Date.now() - new Date(dateStr).getTime();
+    if (diff < 0) return 'just now';
+    const mins = Math.floor(diff / 60000);
+    if (mins < 1) return 'just now';
+    if (mins < 60) return mins + ' min ago';
+    const hrs = Math.floor(mins / 60);
+    if (hrs < 24) return hrs + ' hr' + (hrs > 1 ? 's' : '') + ' ago';
+    const days = Math.floor(hrs / 24);
+    return days + ' day' + (days > 1 ? 's' : '') + ' ago';
+  }
+
+  function isStale(dateStr) {
+    if (!dateStr) return true;
+    return (Date.now() - new Date(dateStr).getTime()) > STALE_MS;
+  }
+
+  function pillHTML(text, level) {
+    return '<span class="pill pill-' + level + '">' + text + '</span>';
+  }
+
+  function droughtPill(lvl) {
+    if (lvl == null) return pillHTML('Flow data only', 'grey');
+    var map = [
+      ['Normal flow', 'green'], ['Below normal', 'amber'],
+      ['Dry conditions', 'amber'], ['Drought', 'orange'],
+      ['Severe drought', 'red'], ['Exceptional drought', 'red']
+    ];
+    var entry = map[lvl] || ['Unknown', 'grey'];
+    return pillHTML(entry[0], entry[1]);
+  }
+
+  function dangerPill(rating) {
+    if (!rating) return pillHTML('No data', 'grey');
+    var map = {
+      'Low': 'green', 'Moderate': 'amber', 'High': 'orange',
+      'Very High': 'red', 'Extreme': 'red'
+    };
+    return pillHTML(rating, map[rating] || 'grey');
+  }
+
+  function aqhiPill(aqhi, risk) {
+    if (aqhi == null) return pillHTML('No data', 'grey');
+    var map = { 'Low': 'green', 'Moderate': 'amber', 'High': 'orange', 'Very High': 'red' };
+    return pillHTML(risk + ' risk', map[risk] || 'grey');
+  }
+
+  function snowpackPill(pct) {
+    if (pct == null) return pillHTML('% of normal unavailable', 'grey');
+    if (pct >= 90) return pillHTML(pct + '% - Near normal', 'green');
+    if (pct >= 70) return pillHTML(pct + '% - Below normal', 'amber');
+    if (pct >= 50) return pillHTML(pct + '% - Well below normal', 'orange');
+    return pillHTML(pct + '% - Critically low', 'red');
+  }
+
+  function setText(id, text) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = text;
+  }
+
+  function setHTML(id, html) {
+    var el = document.getElementById(id);
+    if (el) el.innerHTML = html;
+  }
+
+  function setUpdated(id, dateStr) {
+    setText(id, 'Updated ' + timeAgo(dateStr));
+  }
+
+  function markStale(cardId) {
+    var card = document.getElementById(cardId);
+    if (!card) return;
+    card.classList.add('card-stale');
+    var val = card.querySelector('.card-value');
+    if (val && !val.dataset.loaded) val.textContent = '--';
+    if (!card.querySelector('.card-stale-msg')) {
+      var msg = document.createElement('div');
+      msg.className = 'card-stale-msg';
+      msg.textContent = 'Data temporarily unavailable - check back soon';
+      card.appendChild(msg);
+    }
+  }
+
+  function markAllStale() {
+    ['card-river','card-snowpack','card-fire','card-roads',
+     'card-wildfire','card-aqhi','card-scores'].forEach(markStale);
+  }
+
+  // ---- Render functions ----
+
+  function renderRiver(d) {
+    if (!d) { markStale('card-river'); return; }
+    if (isStale(d.fetched_at)) { markStale('card-river'); }
+    var val = d.flow_m3s != null ? parseFloat(d.flow_m3s).toFixed(1) : '--';
+    var card = document.getElementById('card-river');
+    var valEl = card.querySelector('.card-value');
+    valEl.innerHTML = val + ' <span class="card-value-unit">m&sup3;/s</span>';
+    valEl.dataset.loaded = '1';
+    setHTML('river-pills', droughtPill(d.drought_lvl) +
+      (d.pct_median != null ? pillHTML(d.pct_median + '% of median', 'grey') : ''));
+    setText('river-level', d.level_m != null ? 'Water level: ' + parseFloat(d.level_m).toFixed(2) + ' m' : '');
+    setUpdated('river-updated', d.fetched_at);
+  }
+
+  function renderSnowpack(d) {
+    if (!d) { markStale('card-snowpack'); return; }
+    if (isStale(d.fetched_at)) { markStale('card-snowpack'); }
+    var card = document.getElementById('card-snowpack');
+    var val = d.swe_mm != null ? parseFloat(d.swe_mm).toFixed(0) : '--';
+    card.querySelector('.card-value').innerHTML = val + ' <span class="card-value-unit">mm SWE</span>';
+    setHTML('snowpack-pills', snowpackPill(d.pct_normal) +
+      (d.season_active == 0 ? pillHTML('Off-season', 'grey') : ''));
+    setText('snowpack-depth', d.depth_cm != null ? 'Snow depth: ' + parseFloat(d.depth_cm).toFixed(0) + ' cm' : '');
+    setUpdated('snowpack-updated', d.fetched_at);
+  }
+
+  function renderFire(d) {
+    if (!d) { markStale('card-fire'); return; }
+    if (isStale(d.fetched_at)) { markStale('card-fire'); }
+    var card = document.getElementById('card-fire');
+    var val = d.fwi != null ? parseFloat(d.fwi).toFixed(1) : '--';
+    card.querySelector('.card-value').innerHTML = val;
+    setHTML('fire-pills', dangerPill(d.danger_rating));
+    var details = [];
+    if (d.isi != null) details.push('ISI: ' + parseFloat(d.isi).toFixed(1));
+    if (d.bui != null) details.push('BUI: ' + parseFloat(d.bui).toFixed(1));
+    setText('fire-detail', details.join(' | '));
+    setUpdated('fire-updated', d.fetched_at);
+  }
+
+  function renderRoads(d) {
+    if (!d) { markStale('card-roads'); return; }
+    if (isStale(d.fetched_at)) { markStale('card-roads'); }
+    var card = document.getElementById('card-roads');
+    var count = d.event_count != null ? d.event_count : 0;
+    card.querySelector('.card-value').innerHTML = count + ' <span class="card-value-unit">active events</span>';
+
+    var events = d.events_json || [];
+    if (!Array.isArray(events)) {
+      try { events = JSON.parse(events); } catch(e) { events = []; }
+    }
+    var listEl = document.getElementById('road-events-list');
+    if (events.length === 0) {
+      listEl.innerHTML = '<div class="event-item" style="color:#888;">No active road events in the Parksville area.</div>';
+    } else {
+      listEl.innerHTML = events.map(function(e) {
+        return '<div class="event-item"><div class="event-type">' +
+          (e.event_type || 'Event') + (e.severity ? ' - ' + e.severity : '') +
+          '</div>' + (e.headline || '') +
+          (e.roads && e.roads.length ? '<br><small style="color:#999;">' + e.roads.join(', ') + '</small>' : '') +
+          '</div>';
+      }).join('');
+    }
+    setUpdated('roads-updated', d.fetched_at);
+  }
+
+  function renderWildfire(d) {
+    if (!d) { markStale('card-wildfire'); return; }
+    if (isStale(d.fetched_at)) { markStale('card-wildfire'); }
+    var card = document.getElementById('card-wildfire');
+    var vals = card.querySelectorAll('.card-value');
+    vals[0].textContent = d.active_count != null ? d.active_count : '--';
+    var viEl = document.getElementById('wildfire-vi');
+    if (viEl) viEl.textContent = d.vi_count != null ? d.vi_count : '--';
+
+    var seasonPill = d.season_active == 1 ? pillHTML('Fire season active', 'amber') : pillHTML('Off-season', 'grey');
+    var countPill = '';
+    if (d.active_count != null) {
+      if (d.active_count === 0) countPill = pillHTML('No active fires', 'green');
+      else if (d.active_count <= 5) countPill = pillHTML(d.active_count + ' active', 'amber');
+      else countPill = pillHTML(d.active_count + ' active', 'red');
+    }
+    setHTML('wildfire-pills', countPill + seasonPill);
+    setUpdated('wildfire-updated', d.fetched_at);
+  }
+
+  function renderAQHI(d) {
+    if (!d) { markStale('card-aqhi'); return; }
+    if (isStale(d.fetched_at)) { markStale('card-aqhi'); }
+    var card = document.getElementById('card-aqhi');
+    card.querySelector('.card-value').textContent = d.aqhi != null ? d.aqhi : '--';
+    setHTML('aqhi-pills', aqhiPill(d.aqhi, d.risk_level));
+    setUpdated('aqhi-updated', d.fetched_at);
+  }
+
+  function renderScores(d) {
+    if (!d) { markStale('card-scores'); return; }
+    if (isStale(d.fetched_at)) { markStale('card-scores'); }
+    var gradeEl = document.getElementById('score-grade');
+    gradeEl.textContent = d.duck_grade || '?';
+
+    var compEl = document.getElementById('score-composite');
+    compEl.textContent = d.composite != null ? parseFloat(d.composite).toFixed(1) + ' / 100' : '--';
+
+    var cats = [
+      ['Fiscal', d.fiscal_score],
+      ['Housing', d.housing_score],
+      ['Safety', d.safety_score],
+      ['Liveability', d.liveability_score],
+      ['Infrastructure', d.infrastructure_score],
+    ];
+    var barsHTML = cats.map(function(c) {
+      var pct = c[1] != null ? Math.min(100, Math.max(0, c[1])) : 0;
+      var val = c[1] != null ? parseFloat(c[1]).toFixed(0) : '--';
+      return '<div class="score-row">' +
+        '<span class="score-label">' + c[0] + '</span>' +
+        '<div class="score-bar-bg"><div class="score-bar-fill" style="width:' + pct + '%"></div></div>' +
+        '<span class="score-val">' + val + '</span>' +
+        '</div>';
+    }).join('');
+    setHTML('score-bars', barsHTML);
+    setUpdated('scores-updated', d.fetched_at);
+  }
+
+  // ---- Main fetch ----
+
+  function loadData() {
+    fetch(API)
+      .then(function(res) { return res.json(); })
+      .then(function(json) {
+        if (!json.ok || !json.data) {
+          console.error('[prepared] API returned error');
+          return;
+        }
+        var d = json.data;
+        renderRiver(d.river_flow_latest);
+        renderSnowpack(d.snowpack_latest);
+        renderFire(d.fire_weather_latest);
+        renderRoads(d.road_events_latest);
+        renderWildfire(d.wildfire_latest);
+        renderAQHI(d.air_quality_latest);
+        renderScores(d.city_scores_latest);
+      })
+      .catch(function(err) {
+        console.error('[prepared] Fetch failed:', err);
+        markAllStale();
+      });
+  }
+
+  loadData();
+  setInterval(loadData, REFRESH_MS);
+})();
+</script>
+</body>
+</html>

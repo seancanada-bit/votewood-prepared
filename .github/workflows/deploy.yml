@@ -1,0 +1,28 @@
+name: Deploy Prepared Dashboard
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Inject DB password into api.php
+        run: |
+          sed -i "s|__DB_PASSWORD__|${{ secrets.DB_PASSWORD }}|g" prepared/api.php
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./prepared/
+          server-dir: /public_html/prepared/
+          exclude: |
+            **/.git*
+            **/.git*/**
