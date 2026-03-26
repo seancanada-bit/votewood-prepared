@@ -22,7 +22,7 @@ jobs:
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./prepared/
-          server-dir: /public_html/prepared/
+          server-dir: /prepared/
           exclude: |
             **/.git*
             **/.git*/**
