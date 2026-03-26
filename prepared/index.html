@@ -180,22 +180,7 @@ a { color: var(--yellow); }
 .pill-red    { background: var(--red-bg);    color: var(--red-text); }
 .pill-grey   { background: var(--grey-bg);   color: var(--grey-text); }
 
-/* Grade badge */
-.grade-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 56px; height: 56px;
-  border-radius: 50%;
-  font-size: 24px;
-  font-weight: 900;
-  background: var(--teal);
-  color: var(--white);
-  margin-right: 12px;
-  flex-shrink: 0;
-}
-
-/* Score bar */
+/* Comparison bar */
 .score-row {
   display: flex;
   align-items: center;
@@ -433,38 +418,57 @@ a { color: var(--yellow); }
   </div>
 </section>
 
-<!-- City Scores -->
+<!-- Housing -->
 <section class="section">
-  <h2 class="section-title">&#127961;&#65039; Regional Context - Nanaimo</h2>
+  <h2 class="section-title">&#127968; Housing - Parksville</h2>
   <div class="card-grid">
-    <div class="card card-full" id="card-scores">
-      <div style="display:flex;align-items:center;margin-bottom:16px;">
-        <div class="grade-badge" id="score-grade"><span class="skeleton" style="width:32px;height:32px;border-radius:50%;"></span></div>
-        <div>
-          <div class="card-label" style="margin-bottom:2px;">Bang for Your Duck Score</div>
-          <div class="card-value" style="font-size:28px;" id="score-composite"><span class="skeleton skeleton-md"></span></div>
-        </div>
-      </div>
-      <div id="score-bars"></div>
-      <div class="card-detail" style="margin-top:16px;font-style:italic;color:#888;">
-        Nanaimo is the closest Census Metropolitan Area to Parksville. These regional scores help frame our planning context.
-      </div>
+    <div class="card" id="card-housing-vacancy">
+      <div class="card-label">Rental Vacancy Rate</div>
+      <div class="card-value"><span class="skeleton skeleton-lg"></span></div>
+      <div id="vacancy-pills"></div>
+      <div class="card-detail" id="housing-units"></div>
       <div class="card-meta">
-        <span id="scores-updated"></span><br>
-        Source: <a href="https://provincial-scorecard.onrender.com" target="_blank" rel="noopener" style="color:var(--teal);">Bang for Your Duck</a>
+        <span id="housing-updated"></span><br>
+        Source: CMHC Rental Market Survey
+      </div>
+    </div>
+    <div class="card" id="card-housing-rent">
+      <div class="card-label">Average Rent</div>
+      <div class="card-value"><span class="skeleton skeleton-lg"></span></div>
+      <div class="card-detail" id="housing-median"></div>
+      <div class="card-meta">
+        Source: CMHC Rental Market Survey
       </div>
     </div>
   </div>
 </section>
 
-<!-- Demographics -->
+<!-- Tax Burden -->
 <section class="section">
-  <h2 class="section-title">&#128101; Who We're Planning For</h2>
+  <h2 class="section-title">&#128176; Tax Burden Comparison</h2>
+  <div class="card-grid">
+    <div class="card card-full" id="card-tax">
+      <div class="card-label">Total Residential Tax on Representative House</div>
+      <div id="tax-bars" style="margin-top:16px;"></div>
+      <div class="card-detail" style="margin-top:16px;font-style:italic;color:#888;">
+        Comparing Parksville's total residential tax burden to similar Vancouver Island communities.
+      </div>
+      <div class="card-meta">
+        <span id="tax-updated"></span><br>
+        Source: BC Government Local Government Statistics (Schedule 707)
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Who We Are -->
+<section class="section">
+  <h2 class="section-title">&#128101; Who We Are</h2>
   <div class="card-grid card-grid-4">
     <div class="card">
       <div class="card-label">Population</div>
-      <div class="card-value">13,990</div>
-      <div class="card-meta">Source: Statistics Canada 2021 Census</div>
+      <div class="card-value">14,178</div>
+      <div class="card-meta">Source: BC Stats 2025 Estimate</div>
     </div>
     <div class="card">
       <div class="card-label">Seniors 65+</div>
@@ -496,7 +500,7 @@ a { color: var(--yellow); }
 <footer class="footer">
   Authorized by Sean Wood, Independent Candidate &middot; 604-868-7914<br>
   Data sources: Water Survey of Canada, BC River Forecast Centre, BC Wildfire Service,<br>
-  Environment and Climate Change Canada, DriveBC, Bang for Your Duck, Statistics Canada 2021 Census.
+  Environment and Climate Change Canada, DriveBC, CMHC, BC Government, BC Stats, Statistics Canada.
 </footer>
 
 <script>
@@ -593,7 +597,7 @@ a { color: var(--yellow); }
 
   function markAllStale() {
     ['card-river','card-snowpack','card-fire','card-roads',
-     'card-wildfire','card-aqhi','card-scores'].forEach(markStale);
+     'card-wildfire','card-aqhi','card-housing-vacancy','card-housing-rent','card-tax'].forEach(markStale);
   }
 
   // ---- Render functions ----
@@ -693,33 +697,59 @@ a { color: var(--yellow); }
     setUpdated('aqhi-updated', d.fetched_at);
   }
 
-  function renderScores(d) {
-    if (!d) { markStale('card-scores'); return; }
-    if (isStale(d.fetched_at)) { markStale('card-scores'); }
-    var gradeEl = document.getElementById('score-grade');
-    gradeEl.textContent = d.duck_grade || '?';
+  function renderHousing(d) {
+    if (!d) { markStale('card-housing-vacancy'); markStale('card-housing-rent'); return; }
 
-    var compEl = document.getElementById('score-composite');
-    compEl.textContent = d.composite != null ? parseFloat(d.composite).toFixed(1) + ' / 100' : '--';
+    // Vacancy card
+    var vacCard = document.getElementById('card-housing-vacancy');
+    var vacVal = d.vacancy_rate != null ? parseFloat(d.vacancy_rate).toFixed(1) : '--';
+    vacCard.querySelector('.card-value').innerHTML = vacVal + '<span class="card-value-unit">%</span>';
 
-    var cats = [
-      ['Fiscal', d.fiscal_score],
-      ['Housing', d.housing_score],
-      ['Safety', d.safety_score],
-      ['Liveability', d.liveability_score],
-      ['Infrastructure', d.infrastructure_score],
-    ];
-    var barsHTML = cats.map(function(c) {
-      var pct = c[1] != null ? Math.min(100, Math.max(0, c[1])) : 0;
-      var val = c[1] != null ? parseFloat(c[1]).toFixed(0) : '--';
+    var vacPill = '';
+    if (d.vacancy_rate != null) {
+      var vr = parseFloat(d.vacancy_rate);
+      if (vr >= 3) vacPill = pillHTML('Healthy vacancy', 'green');
+      else if (vr >= 1.5) vacPill = pillHTML('Tight market', 'amber');
+      else vacPill = pillHTML('Very tight market', 'red');
+    }
+    setHTML('vacancy-pills', vacPill);
+    setText('housing-units', d.unit_count != null ? d.unit_count.toLocaleString() + ' rental units surveyed' : '');
+    setUpdated('housing-updated', d.fetched_at);
+
+    // Rent card
+    var rentCard = document.getElementById('card-housing-rent');
+    var avgVal = d.avg_rent != null ? '$' + parseInt(d.avg_rent).toLocaleString() : '--';
+    rentCard.querySelector('.card-value').innerHTML = avgVal + '<span class="card-value-unit">/mo</span>';
+    setText('housing-median', d.median_rent != null ? 'Median rent: $' + parseInt(d.median_rent).toLocaleString() + '/mo' : '');
+  }
+
+  function renderTaxRates(d) {
+    if (!d) { markStale('card-tax'); return; }
+    var cities = [
+      ['Parksville', d.parksville_tax, true],
+      ['Qualicum Beach', d.qualicum_tax, false],
+      ['Comox', d.comox_tax, false],
+      ['Courtenay', d.courtenay_tax, false],
+      ['Duncan', d.duncan_tax, false],
+    ].filter(function(c) { return c[1] != null; });
+
+    if (cities.length === 0) { markStale('card-tax'); return; }
+
+    var maxTax = Math.max.apply(null, cities.map(function(c) { return c[1]; }));
+
+    var barsHTML = cities.map(function(c) {
+      var pct = maxTax > 0 ? Math.round((c[1] / maxTax) * 100) : 0;
+      var highlight = c[2] ? 'font-weight:900;color:var(--card-text);' : '';
+      var barColor = c[2] ? 'background:var(--teal);' : 'background:#b0d4d8;';
       return '<div class="score-row">' +
-        '<span class="score-label">' + c[0] + '</span>' +
-        '<div class="score-bar-bg"><div class="score-bar-fill" style="width:' + pct + '%"></div></div>' +
-        '<span class="score-val">' + val + '</span>' +
+        '<span class="score-label" style="width:130px;' + highlight + '">' + c[0] + '</span>' +
+        '<div class="score-bar-bg"><div class="score-bar-fill" style="width:' + pct + '%;' + barColor + '"></div></div>' +
+        '<span class="score-val" style="width:60px;' + highlight + '">$' + parseInt(c[1]).toLocaleString() + '</span>' +
         '</div>';
     }).join('');
-    setHTML('score-bars', barsHTML);
-    setUpdated('scores-updated', d.fetched_at);
+
+    setHTML('tax-bars', barsHTML);
+    setUpdated('tax-updated', d.fetched_at);
   }
 
   // ---- Main fetch ----
@@ -739,7 +769,8 @@ a { color: var(--yellow); }
         renderRoads(d.road_events_latest);
         renderWildfire(d.wildfire_latest);
         renderAQHI(d.air_quality_latest);
-        renderScores(d.city_scores_latest);
+        renderHousing(d.housing_latest);
+        renderTaxRates(d.tax_rates_latest);
       })
       .catch(function(err) {
         console.error('[prepared] Fetch failed:', err);

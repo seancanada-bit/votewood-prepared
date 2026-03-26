@@ -12,6 +12,7 @@ $allowed = [
   'river_flow_latest', 'snowpack_latest', 'fire_weather_latest',
   'air_quality_latest', 'road_events_latest', 'city_scores_latest',
   'demographics_latest', 'wildfire_latest', 'local_events_latest',
+  'housing_latest', 'tax_rates_latest',
 ];
 
 $table = $_GET['table'] ?? '';
