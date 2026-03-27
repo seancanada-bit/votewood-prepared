@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Downtown Vitality | Parksville. Prepared.</title>
+<meta name="description" content="Parksville's downtown core: business association, facade rejuvenation, street patios, and what residents want for their city centre.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --teal: #1D919E;
+  --teal-dark: #166d78;
+  --teal-deep: #0e4a50;
+  --yellow: #FFEB3B;
+  --white: #FFFFFF;
+  --card-bg: #ffffff;
+  --card-text: #14140D;
+  --radius: 14px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.10);
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'Roboto', -apple-system, sans-serif;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--teal-dark);
+  color: var(--white);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Header */
+.header {
+  background: var(--teal-deep);
+  border-bottom: 2px solid var(--yellow);
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+}
+.header a { color: var(--yellow); text-decoration: none; font-weight: 700; }
+.header-right { font-weight: 700; letter-spacing: 1px; }
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 72px 24px 56px;
+  background: linear-gradient(180deg, var(--teal-deep) 0%, var(--teal-dark) 100%);
+}
+.hero-eyebrow {
+  font-family: var(--sans);
+  font-size: 12px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--yellow); margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 6vw, 56px); font-weight: 400;
+  margin-bottom: 20px; line-height: 1.1;
+}
+.hero-sub {
+  max-width: 560px; margin: 0 auto 32px; font-size: 16px;
+  opacity: 0.8; line-height: 1.7;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 24px; padding: 10px 24px; font-size: 13px; font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Sections */
+.section {
+  padding: 56px 24px; max-width: 920px; margin: 0 auto;
+}
+.section-alt {
+  background: rgba(0,0,0,0.08);
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: 28px; font-weight: 400; color: var(--yellow);
+  margin-bottom: 8px;
+}
+.section-subtitle {
+  font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 28px;
+  max-width: 600px;
+}
+
+/* Card grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+.card-full { grid-column: 1 / -1; }
+
+/* Cards */
+.card {
+  background: var(--card-bg); color: var(--card-text);
+  border-radius: var(--radius); padding: 28px 28px 24px;
+  box-shadow: var(--shadow); position: relative;
+  border-left: 4px solid var(--teal);
+  transition: box-shadow 0.2s;
+}
+.card:hover { box-shadow: 0 6px 32px rgba(0,0,0,0.15); }
+
+/* Card label */
+.card-label {
+  font-size: 11px; font-weight: 900; text-transform: uppercase;
+  letter-spacing: 1.5px; color: #999; margin-bottom: 16px;
+}
+
+/* Card title */
+.card-title {
+  font-family: var(--serif);
+  font-size: 22px; color: var(--teal-dark);
+  margin-bottom: 12px; line-height: 1.2;
+}
+
+/* Card body */
+.card-body {
+  font-size: 14px; color: #555; line-height: 1.75;
+}
+.card-body strong { color: var(--teal-dark); }
+
+/* Chart notes style annotations */
+.chart-notes {
+  margin-top: 16px; padding: 16px 18px;
+  background: #f7fbfb; border-left: 3px solid var(--teal);
+  border-radius: 0 8px 8px 0; font-size: 12.5px; color: #555;
+  line-height: 1.75; letter-spacing: 0.01em;
+}
+.chart-notes strong { color: var(--teal-dark); }
+.chart-notes-links {
+  margin-top: 10px; padding-top: 8px; border-top: 1px solid #e8eeee;
+  font-size: 11px;
+}
+.chart-notes-links a {
+  color: var(--teal); text-decoration: none; margin-right: 12px;
+  display: inline-block; margin-bottom: 4px;
+}
+.chart-notes-links a:hover { text-decoration: underline; }
+.chart-notes-links .link-source {
+  color: #bbb; font-size: 10px; font-style: italic;
+}
+
+/* Highlight value */
+.highlight-value {
+  font-family: var(--serif);
+  font-size: 36px; color: var(--teal-dark);
+  line-height: 1; margin-bottom: 8px;
+}
+
+/* Narrative */
+.narrative {
+  background: var(--teal-deep);
+  border-top: 2px solid var(--yellow);
+  border-bottom: 2px solid var(--yellow);
+  padding: 64px 24px; text-align: center;
+}
+.narrative h2 {
+  font-family: var(--serif);
+  color: var(--yellow); font-size: clamp(24px, 4vw, 36px);
+  font-weight: 400; margin-bottom: 24px;
+}
+.narrative p {
+  max-width: 560px; margin: 0 auto 16px;
+  font-size: 15px; opacity: 0.8; line-height: 1.8;
+}
+.cta-btn {
+  display: inline-block; margin-top: 24px; padding: 14px 36px;
+  background: var(--yellow); color: var(--teal-deep);
+  font-weight: 900; font-size: 14px; text-decoration: none;
+  border-radius: 6px; letter-spacing: 0.5px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+
+/* Source card */
+.source-card {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius); padding: 28px; color: rgba(255,255,255,0.7);
+  font-size: 13px; line-height: 1.8;
+}
+.source-card strong { color: rgba(255,255,255,0.9); }
+
+/* Footer */
+.footer {
+  background: var(--teal-deep); padding: 32px 24px;
+  text-align: center; font-size: 12px; opacity: 0.6; line-height: 1.8;
+}
+
+@media (max-width: 640px) {
+  .header { flex-direction: column; gap: 4px; text-align: center; }
+  .hero { padding: 48px 20px 40px; }
+  .hero h1 { font-size: 32px; }
+  .section { padding: 40px 16px; }
+  .section-title { font-size: 24px; }
+  .card { padding: 20px; }
+  .card-title { font-size: 19px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .highlight-value { font-size: 28px; }
+  .chart-notes { font-size: 11.5px; padding: 12px 14px; }
+  .chart-notes-links { font-size: 10.5px; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a href="https://votewood.ca">&larr; votewood.ca</a>
+  <div class="header-right">SEAN WOOD &middot; PARKSVILLE. PREPARED.</div>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow">Parksville. Prepared.</div>
+  <h1>The heart of our city.</h1>
+  <p class="hero-sub">Downtown is where community happens &mdash; where neighbours bump into each other, where local businesses build livelihoods, and where visitors get their first impression of Parksville.</p>
+  <div class="hero-badge">
+    Downtown Vitality &middot; Parksville
+  </div>
+</div>
+
+<section class="section" id="section-downtown">
+  <h2 class="section-title">Downtown Core</h2>
+  <p class="section-subtitle">What's happening in Parksville's downtown &mdash; the organizations, investments, and plans shaping the city centre.</p>
+
+  <div class="card-grid">
+
+    <!-- Card 1: Downtown Business Association -->
+    <div class="card">
+      <div class="card-label">Business &amp; Governance</div>
+      <div class="card-title">Downtown Business Association</div>
+      <div class="card-body">
+        The Parksville &amp; District Business Association (PDBA) administers the Business Improvement Area: <strong>600 property owners</strong> and <strong>230 businesses</strong> between McMillan, McVickers, Jensen, and the waterfront.
+        <div class="chart-notes" style="margin-top:14px;">
+          The PDBA is currently developing a <strong>5&ndash;7 year strategic plan</strong> for the downtown core &mdash; setting priorities for marketing, events, beautification, and business development across the BIA.
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Facade Rejuvenation -->
+    <div class="card">
+      <div class="card-label">Capital Project</div>
+      <div class="card-title">Facade Rejuvenation</div>
+      <div class="card-body">
+        <div class="highlight-value">$500K</div>
+        A facade and accessibility rejuvenation project, with a <strong>provincial grant pending</strong>. The project aims to refresh building fronts and improve accessibility throughout the downtown core &mdash; making the streetscape more welcoming for everyone.
+        <div class="chart-notes" style="margin-top:14px;">
+          <div class="chart-notes-links">
+            <a href="https://pqbnews.com/2026/03/17/parksville-downtown-business-association-hopeful-for-500k-rejuvenation/" target="_blank">PDBA hopeful for $500K rejuvenation</a>
+            <span class="link-source">PQB News</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Street Patio Program -->
+    <div class="card">
+      <div class="card-label">2025 Pilot</div>
+      <div class="card-title">Street Patio Program</div>
+      <div class="card-body">
+        A 2025 pilot allowing restaurants and cafes to operate patios on adjacent streets. The zoning bylaw was amended for the TR-1 zone to make this possible.
+        <div class="chart-notes" style="margin-top:14px;">
+          <strong>Cost to participate:</strong> $150 processing fee + ~$360/year rent. A concrete, low-cost step toward street-level vibrancy and a more walkable downtown.
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4: Memorial Avenue Revitalization -->
+    <div class="card">
+      <div class="card-label">Completed 2022</div>
+      <div class="card-title">Memorial Avenue Revitalization</div>
+      <div class="card-body">
+        <div class="highlight-value">$4M</div>
+        Major upgrade completed in 2022: <strong>Memorial Plaza</strong> (13,800 sq ft of public gathering space), Hirst Avenue West improvements, and underground utility renewal.
+        <div class="chart-notes" style="margin-top:14px;">
+          Funded partly by the <strong>Federal Gas Tax Fund</strong> and <strong>ICBC</strong>. This project transformed a section of downtown into usable public space &mdash; the kind of investment that compounds over time.
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5: Imagine Parksville Downtown -->
+    <div class="card">
+      <div class="card-label">Public Engagement</div>
+      <div class="card-title">Imagine Parksville Downtown</div>
+      <div class="card-body">
+        <div class="highlight-value">$100K</div>
+        A provincial grant funded extensive public engagement asking residents what they want for their downtown.
+        <div class="chart-notes" style="margin-top:14px;">
+          <strong>What residents asked for:</strong> walkability, waterfront connection, diverse shops and restaurants, nightlife, and family events. These findings should shape future council decisions about downtown investment and zoning.
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6: Food Trucks & Entrepreneurs -->
+    <div class="card">
+      <div class="card-label">Economic Development</div>
+      <div class="card-title">Food Trucks &amp; Entrepreneurs</div>
+      <div class="card-body">
+        Food truck concession pads are available in Community Park, providing a low-barrier entry point for local food entrepreneurs.
+        <div class="chart-notes" style="margin-top:14px;">
+          The PDBA's strategic plan includes an <strong>entrepreneur development and incubation hub</strong> &mdash; supporting new businesses from idea to storefront. This is how downtowns grow from the inside.
+          <div class="chart-notes-links">
+            <a href="https://letstalkparksville.ca/parksville-community-park" target="_blank">Community Park project page</a>
+            <span class="link-source">Let's Talk Parksville</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Narrative -->
+<div class="narrative">
+  <h2>Keep the heart beating.</h2>
+  <p>A vibrant downtown is more than shops and restaurants &mdash; it's where a community meets itself. Supporting local business, improving accessibility, and listening to what residents want are how we keep Parksville's heart beating.</p>
+  <a href="https://votewood.ca" class="cta-btn">Back to votewood.ca</a>
+</div>
+
+<!-- Sources -->
+<section class="section">
+  <div class="source-card">
+    <strong>Sources:</strong> Parksville Downtown Business Association, City of Parksville, Let's Talk Parksville.<br>
+    All figures from official city reports, council documents, and local news coverage.
+  </div>
+</section>
+
+<footer class="footer">
+  Parksville. Prepared. &middot; Sean Wood for Mayor &middot; 2026<br>
+  Research-backed. Community-focused. Independently produced.
+</footer>
+
+</body>
+</html>

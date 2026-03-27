@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parks &amp; Recreation | Parksville. Prepared.</title>
+<meta name="description" content="Parksville's parks and recreation: Community Park, capital projects, grant funding, the proposed multiplex, and who runs what.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --teal: #1D919E;
+  --teal-dark: #166d78;
+  --teal-deep: #0e4a50;
+  --yellow: #FFEB3B;
+  --white: #FFFFFF;
+  --card-bg: #ffffff;
+  --card-text: #14140D;
+  --radius: 14px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.10);
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'Roboto', -apple-system, sans-serif;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--teal-dark);
+  color: var(--white);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Header */
+.header {
+  background: var(--teal-deep);
+  border-bottom: 2px solid var(--yellow);
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+}
+.header a { color: var(--yellow); text-decoration: none; font-weight: 700; }
+.header-right { font-weight: 700; letter-spacing: 1px; }
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 72px 24px 56px;
+  background: linear-gradient(180deg, var(--teal-deep) 0%, var(--teal-dark) 100%);
+}
+.hero-eyebrow {
+  font-family: var(--sans);
+  font-size: 12px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--yellow); margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 6vw, 56px); font-weight: 400;
+  margin-bottom: 20px; line-height: 1.1;
+}
+.hero-sub {
+  max-width: 560px; margin: 0 auto 32px; font-size: 16px;
+  opacity: 0.8; line-height: 1.7;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 24px; padding: 10px 24px; font-size: 13px; font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Sections */
+.section {
+  padding: 56px 24px; max-width: 920px; margin: 0 auto;
+}
+.section-alt {
+  background: rgba(0,0,0,0.08);
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: 28px; font-weight: 400; color: var(--yellow);
+  margin-bottom: 8px;
+}
+.section-subtitle {
+  font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 28px;
+  max-width: 600px;
+}
+
+/* Card grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+.card-full { grid-column: 1 / -1; }
+
+/* Cards */
+.card {
+  background: var(--card-bg); color: var(--card-text);
+  border-radius: var(--radius); padding: 28px 28px 24px;
+  box-shadow: var(--shadow); position: relative;
+  border-left: 4px solid var(--teal);
+  transition: box-shadow 0.2s;
+}
+.card:hover { box-shadow: 0 6px 32px rgba(0,0,0,0.15); }
+
+/* Card label */
+.card-label {
+  font-size: 11px; font-weight: 900; text-transform: uppercase;
+  letter-spacing: 1.5px; color: #999; margin-bottom: 16px;
+}
+
+/* Card title */
+.card-title {
+  font-family: var(--serif);
+  font-size: 22px; color: var(--teal-dark);
+  margin-bottom: 12px; line-height: 1.2;
+}
+
+/* Card body */
+.card-body {
+  font-size: 14px; color: #555; line-height: 1.75;
+}
+.card-body strong { color: var(--teal-dark); }
+
+/* Chart notes style annotations */
+.chart-notes {
+  margin-top: 16px; padding: 16px 18px;
+  background: #f7fbfb; border-left: 3px solid var(--teal);
+  border-radius: 0 8px 8px 0; font-size: 12.5px; color: #555;
+  line-height: 1.75; letter-spacing: 0.01em;
+}
+.chart-notes strong { color: var(--teal-dark); }
+.chart-notes-links {
+  margin-top: 10px; padding-top: 8px; border-top: 1px solid #e8eeee;
+  font-size: 11px;
+}
+.chart-notes-links a {
+  color: var(--teal); text-decoration: none; margin-right: 12px;
+  display: inline-block; margin-bottom: 4px;
+}
+.chart-notes-links a:hover { text-decoration: underline; }
+.chart-notes-links .link-source {
+  color: #bbb; font-size: 10px; font-style: italic;
+}
+.chart-notes .note-year {
+  display: inline-block; background: var(--teal); color: white;
+  font-size: 10px; font-weight: 900; padding: 1px 6px;
+  border-radius: 3px; margin-right: 4px; vertical-align: 1px;
+}
+
+/* Highlight value */
+.highlight-value {
+  font-family: var(--serif);
+  font-size: 36px; color: var(--teal-dark);
+  line-height: 1; margin-bottom: 8px;
+}
+
+/* Timeline */
+.timeline {
+  margin-top: 8px; padding: 0; list-style: none;
+}
+.timeline li {
+  position: relative;
+  padding: 10px 0 10px 56px;
+  border-left: 2px solid #e0e0e0;
+  font-size: 13.5px; color: #555; line-height: 1.6;
+}
+.timeline li:last-child { border-left-color: transparent; }
+.timeline li::before {
+  content: attr(data-year);
+  position: absolute; left: -8px; top: 8px;
+  background: var(--teal); color: white;
+  font-size: 10px; font-weight: 900; padding: 2px 8px;
+  border-radius: 3px; white-space: nowrap;
+}
+.timeline li strong { color: var(--teal-dark); }
+
+/* Facility list */
+.facility-list {
+  display: flex; flex-wrap: wrap; gap: 6px 10px;
+  margin: 12px 0; padding: 0; list-style: none;
+}
+.facility-list li {
+  background: #f0fafb; color: var(--teal-dark);
+  font-size: 12px; font-weight: 700; padding: 4px 12px;
+  border-radius: 16px; border: 1px solid #d4eef0;
+}
+
+/* Narrative */
+.narrative {
+  background: var(--teal-deep);
+  border-top: 2px solid var(--yellow);
+  border-bottom: 2px solid var(--yellow);
+  padding: 64px 24px; text-align: center;
+}
+.narrative h2 {
+  font-family: var(--serif);
+  color: var(--yellow); font-size: clamp(24px, 4vw, 36px);
+  font-weight: 400; margin-bottom: 24px;
+}
+.narrative p {
+  max-width: 560px; margin: 0 auto 16px;
+  font-size: 15px; opacity: 0.8; line-height: 1.8;
+}
+.cta-btn {
+  display: inline-block; margin-top: 24px; padding: 14px 36px;
+  background: var(--yellow); color: var(--teal-deep);
+  font-weight: 900; font-size: 14px; text-decoration: none;
+  border-radius: 6px; letter-spacing: 0.5px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+
+/* Source card */
+.source-card {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius); padding: 28px; color: rgba(255,255,255,0.7);
+  font-size: 13px; line-height: 1.8;
+}
+.source-card strong { color: rgba(255,255,255,0.9); }
+
+/* Footer */
+.footer {
+  background: var(--teal-deep); padding: 32px 24px;
+  text-align: center; font-size: 12px; opacity: 0.6; line-height: 1.8;
+}
+
+@media (max-width: 640px) {
+  .header { flex-direction: column; gap: 4px; text-align: center; }
+  .hero { padding: 48px 20px 40px; }
+  .hero h1 { font-size: 32px; }
+  .section { padding: 40px 16px; }
+  .section-title { font-size: 24px; }
+  .card { padding: 20px; }
+  .card-title { font-size: 19px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .highlight-value { font-size: 28px; }
+  .chart-notes { font-size: 11.5px; padding: 12px 14px; }
+  .chart-notes-links { font-size: 10.5px; }
+  .timeline li { padding-left: 48px; font-size: 12.5px; }
+  .facility-list li { font-size: 11px; padding: 3px 10px; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a href="https://votewood.ca">&larr; votewood.ca</a>
+  <div class="header-right">SEAN WOOD &middot; PARKSVILLE. PREPARED.</div>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow">Parksville. Prepared.</div>
+  <h1>Where community happens.</h1>
+  <p class="hero-sub">Parks are Parksville's gathering places &mdash; where families play, athletes compete, neighbours connect, and visitors fall in love with the city.</p>
+  <div class="hero-badge">
+    Parks &amp; Recreation &middot; Parksville
+  </div>
+</div>
+
+<section class="section" id="section-parks">
+  <h2 class="section-title">Parks &amp; Facilities</h2>
+  <p class="section-subtitle">The spaces, investments, and plans that shape recreation in Parksville.</p>
+
+  <div class="card-grid">
+
+    <!-- Card 1: Community Park -->
+    <div class="card card-full">
+      <div class="card-label">Flagship Park</div>
+      <div class="card-title">Community Park</div>
+      <div class="card-body">
+        <div class="highlight-value">39 acres</div>
+        of oceanfront parkland &mdash; Parksville's signature public space.
+        <ul class="facility-list">
+          <li>Horseshoe pits</li>
+          <li>Lacrosse box</li>
+          <li>Tennis courts</li>
+          <li>Pickleball courts</li>
+          <li>Skatepark</li>
+          <li>Splash park</li>
+          <li>Accessible playground</li>
+          <li>Lions Ventureland</li>
+          <li>Outdoor fitness gym</li>
+          <li>Beach volleyball</li>
+          <li>Waterfront walkway</li>
+          <li>Gazebo</li>
+          <li>Picnic shelter</li>
+          <li>Outdoor theatre</li>
+        </ul>
+        <div class="chart-notes" style="margin-top:14px;">
+          <strong>700+ event bookings in 2023.</strong> Community Park is the most-used public space on Vancouver Island's east coast &mdash; hosting everything from Canada Day celebrations to sports tournaments to weekend markets.
+          <div class="chart-notes-links">
+            <a href="https://letstalkparksville.ca/parksville-community-park" target="_blank">Community Park project page</a>
+            <span class="link-source">Let's Talk Parksville</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Recent Capital Projects (Timeline) -->
+    <div class="card card-full">
+      <div class="card-label">Capital Timeline</div>
+      <div class="card-title">Recent Capital Projects</div>
+      <div class="card-body">
+        <ul class="timeline">
+          <li data-year="2020">
+            <strong>$1.26M</strong> outdoor theatre grant secured
+          </li>
+          <li data-year="2021">
+            <strong>$515K</strong> shortfall juggled from gas tax funds to keep projects on track
+          </li>
+          <li data-year="2022">
+            Gathering plaza construction begins; playground surfacing renewed
+          </li>
+          <li data-year="2023">
+            New washroom building (<strong>$1.45M</strong>), gathering plaza (<strong>$1.6M</strong>), sports courts upgraded
+          </li>
+          <li data-year="2024">
+            All Community Park upgrades completed
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Card 3: Grant Funding -->
+    <div class="card">
+      <div class="card-label">Funding</div>
+      <div class="card-title">Grant Funding</div>
+      <div class="card-body">
+        <div class="highlight-value">$2.97M</div>
+        in grants utilized in 2023 alone.
+        <div class="chart-notes" style="margin-top:14px;">
+          <strong>$1.68M</strong> Canada Community-Building Fund<br>
+          <strong>$600K</strong> Growing Communities Fund (washroom building)<br>
+          <strong>$396K</strong> Gathering plaza<br>
+          <strong>$300K</strong> Playground surfacing
+          <div class="chart-notes-links">
+            <a href="https://letstalkparksville.ca/financial-plan-2024/news_feed/grant-funding-utilized-by-city-of-parksville-in-2023" target="_blank">Grant funding in 2023</a>
+            <span class="link-source">Let's Talk Parksville</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4: Proposed Multiplex -->
+    <div class="card">
+      <div class="card-label">Looking Ahead</div>
+      <div class="card-title">Proposed Multiplex</div>
+      <div class="card-body">
+        Council has expressed strong support for a <strong>swimming pool</strong> within Parksville, plus a <strong>multiplex facility</strong> combining sports, fitness, and community gathering space.
+        <div class="chart-notes" style="margin-top:14px;">
+          Aimed at attracting young families and sports tourism. The <strong>2026 budget includes $750K&ndash;$1M</strong> for a lacrosse box / multi-sport court as a near-term step. The full multiplex remains a longer-term aspiration that will require significant capital planning.
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5: Parks Inventory -->
+    <div class="card">
+      <div class="card-label">Inventory</div>
+      <div class="card-title">Parks Inventory</div>
+      <div class="card-body">
+        <div class="highlight-value">32 parks</div>
+        <strong>4 major parks</strong> and <strong>28 neighbourhood parks</strong> maintained by City Operations.
+        <div class="chart-notes" style="margin-top:14px;">
+          <strong>140+ annual events</strong> hosted across parks. Annual maintenance handled by the City Operations department &mdash; mowing, drainage, tree care, facility upkeep, and seasonal event preparation.
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6: Who Runs What -->
+    <div class="card">
+      <div class="card-label">Governance</div>
+      <div class="card-title">Who Runs What</div>
+      <div class="card-body">
+        An important distinction that often causes confusion:
+        <div class="chart-notes" style="margin-top:14px;">
+          <strong>RDN-operated (not the City):</strong><br>
+          &bull; Oceanside Place Arena (located in Parksville)<br>
+          &bull; Ravensong Aquatic Centre (located in Qualicum Beach)<br>
+          &bull; Sports field bookings<br><br>
+          <strong>City-operated:</strong><br>
+          &bull; All 32 parks &mdash; maintenance, infrastructure, event coordination<br><br>
+          The <strong>City maintains the parks</strong>; the <strong>RDN runs the programs</strong>. Knowing who does what matters when advocating for improvements.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Narrative -->
+<div class="narrative">
+  <h2>Keep them thriving.</h2>
+  <p>Parks are where Parksville is at its best &mdash; families at the beach, sports under the lights, neighbours sharing a picnic shelter. Investing in these spaces, and being clear about who runs what, is how we keep them thriving.</p>
+  <a href="https://votewood.ca" class="cta-btn">Back to votewood.ca</a>
+</div>
+
+<!-- Sources -->
+<section class="section">
+  <div class="source-card">
+    <strong>Sources:</strong> City of Parksville, Let's Talk Parksville, RDN Recreation.<br>
+    All figures from official city reports, council documents, and grant funding disclosures.
+  </div>
+</section>
+
+<footer class="footer">
+  Parksville. Prepared. &middot; Sean Wood for Mayor &middot; 2026<br>
+  Research-backed. Community-focused. Independently produced.
+</footer>
+
+</body>
+</html>

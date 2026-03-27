@@ -1,4 +1,4 @@
-name: Deploy Prepared Dashboard
+name: Deploy Votewood Site
 
 on:
   push:
@@ -11,9 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Inject DB password into api.php
+      - name: Inject DB password into all api.php files
         run: |
-          sed -i "s|__DB_PASSWORD__|${{ secrets.DB_PASSWORD }}|g" prepared/api.php
+          find . -name "api.php" -exec sed -i "s|__DB_PASSWORD__|${{ secrets.DB_PASSWORD }}|g" {} +
 
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -21,8 +21,10 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./prepared/
-          server-dir: /prepared/
+          local-dir: ./
+          server-dir: /
           exclude: |
             **/.git*
             **/.git*/**
+            **/.github/**
+            **/README.md

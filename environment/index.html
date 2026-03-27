@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Environment & Climate | Parksville. Prepared.</title>
+<meta name="description" content="Parksville's natural environment — the Englishman River Estuary, flood risk, climate adaptation, and the balance between development and protection.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --teal: #1D919E;
+  --teal-dark: #166d78;
+  --teal-deep: #0e4a50;
+  --yellow: #FFEB3B;
+  --white: #FFFFFF;
+  --card-bg: #ffffff;
+  --card-text: #14140D;
+  --radius: 14px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.10);
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'Roboto', -apple-system, sans-serif;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--teal-dark);
+  color: var(--white);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Header */
+.header {
+  background: var(--teal-deep);
+  border-bottom: 2px solid var(--yellow);
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+}
+.header a { color: var(--yellow); text-decoration: none; font-weight: 700; }
+.header-right { font-weight: 700; letter-spacing: 1px; }
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 72px 24px 56px;
+  background: linear-gradient(180deg, var(--teal-deep) 0%, var(--teal-dark) 100%);
+}
+.hero-eyebrow {
+  font-family: var(--sans);
+  font-size: 12px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--yellow); margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 6vw, 56px); font-weight: 400;
+  margin-bottom: 20px; line-height: 1.1;
+}
+.hero-sub {
+  max-width: 560px; margin: 0 auto 32px; font-size: 16px;
+  opacity: 0.8; line-height: 1.7;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 24px; padding: 10px 24px; font-size: 13px; font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Sections */
+.section {
+  padding: 56px 24px; max-width: 920px; margin: 0 auto;
+}
+.section-alt {
+  background: rgba(0,0,0,0.08);
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: 28px; font-weight: 400; color: var(--yellow);
+  margin-bottom: 8px;
+}
+.section-subtitle {
+  font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 28px;
+  max-width: 600px;
+}
+
+/* Card grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+.card-full { grid-column: 1 / -1; }
+
+/* Cards */
+.card {
+  background: var(--card-bg); color: var(--card-text);
+  border-radius: var(--radius); padding: 28px 28px 24px;
+  box-shadow: var(--shadow); position: relative;
+  border-left: 4px solid var(--teal);
+  transition: box-shadow 0.2s;
+}
+.card:hover { box-shadow: 0 6px 32px rgba(0,0,0,0.15); }
+
+/* Card label */
+.card-label {
+  font-size: 11px; font-weight: 900; text-transform: uppercase;
+  letter-spacing: 1.5px; color: #999; margin-bottom: 16px;
+}
+
+/* Card title */
+.card-title {
+  font-family: var(--serif); font-size: 22px; color: var(--teal-dark);
+  margin-bottom: 12px; line-height: 1.2;
+}
+
+/* Card body */
+.card p, .card ul {
+  font-size: 14px; color: #555; line-height: 1.75; margin-bottom: 12px;
+}
+.card ul { padding-left: 20px; }
+.card li { margin-bottom: 6px; }
+.card strong { color: var(--teal-dark); }
+
+/* Stat highlight */
+.stat-row {
+  display: flex; flex-wrap: wrap; gap: 24px; margin: 16px 0;
+}
+.stat-item {
+  display: flex; flex-direction: column;
+}
+.stat-value {
+  font-family: var(--serif); font-size: 32px; color: var(--teal-dark); line-height: 1;
+}
+.stat-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: #999; margin-top: 4px;
+}
+
+/* Card accent variants */
+.card-accent-amber { border-left-color: #e65100; }
+.card-accent-green { border-left-color: #2e7d32; }
+
+/* News links inside cards */
+.card-links {
+  margin-top: 16px; padding-top: 12px; border-top: 1px solid #f0f0f0;
+  font-size: 12px;
+}
+.card-links a {
+  color: var(--teal); text-decoration: none; display: inline-block;
+  margin-right: 12px; margin-bottom: 4px;
+}
+.card-links a:hover { text-decoration: underline; }
+
+/* Narrative */
+.narrative {
+  background: var(--teal-deep);
+  border-top: 2px solid var(--yellow);
+  border-bottom: 2px solid var(--yellow);
+  padding: 64px 24px; text-align: center;
+}
+.narrative h2 {
+  font-family: var(--serif);
+  color: var(--yellow); font-size: clamp(24px, 4vw, 36px);
+  font-weight: 400; margin-bottom: 24px;
+}
+.narrative p {
+  max-width: 560px; margin: 0 auto 16px;
+  font-size: 15px; opacity: 0.8; line-height: 1.8;
+}
+.cta-btn {
+  display: inline-block; margin-top: 24px; padding: 14px 36px;
+  background: var(--yellow); color: var(--teal-deep);
+  font-weight: 900; font-size: 14px; text-decoration: none;
+  border-radius: 6px; letter-spacing: 0.5px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+
+/* Source card */
+.source-card {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius); padding: 28px; color: rgba(255,255,255,0.7);
+  font-size: 13px; line-height: 1.8;
+}
+.source-card strong { color: rgba(255,255,255,0.9); }
+.source-card a { color: var(--yellow); text-decoration: none; }
+.source-card a:hover { text-decoration: underline; }
+
+/* Footer */
+.footer {
+  background: var(--teal-deep); padding: 32px 24px;
+  text-align: center; font-size: 12px; opacity: 0.6; line-height: 1.8;
+}
+
+@media (max-width: 640px) {
+  .header { flex-direction: column; gap: 4px; text-align: center; }
+  .hero { padding: 48px 20px 40px; }
+  .hero h1 { font-size: 32px; }
+  .section { padding: 40px 16px; }
+  .section-title { font-size: 24px; }
+  .card { padding: 20px; }
+  .card-title { font-size: 19px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .stat-value { font-size: 26px; }
+  .stat-row { gap: 16px; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a href="https://votewood.ca">&larr; votewood.ca</a>
+  <div class="header-right">SEAN WOOD &middot; PARKSVILLE. PREPARED.</div>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow">Parksville. Prepared.</div>
+  <h1>Protecting what makes us home.</h1>
+  <p class="hero-sub">The natural environment that defines Parksville — the estuary, the river, the coastline — isn't just scenery. It's the foundation our community is built on, and it needs to be governed that way.</p>
+  <div class="hero-badge">
+    100+ hectares protected &middot; 250+ bird species &middot; All Pacific salmon species
+  </div>
+</div>
+
+<!-- Environment Content -->
+<section class="section" id="section-environment">
+  <h2 class="section-title">Environment &amp; Climate</h2>
+  <p class="section-subtitle">What Parksville's natural systems do for us, what threatens them, and what it takes to protect them.</p>
+  <div class="card-grid">
+
+    <!-- Card 1: Englishman River Estuary -->
+    <div class="card card-full">
+      <div class="card-label">Ecosystem</div>
+      <div class="card-title">Englishman River Estuary</div>
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-value">100+</div>
+          <div class="stat-label">Hectares protected</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">250+</div>
+          <div class="stat-label">Bird species</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">5</div>
+          <div class="stat-label">Pacific salmon species</div>
+        </div>
+      </div>
+      <p>The Englishman River is a <strong>provincially designated threatened river system</strong>. Over 100 hectares are protected as part of the Parksville-Qualicum Beach Wildlife Management Area.</p>
+      <p>The estuary supports <strong>250+ bird species, all five Pacific salmon species, and multiple at-risk species</strong>. It is a critical habitat on the Pacific Flyway migratory route.</p>
+      <p>Ongoing restoration and stewardship work is led by <strong>Nature Trust of BC, Ducks Unlimited, and Environment Canada</strong> — a partnership that reflects the national significance of this ecosystem.</p>
+    </div>
+
+    <!-- Card 2: Flood Risk -->
+    <div class="card card-accent-amber">
+      <div class="card-label">Risk</div>
+      <div class="card-title">Flood Risk</div>
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-value">105</div>
+          <div class="stat-label">People evacuated (Nov 2021)</div>
+        </div>
+      </div>
+      <p>In <strong>November 2021</strong>, 105 people were evacuated from Englishman River flooding — a direct reminder that flood risk is not hypothetical in Parksville.</p>
+      <p>RDN flood hazard mapping shows <strong>increasing severity from climate change</strong>. Winter precipitation is expected to increase, with more falling as rain instead of snow — accelerating peak river flows.</p>
+      <p>Development pressure vs. floodplain protection is an ongoing tension. The <strong>703 Turner Road controversy</strong> illustrates the difficult balance between housing demand and flood risk management.</p>
+    </div>
+
+    <!-- Card 3: Climate Adaptation -->
+    <div class="card card-accent-amber">
+      <div class="card-label">Adaptation</div>
+      <div class="card-title">Climate Adaptation</div>
+      <p>Parksville's <strong>OCP update is addressing climate effects</strong> across land use, infrastructure, and environmental protection.</p>
+      <p>The <strong>Arrowsmith Dam operates at only 60% reliability</strong> — well below the 97% target — a direct climate vulnerability for the region's water supply.</p>
+      <p>A new <strong>conservation framework was adopted in February 2025</strong>, establishing clear drought stages and triggers. In summer 2025, Parksville reached <strong>Stage 4 drought restrictions</strong> — a comprehensive watering ban that signals the new normal.</p>
+    </div>
+
+    <!-- Card 4: Development vs Environment -->
+    <div class="card">
+      <div class="card-label">Balance</div>
+      <div class="card-title">Development vs. Environment</div>
+      <p>Parksville faces a fundamental tension: <strong>housing demand is real, and so is environmental protection</strong>. Both are legitimate priorities, and neither can be ignored.</p>
+      <ul>
+        <li><strong>Growth containment boundary</strong> in the Official Community Plan</li>
+        <li><strong>Development Permit Areas</strong> for environmental protection</li>
+        <li><strong>Greenhouse gas reduction targets</strong> in the OCP</li>
+        <li>Ongoing need to <strong>balance density with ecosystem preservation</strong></li>
+      </ul>
+      <p>Getting this balance right requires data, planning, and honest conversation — not slogans from either side.</p>
+    </div>
+
+    <!-- Card 5: Wildlife & Ecosystems -->
+    <div class="card card-accent-green">
+      <div class="card-label">Wildlife</div>
+      <div class="card-title">Wildlife &amp; Ecosystems</div>
+      <p>Parksville's natural systems support species that define the community:</p>
+      <ul>
+        <li><strong>Brant geese</strong> — celebrated annually at the Brant Wildlife Festival</li>
+        <li><strong>Salmon runs</strong> — all five Pacific species present in the Englishman River</li>
+        <li><strong>Great blue heron colonies</strong> — nesting habitat along the coast</li>
+      </ul>
+      <p>The estuary is a <strong>critical migratory bird habitat on the Pacific Flyway</strong> — one of the major north-south routes for migratory birds in the Americas. What happens here affects populations across the continent.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Sources -->
+<section class="section section-alt">
+  <div class="source-card">
+    <strong>Sources &amp; further reading.</strong><br>
+    Data compiled from Nature Trust of BC, Regional District of Nanaimo, City of Parksville, and Environment Canada reports.<br><br>
+    Nature Trust of BC — Englishman River Estuary conservation<br>
+    RDN — Flood hazard mapping and climate projections<br>
+    City of Parksville — Official Community Plan, conservation framework<br>
+    Environment Canada — Wildlife Management Area designations
+  </div>
+</section>
+
+<!-- Narrative -->
+<div class="narrative">
+  <h2>Environment is infrastructure.</h2>
+  <p>Parksville's natural environment isn't just scenery — it's infrastructure. The estuary filters water, the floodplain absorbs storms, and the salmon runs sustain ecosystems. Protecting these systems is practical governance, not just good intentions.</p>
+  <a href="https://votewood.ca" class="cta-btn">See the full platform &rarr; votewood.ca</a>
+</div>
+
+<footer class="footer">
+  Authorized by Sean Wood, Independent Candidate &middot; 604-868-7914<br>
+  Data: Nature Trust of BC &middot; RDN &middot; City of Parksville &middot; Environment Canada
+</footer>
+
+</body>
+</html>

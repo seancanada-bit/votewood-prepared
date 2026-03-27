@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parksville. Prepared. | Sean Wood for Mayor</title>
+<meta name="description" content="Every resident deserves the full picture. Public data on Parksville's finances, water, housing, parks, safety, and more — presented clearly for the community.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --teal: #1D919E; --teal-dark: #166d78; --teal-deep: #0e4a50;
+  --yellow: #FFEB3B; --white: #FFFFFF;
+  --radius: 14px; --shadow: 0 4px 24px rgba(0,0,0,0.10);
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'Roboto', -apple-system, sans-serif;
+}
+body { font-family: var(--sans); background: var(--teal-dark); color: var(--white); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+
+/* Header */
+.header {
+  background: var(--teal-deep); border-bottom: 2px solid var(--yellow);
+  padding: 14px 24px; display: flex; justify-content: space-between;
+  align-items: center; font-size: 13px; letter-spacing: 0.3px;
+}
+.header-name { font-weight: 900; letter-spacing: 1.5px; font-size: 14px; }
+.header-contact { font-size: 12px; opacity: 0.7; }
+.header-contact a { color: var(--yellow); text-decoration: none; }
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 80px 24px 64px;
+  background: linear-gradient(180deg, var(--teal-deep) 0%, var(--teal-dark) 100%);
+}
+.hero-eyebrow {
+  font-size: 12px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--yellow); margin-bottom: 20px;
+}
+.hero h1 {
+  font-family: var(--serif); font-size: clamp(36px, 6vw, 60px);
+  font-weight: 400; margin-bottom: 24px; line-height: 1.1;
+}
+.hero-sub {
+  max-width: 580px; margin: 0 auto 36px; font-size: 17px;
+  opacity: 0.85; line-height: 1.7;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 24px; padding: 10px 24px; font-size: 13px; font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Topic grid */
+.topics {
+  padding: 64px 24px; max-width: 1060px; margin: 0 auto;
+}
+.topics-intro {
+  text-align: center; margin-bottom: 48px;
+}
+.topics-intro h2 {
+  font-family: var(--serif); font-size: 28px; color: var(--yellow);
+  font-weight: 400; margin-bottom: 12px;
+}
+.topics-intro p {
+  max-width: 560px; margin: 0 auto; font-size: 15px;
+  opacity: 0.7; line-height: 1.7;
+}
+.topic-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.topic-card {
+  background: #ffffff; color: #14140D; border-radius: var(--radius);
+  padding: 28px 24px 24px; box-shadow: var(--shadow);
+  text-decoration: none; display: block; position: relative;
+  border-left: 4px solid var(--teal); transition: transform 0.15s, box-shadow 0.2s;
+}
+.topic-card:hover {
+  transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+.topic-icon {
+  font-size: 28px; margin-bottom: 12px; display: block;
+}
+.topic-name {
+  font-family: var(--serif); font-size: 20px; color: var(--teal-deep);
+  margin-bottom: 6px; line-height: 1.2;
+}
+.topic-stat {
+  font-family: var(--serif); font-size: 32px; color: var(--teal);
+  margin-bottom: 8px; line-height: 1;
+}
+.topic-desc {
+  font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 16px;
+}
+.topic-arrow {
+  font-size: 13px; font-weight: 700; color: var(--teal);
+  letter-spacing: 0.5px;
+}
+
+/* Narrative */
+.narrative {
+  background: var(--teal-deep); border-top: 2px solid var(--yellow);
+  border-bottom: 2px solid var(--yellow);
+  padding: 72px 24px; text-align: center;
+}
+.narrative h2 {
+  font-family: var(--serif); color: var(--yellow);
+  font-size: clamp(24px, 4vw, 36px); font-weight: 400; margin-bottom: 28px;
+}
+.narrative p {
+  max-width: 580px; margin: 0 auto 18px; font-size: 16px;
+  opacity: 0.85; line-height: 1.8;
+}
+
+/* About */
+.about {
+  padding: 64px 24px; max-width: 720px; margin: 0 auto; text-align: center;
+}
+.about h2 {
+  font-family: var(--serif); font-size: 28px; color: var(--yellow);
+  font-weight: 400; margin-bottom: 20px;
+}
+.about p {
+  font-size: 15px; opacity: 0.8; line-height: 1.8; margin-bottom: 16px;
+}
+.about-contact {
+  margin-top: 24px; font-size: 15px;
+}
+.about-contact a { color: var(--yellow); text-decoration: none; font-weight: 700; }
+
+/* Footer */
+.footer {
+  background: var(--teal-deep); padding: 32px 24px;
+  text-align: center; font-size: 12px; opacity: 0.6; line-height: 1.8;
+}
+
+@media (max-width: 640px) {
+  .header { flex-direction: column; gap: 4px; text-align: center; }
+  .hero { padding: 56px 20px 48px; }
+  .hero h1 { font-size: 36px; }
+  .topics { padding: 48px 16px; }
+  .topic-grid { grid-template-columns: 1fr; }
+  .topic-stat { font-size: 28px; }
+  .narrative { padding: 56px 20px; }
+  .about { padding: 48px 16px; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-name">SEAN WOOD &middot; PARKSVILLE. PREPARED.</div>
+  <div class="header-contact"><a href="tel:604-868-7914">604-868-7914</a> &middot; Independent Candidate for Mayor</div>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow">Parksville. Prepared.</div>
+  <h1>Every resident deserves the full picture.</h1>
+  <p class="hero-sub">This site presents public data on every facet of Parksville's governance - finances, water, housing, parks, safety, and more. All from official sources. All in one place.</p>
+  <div class="hero-badge">
+    10 topics &middot; Public data &middot; Open conversation
+  </div>
+</div>
+
+<section class="topics">
+  <div class="topics-intro">
+    <h2>What matters to Parksville</h2>
+    <p>Each section draws from official provincial reports, council documents, and public records. Click any topic to explore the data.</p>
+  </div>
+
+  <div class="topic-grid">
+
+    <a href="/prepared/" class="topic-card">
+      <span class="topic-icon">&#128176;</span>
+      <div class="topic-name">Follow the Money</div>
+      <div class="topic-stat">$38.6M</div>
+      <div class="topic-desc">A decade of revenue, expenses, debt, reserves, and infrastructure investment. Every dollar traced to its source.</div>
+      <div class="topic-arrow">Explore &rarr;</div>
+    </a>
+
+    <a href="/water/" class="topic-card">
+      <span class="topic-icon">&#128167;</span>
+      <div class="topic-name">Water Security</div>
+      <div class="topic-stat">85 km</div>
+      <div class="topic-desc">River flow, snowpack, drought levels, and the $41.7M treatment plant. Two water sources serving 5,000 lots.</div>
+      <div class="topic-arrow">Explore &rarr;</div>
+    </a>
+
+    <a href="/housing/" class="topic-card">
+      <span class="topic-icon">&#127968;</span>
+      <div class="topic-name">Housing &amp; Growth</div>
+      <div class="topic-stat">0.9%</div>
+      <div class="topic-desc">Rental vacancy, building permits, development cost charges, and how Bills 44/46 are reshaping Parksville's zoning.</div>
+      <div class="topic-arrow">Explore &rarr;</div>
+    </a>
+
+    <a href="/downtown/" class="topic-card">
+      <span class="topic-icon">&#127963;&#65039;</span>
+      <div class="topic-name">Downtown Vitality</div>
+      <div class="topic-stat">230</div>
+      <div class="topic-desc">Businesses, revitalization projects, street patios, and what "Imagine Parksville Downtown" heard from residents.</div>
+      <div class="topic-arrow">Explore &rarr;</div>
+    </a>
+
+    <a href="/parks/" class="topic-card">
+      <span class="topic-icon">&#127795;</span>
+      <div class="topic-name">Parks &amp; Recreation</div>
+      <div class="topic-stat">39 acres</div>
+      <div class="topic-desc">Community Park, 28 neighbourhood parks, the proposed multiplex, and $2.97M in grant funding for improvements.</div>
+      <div class="topic-arrow">Explore &rarr;</div>
+    </a>
+
+    <a href="/safety/" class="topic-card">
+      <span class="topic-icon">&#128737;&#65039;</span>
+      <div class="topic-name">Public Safety</div>
+      <div class="topic-stat">$435</div>
+      <div class="topic-desc">RCMP costs per resident, the 70-to-90% threshold at 15,000 population, fire rescue, and emergency preparedness.</div>
+      <div class="topic-arrow">Explore &rarr;</div>
+    </a>
+
+    <a href="/community/" class="topic-card">
+      <span class="topic-icon">&#128101;</span>
+      <div class="topic-name">Community Wellbeing</div>
+      <div class="topic-stat">46%</div>
+      <div class="topic-desc">Seniors 65+ as a share of population (highest in Canada), homelessness, childcare, accessibility, and healthcare access.</div>
+      <div class="topic-arrow">Explore &rarr;</div>
+    </a>
+
+    <a href="/environment/" class="topic-card">
+      <span class="topic-icon">&#127811;</span>
+      <div class="topic-name">Environment &amp; Climate</div>
+      <div class="topic-stat">250+</div>
+      <div class="topic-desc">Bird species in the estuary, flood risk, wildfire status, and the tension between development and floodplain protection.</div>
+      <div class="topic-arrow">Explore &rarr;</div>
+    </a>
+
+    <a href="/infrastructure/" class="topic-card">
+      <span class="topic-icon">&#128679;</span>
+      <div class="topic-name">Roads &amp; Infrastructure</div>
+      <div class="topic-stat">85 km</div>
+      <div class="topic-desc">Paved roads, the Transportation Master Plan, Parksville Pathway, cycling projects, and 50km of sewer mains.</div>
+      <div class="topic-arrow">Explore &rarr;</div>
+    </a>
+
+    <a href="/grants/" class="topic-card">
+      <span class="topic-icon">&#127873;</span>
+      <div class="topic-name">Grant-in-Aid Tracker</div>
+      <div class="topic-stat">2x/yr</div>
+      <div class="topic-desc">Who applied, who received funding, and how much - from every spring and fall intake. Full transparency on community grants.</div>
+      <div class="topic-arrow">Explore &rarr;</div>
+    </a>
+
+  </div>
+</section>
+
+<div class="narrative">
+  <h2>"The best decisions come from the fullest conversations."</h2>
+  <p>Parksville's governance affects every resident - homeowners and renters, business owners and retirees, young families and long-time neighbours. When the data is clear and the door is open, respectful disagreement becomes productive planning.</p>
+  <p>That's what prepared governance looks like: not one person with all the answers, but a whole community with all the information.</p>
+</div>
+
+<section class="about">
+  <h2>About this project</h2>
+  <p>Every number on this site comes from public sources: BC Government financial reports, Statistics Canada, Environment Canada, the City of Parksville, and local journalism. Nothing here is secret - it's just been made easier to find and understand.</p>
+  <p>This is what a campaign built on transparency looks like. Not promises about what might happen, but data about what has happened and what it means for our future.</p>
+  <div class="about-contact">
+    <a href="tel:604-868-7914">604-868-7914</a> &middot;
+    Sean Wood, Independent Candidate for Mayor
+  </div>
+</section>
+
+<footer class="footer">
+  Authorized by Sean Wood, Independent Candidate &middot; 604-868-7914<br>
+  Data: BC Government &middot; Statistics Canada &middot; Environment Canada &middot; City of Parksville &middot; Local journalism
+</footer>
+
+</body>
+</html>

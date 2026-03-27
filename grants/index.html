@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grant-in-Aid Tracker | Parksville. Prepared.</title>
+<meta name="description" content="Tracking how Parksville distributes grant-in-aid funding to local non-profit organizations — transparency in community investment.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --teal: #1D919E;
+  --teal-dark: #166d78;
+  --teal-deep: #0e4a50;
+  --yellow: #FFEB3B;
+  --white: #FFFFFF;
+  --card-bg: #ffffff;
+  --card-text: #14140D;
+  --radius: 14px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.10);
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'Roboto', -apple-system, sans-serif;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--teal-dark);
+  color: var(--white);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Header */
+.header {
+  background: var(--teal-deep);
+  border-bottom: 2px solid var(--yellow);
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+}
+.header a { color: var(--yellow); text-decoration: none; font-weight: 700; }
+.header-right { font-weight: 700; letter-spacing: 1px; }
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 72px 24px 56px;
+  background: linear-gradient(180deg, var(--teal-deep) 0%, var(--teal-dark) 100%);
+}
+.hero-eyebrow {
+  font-family: var(--sans);
+  font-size: 12px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--yellow); margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 6vw, 56px); font-weight: 400;
+  margin-bottom: 20px; line-height: 1.1;
+}
+.hero-sub {
+  max-width: 560px; margin: 0 auto 32px; font-size: 16px;
+  opacity: 0.8; line-height: 1.7;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 24px; padding: 10px 24px; font-size: 13px; font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Sections */
+.section {
+  padding: 56px 24px; max-width: 920px; margin: 0 auto;
+}
+.section-alt {
+  background: rgba(0,0,0,0.08);
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: 28px; font-weight: 400; color: var(--yellow);
+  margin-bottom: 8px;
+}
+.section-subtitle {
+  font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 28px;
+  max-width: 600px;
+}
+
+/* Card grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+.card-full { grid-column: 1 / -1; }
+
+/* Cards */
+.card {
+  background: var(--card-bg); color: var(--card-text);
+  border-radius: var(--radius); padding: 28px 28px 24px;
+  box-shadow: var(--shadow); position: relative;
+  border-left: 4px solid var(--teal);
+  transition: box-shadow 0.2s;
+}
+.card:hover { box-shadow: 0 6px 32px rgba(0,0,0,0.15); }
+
+/* Card label */
+.card-label {
+  font-size: 11px; font-weight: 900; text-transform: uppercase;
+  letter-spacing: 1.5px; color: #999; margin-bottom: 16px;
+}
+
+/* Card title */
+.card-title {
+  font-family: var(--serif); font-size: 22px; color: var(--teal-dark);
+  margin-bottom: 12px; line-height: 1.2;
+}
+
+/* Card body */
+.card p, .card ul {
+  font-size: 14px; color: #555; line-height: 1.75; margin-bottom: 12px;
+}
+.card ul { padding-left: 20px; }
+.card li { margin-bottom: 6px; }
+.card strong { color: var(--teal-dark); }
+
+/* Stat highlight */
+.stat-row {
+  display: flex; flex-wrap: wrap; gap: 24px; margin: 16px 0;
+}
+.stat-item {
+  display: flex; flex-direction: column;
+}
+.stat-value {
+  font-family: var(--serif); font-size: 32px; color: var(--teal-dark); line-height: 1;
+}
+.stat-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: #999; margin-top: 4px;
+}
+
+/* Card accent variants */
+.card-accent-amber { border-left-color: #e65100; }
+.card-accent-green { border-left-color: #2e7d32; }
+
+/* Data table */
+.data-table {
+  width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px;
+}
+.data-table th {
+  text-align: left; padding: 8px 12px; font-size: 11px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 1px; color: #999;
+  border-bottom: 2px solid #e0e0e0;
+}
+.data-table td {
+  padding: 8px 12px; border-bottom: 1px solid #f0f0f0; color: #555;
+}
+.data-table tfoot td {
+  font-weight: 700; color: var(--teal-dark); border-top: 2px solid #e0e0e0;
+}
+
+/* Placeholder note */
+.placeholder-note {
+  background: rgba(255,235,59,0.08); border: 1px dashed rgba(255,235,59,0.3);
+  border-radius: 8px; padding: 20px; margin-top: 16px;
+  font-size: 13px; color: #777; line-height: 1.7; font-style: italic;
+}
+
+/* News links inside cards */
+.card-links {
+  margin-top: 16px; padding-top: 12px; border-top: 1px solid #f0f0f0;
+  font-size: 12px;
+}
+.card-links a {
+  color: var(--teal); text-decoration: none; display: inline-block;
+  margin-right: 12px; margin-bottom: 4px;
+}
+.card-links a:hover { text-decoration: underline; }
+
+/* Narrative */
+.narrative {
+  background: var(--teal-deep);
+  border-top: 2px solid var(--yellow);
+  border-bottom: 2px solid var(--yellow);
+  padding: 64px 24px; text-align: center;
+}
+.narrative h2 {
+  font-family: var(--serif);
+  color: var(--yellow); font-size: clamp(24px, 4vw, 36px);
+  font-weight: 400; margin-bottom: 24px;
+}
+.narrative p {
+  max-width: 560px; margin: 0 auto 16px;
+  font-size: 15px; opacity: 0.8; line-height: 1.8;
+}
+.cta-btn {
+  display: inline-block; margin-top: 24px; padding: 14px 36px;
+  background: var(--yellow); color: var(--teal-deep);
+  font-weight: 900; font-size: 14px; text-decoration: none;
+  border-radius: 6px; letter-spacing: 0.5px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+
+/* Source card */
+.source-card {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius); padding: 28px; color: rgba(255,255,255,0.7);
+  font-size: 13px; line-height: 1.8;
+}
+.source-card strong { color: rgba(255,255,255,0.9); }
+.source-card a { color: var(--yellow); text-decoration: none; }
+.source-card a:hover { text-decoration: underline; }
+
+/* Footer */
+.footer {
+  background: var(--teal-deep); padding: 32px 24px;
+  text-align: center; font-size: 12px; opacity: 0.6; line-height: 1.8;
+}
+
+@media (max-width: 640px) {
+  .header { flex-direction: column; gap: 4px; text-align: center; }
+  .hero { padding: 48px 20px 40px; }
+  .hero h1 { font-size: 32px; }
+  .section { padding: 40px 16px; }
+  .section-title { font-size: 24px; }
+  .card { padding: 20px; }
+  .card-title { font-size: 19px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .stat-value { font-size: 26px; }
+  .stat-row { gap: 16px; }
+  .data-table { font-size: 12px; }
+  .data-table th, .data-table td { padding: 6px 8px; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a href="https://votewood.ca">&larr; votewood.ca</a>
+  <div class="header-right">SEAN WOOD &middot; PARKSVILLE. PREPARED.</div>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow">Parksville. Prepared.</div>
+  <h1>Your tax dollars, their community work.</h1>
+  <p class="hero-sub">Transparency in how the City of Parksville supports local non-profit organizations through its grant-in-aid program — who applies, who receives funding, and how much.</p>
+  <div class="hero-badge">
+    2 intakes per year &middot; Non-profit organizations &middot; Council reviewed
+  </div>
+</div>
+
+<!-- Grants Content -->
+<section class="section" id="section-grants">
+  <h2 class="section-title">Grant-in-Aid Tracker</h2>
+  <p class="section-subtitle">How Parksville's grant-in-aid program works, who it supports, and why transparency matters.</p>
+  <div class="card-grid">
+
+    <!-- Card 1: How It Works -->
+    <div class="card card-full">
+      <div class="card-label">Process</div>
+      <div class="card-title">How It Works</div>
+      <p>The City of Parksville runs <strong>two grant-in-aid intakes per year</strong>:</p>
+      <ul>
+        <li><strong>Spring intake</strong> — deadline in late February</li>
+        <li><strong>Fall intake</strong> — deadline in late August</li>
+      </ul>
+      <p>Applications are <strong>reviewed by council</strong>. Grants go to non-profit organizations serving the Parksville community. Application forms are available on parksville.ca.</p>
+      <p>The program is small in dollar terms but meaningful to the organizations that rely on it. Transparency about the process and outcomes matters.</p>
+    </div>
+
+    <!-- Card 2: Spring 2025 Grants -->
+    <div class="card card-full">
+      <div class="card-label">Spring 2025</div>
+      <div class="card-title">Spring 2025 Grants</div>
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-value">$2,500</div>
+          <div class="stat-label">Total allocated</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">5</div>
+          <div class="stat-label">Recipients</div>
+        </div>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Organization</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Arrowsmith Health Care Foundation</td>
+            <td>$500</td>
+          </tr>
+          <tr>
+            <td>Friends of Foster Park</td>
+            <td>$500</td>
+          </tr>
+          <tr>
+            <td>Haven Society</td>
+            <td>$500</td>
+          </tr>
+          <tr>
+            <td>Mount Arrowsmith Pipe Band</td>
+            <td>$500</td>
+          </tr>
+          <tr>
+            <td>Parksville Historical Society</td>
+            <td>$500</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Total</td>
+            <td>$2,500</td>
+          </tr>
+        </tfoot>
+      </table>
+      <p>Five organizations, $500 each. These are modest grants, but for small community non-profits, they represent recognition and support from the city.</p>
+    </div>
+
+    <!-- Card 3: Historical Context -->
+    <div class="card card-accent-amber">
+      <div class="card-label">Context</div>
+      <div class="card-title">Historical Context</div>
+      <p>The grant-in-aid program has been <strong>modest in recent years</strong>. The spring 2025 allocation of $2,500 across five organizations reflects current budget realities.</p>
+      <p>In contrast, the <strong>spring 2020 intake was frozen</strong> entirely — $55K in applications were paused due to COVID budget constraints. Council created a separate <strong>$280K COVID Relief Grant-in-Aid program</strong> for non-profits to address the emergency.</p>
+      <p>The program reflects <strong>council's priorities</strong> about which community organizations receive public support and at what level. The allocations tell a story about what the city values.</p>
+    </div>
+
+    <!-- Card 4: Separate from Major Grants -->
+    <div class="card">
+      <div class="card-label">Important Distinction</div>
+      <div class="card-title">Separate from Major Grants</div>
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-value">$2.97M</div>
+          <div class="stat-label">Grants received (2023)</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">$2,500</div>
+          <div class="stat-label">Grants given (Spring 2025)</div>
+        </div>
+      </div>
+      <p>An important distinction: the city <strong>receives</strong> major grants — for example, $2.97M in 2023 from federal and provincial programs for infrastructure projects.</p>
+      <p>The grant-in-aid program is what the city <strong>gives</strong> to local non-profits. Much smaller sums, but important for community organizations that depend on every dollar of support.</p>
+      <p>Both matter. One funds infrastructure, the other funds community.</p>
+    </div>
+
+    <!-- Card 5: How to Apply -->
+    <div class="card card-accent-green">
+      <div class="card-label">Apply</div>
+      <div class="card-title">How to Apply</div>
+      <p>Organizations must meet the following criteria:</p>
+      <ul>
+        <li><strong>Non-profit status</strong> — registered non-profit organization</li>
+        <li><strong>Serve Parksville residents</strong> — programs or services benefiting the local community</li>
+        <li><strong>Submit during intake periods</strong> — spring (late February) or fall (late August)</li>
+      </ul>
+      <p>Contact the <strong>City of Parksville</strong> for application forms. Council reviews all applications and allocates based on available budget.</p>
+    </div>
+
+  </div>
+
+  <!-- Placeholder note -->
+  <div class="placeholder-note">
+    We're working to compile complete historical grant-in-aid data from council meeting minutes. If your organization has applied for or received a grant and would like to help complete this record, please contact us.
+  </div>
+</section>
+
+<!-- Sources -->
+<section class="section section-alt">
+  <div class="source-card">
+    <strong>Sources &amp; further reading.</strong><br>
+    Data compiled from City of Parksville records and council meeting minutes.<br><br>
+    City of Parksville — Grant-in-Aid program information<br>
+    Council Meeting Minutes — Grant allocation decisions and application reviews
+  </div>
+</section>
+
+<!-- Narrative -->
+<div class="narrative">
+  <h2>Small grants, big transparency.</h2>
+  <p>Even the smallest grants tell a story about what a community values. Full transparency about who applies, who receives support, and how much — that's how residents know their tax dollars are working for the community.</p>
+  <a href="https://votewood.ca" class="cta-btn">See the full platform &rarr; votewood.ca</a>
+</div>
+
+<footer class="footer">
+  Authorized by Sean Wood, Independent Candidate &middot; 604-868-7914<br>
+  Data: City of Parksville &middot; Council Meeting Minutes
+</footer>
+
+</body>
+</html>

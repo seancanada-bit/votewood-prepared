@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Water Security | Parksville. Prepared.</title>
+<meta name="description" content="Parksville's water supply, infrastructure, and conservation — two sources, 85km of pipe, and the investment needed to keep it flowing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --teal: #1D919E;
+  --teal-dark: #166d78;
+  --teal-deep: #0e4a50;
+  --yellow: #FFEB3B;
+  --white: #FFFFFF;
+  --card-bg: #ffffff;
+  --card-text: #14140D;
+  --radius: 14px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.10);
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'Roboto', -apple-system, sans-serif;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--teal-dark);
+  color: var(--white);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Header */
+.header {
+  background: var(--teal-deep);
+  border-bottom: 2px solid var(--yellow);
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+}
+.header a { color: var(--yellow); text-decoration: none; font-weight: 700; }
+.header-right { font-weight: 700; letter-spacing: 1px; }
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 72px 24px 56px;
+  background: linear-gradient(180deg, var(--teal-deep) 0%, var(--teal-dark) 100%);
+}
+.hero-eyebrow {
+  font-family: var(--sans);
+  font-size: 12px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--yellow); margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 6vw, 56px); font-weight: 400;
+  margin-bottom: 20px; line-height: 1.1;
+}
+.hero-sub {
+  max-width: 560px; margin: 0 auto 32px; font-size: 16px;
+  opacity: 0.8; line-height: 1.7;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 24px; padding: 10px 24px; font-size: 13px; font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Sections */
+.section {
+  padding: 56px 24px; max-width: 920px; margin: 0 auto;
+}
+.section-alt {
+  background: rgba(0,0,0,0.08);
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: 28px; font-weight: 400; color: var(--yellow);
+  margin-bottom: 8px;
+}
+.section-subtitle {
+  font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 28px;
+  max-width: 600px;
+}
+
+/* Card grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+.card-full { grid-column: 1 / -1; }
+
+/* Cards */
+.card {
+  background: var(--card-bg); color: var(--card-text);
+  border-radius: var(--radius); padding: 28px 28px 24px;
+  box-shadow: var(--shadow); position: relative;
+  border-left: 4px solid var(--teal);
+  transition: box-shadow 0.2s;
+}
+.card:hover { box-shadow: 0 6px 32px rgba(0,0,0,0.15); }
+
+/* Card label */
+.card-label {
+  font-size: 11px; font-weight: 900; text-transform: uppercase;
+  letter-spacing: 1.5px; color: #999; margin-bottom: 16px;
+}
+
+/* Card title */
+.card-title {
+  font-family: var(--serif); font-size: 22px; color: var(--teal-dark);
+  margin-bottom: 12px; line-height: 1.2;
+}
+
+/* Card body */
+.card p, .card ul {
+  font-size: 14px; color: #555; line-height: 1.75; margin-bottom: 12px;
+}
+.card ul { padding-left: 20px; }
+.card li { margin-bottom: 6px; }
+.card strong { color: var(--teal-dark); }
+
+/* Stat highlight */
+.stat-row {
+  display: flex; flex-wrap: wrap; gap: 24px; margin: 16px 0;
+}
+.stat-item {
+  display: flex; flex-direction: column;
+}
+.stat-value {
+  font-family: var(--serif); font-size: 32px; color: var(--teal-dark); line-height: 1;
+}
+.stat-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: #999; margin-top: 4px;
+}
+
+/* Card accent variants */
+.card-accent-amber { border-left-color: #e65100; }
+.card-accent-green { border-left-color: #2e7d32; }
+
+/* News links inside cards */
+.card-links {
+  margin-top: 16px; padding-top: 12px; border-top: 1px solid #f0f0f0;
+  font-size: 12px;
+}
+.card-links a {
+  color: var(--teal); text-decoration: none; display: inline-block;
+  margin-right: 12px; margin-bottom: 4px;
+}
+.card-links a:hover { text-decoration: underline; }
+
+/* Narrative */
+.narrative {
+  background: var(--teal-deep);
+  border-top: 2px solid var(--yellow);
+  border-bottom: 2px solid var(--yellow);
+  padding: 64px 24px; text-align: center;
+}
+.narrative h2 {
+  font-family: var(--serif);
+  color: var(--yellow); font-size: clamp(24px, 4vw, 36px);
+  font-weight: 400; margin-bottom: 24px;
+}
+.narrative p {
+  max-width: 560px; margin: 0 auto 16px;
+  font-size: 15px; opacity: 0.8; line-height: 1.8;
+}
+.cta-btn {
+  display: inline-block; margin-top: 24px; padding: 14px 36px;
+  background: var(--yellow); color: var(--teal-deep);
+  font-weight: 900; font-size: 14px; text-decoration: none;
+  border-radius: 6px; letter-spacing: 0.5px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+
+/* Source card */
+.source-card {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius); padding: 28px; color: rgba(255,255,255,0.7);
+  font-size: 13px; line-height: 1.8;
+}
+.source-card strong { color: rgba(255,255,255,0.9); }
+.source-card a { color: var(--yellow); text-decoration: none; }
+.source-card a:hover { text-decoration: underline; }
+
+/* Footer */
+.footer {
+  background: var(--teal-deep); padding: 32px 24px;
+  text-align: center; font-size: 12px; opacity: 0.6; line-height: 1.8;
+}
+
+@media (max-width: 640px) {
+  .header { flex-direction: column; gap: 4px; text-align: center; }
+  .hero { padding: 48px 20px 40px; }
+  .hero h1 { font-size: 32px; }
+  .section { padding: 40px 16px; }
+  .section-title { font-size: 24px; }
+  .card { padding: 20px; }
+  .card-title { font-size: 19px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .stat-value { font-size: 26px; }
+  .stat-row { gap: 16px; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a href="https://votewood.ca">&larr; votewood.ca</a>
+  <div class="header-right">SEAN WOOD &middot; PARKSVILLE. PREPARED.</div>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow">Parksville. Prepared.</div>
+  <h1>Water is everything.</h1>
+  <p class="hero-sub">Parksville depends on two water sources to serve a growing community. Understanding our supply, our treatment capacity, and our conservation challenges is the first step to water security.</p>
+  <div class="hero-badge">
+    2 sources &middot; 85 km of pipe &middot; ~5,000 lots served
+  </div>
+</div>
+
+<!-- Water Content -->
+<section class="section" id="section-water">
+  <h2 class="section-title">Water Supply &amp; Infrastructure</h2>
+  <p class="section-subtitle">Where Parksville's water comes from, how it's treated, and what it takes to deliver it to every tap.</p>
+  <div class="card-grid">
+
+    <!-- Card 1: Water Sources -->
+    <div class="card">
+      <div class="card-label">Supply</div>
+      <div class="card-title">Water Sources</div>
+      <p>Parksville draws from <strong>two distinct water sources</strong>:</p>
+      <ul>
+        <li><strong>18 deep groundwater wells</strong> — the city's primary year-round supply</li>
+        <li><strong>Englishman River</strong> — surface water supplemented by the Arrowsmith Dam reservoir</li>
+      </ul>
+      <p><strong>Englishman River Water Service:</strong> a shared service — Parksville holds 74% and the Regional District of Nanaimo (RDN) holds 26%.</p>
+      <p><strong>Arrowsmith Water Service:</strong> a joint venture between the RDN, City of Parksville, and Town of Qualicum Beach, ensuring regional supply resilience.</p>
+    </div>
+
+    <!-- Card 2: Treatment Plant -->
+    <div class="card">
+      <div class="card-label">Treatment</div>
+      <div class="card-title">Treatment Plant</div>
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-value">$41.7M</div>
+          <div class="stat-label">Capital Investment</div>
+        </div>
+      </div>
+      <p>The <strong>Englishman River Water Treatment Plant</strong> opened in 2020 — a major regional infrastructure investment.</p>
+      <p>Treatment process: <strong>membrane filtration, UV disinfection, and chlorination</strong>. Multi-barrier approach ensures drinking water meets all provincial and federal standards.</p>
+    </div>
+
+    <!-- Card 3: Distribution System -->
+    <div class="card card-full">
+      <div class="card-label">Distribution</div>
+      <div class="card-title">Distribution System</div>
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-value">85 km</div>
+          <div class="stat-label">of pipe</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">~5,000</div>
+          <div class="stat-label">lots served</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">100%</div>
+          <div class="stat-label">metered</div>
+        </div>
+      </div>
+      <p>All properties are metered, with reads taken in <strong>March and September</strong>. Daily consumption swings dramatically with the seasons:</p>
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-value">2.3M L</div>
+          <div class="stat-label">Winter daily use</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">12M+ L</div>
+          <div class="stat-label">Peak summer daily use</div>
+        </div>
+      </div>
+      <p>A <strong>5x seasonal swing</strong> in demand — one of the core challenges for water planning in Parksville.</p>
+    </div>
+
+    <!-- Card 4: Arrowsmith Dam -->
+    <div class="card card-accent-amber">
+      <div class="card-label">Vulnerability</div>
+      <div class="card-title">Arrowsmith Dam</div>
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-value">60%</div>
+          <div class="stat-label">Current reliability</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">97%</div>
+          <div class="stat-label">Target reliability</div>
+        </div>
+      </div>
+      <p>The dam is <strong>only 60% reliable when it should be 97%</strong> — a significant climate vulnerability for the region's water supply.</p>
+      <p>The City of Parksville operates the dam on behalf of the Arrowsmith Water Service joint venture. Improving dam reliability is a shared regional priority.</p>
+    </div>
+
+    <!-- Card 5: Conservation -->
+    <div class="card card-accent-amber">
+      <div class="card-label">Conservation</div>
+      <div class="card-title">Water Conservation</div>
+      <p>A <strong>new water conservation framework</strong> was approved in February 2025, establishing clear stages and triggers for water restrictions.</p>
+      <p>In <strong>summer 2025</strong>, Parksville reached <strong>Stage 4 drought restrictions</strong> — a comprehensive watering ban. As climate patterns shift, drought preparedness becomes essential infrastructure.</p>
+    </div>
+
+    <!-- Card 6: Infrastructure Investment -->
+    <div class="card card-accent-green">
+      <div class="card-label">Investment</div>
+      <div class="card-title">Infrastructure Investment</div>
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-value">$2.0M</div>
+          <div class="stat-label">Water expenses (2015)</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">$3.5M</div>
+          <div class="stat-label">Water expenses (2024)</div>
+        </div>
+      </div>
+      <p>Water services operating expenses have grown 75% over the decade, reflecting rising treatment costs, aging infrastructure maintenance, and system expansion.</p>
+      <p><strong>$750K budgeted for a Drinking Water Master Plan in 2026</strong> — a comprehensive assessment of supply, infrastructure, and long-term needs.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- News & Sources -->
+<section class="section section-alt">
+  <div class="source-card">
+    <strong>Sources &amp; further reading.</strong><br>
+    Data compiled from City of Parksville reports, Englishman River Water Service, and BC Government records.<br><br>
+    <a href="https://www.cbc.ca/news/canada/british-columbia/parksville-more-homes-drought-9.7132176" target="_blank">CBC: Parksville water concerns</a><br>
+    <a href="https://letstalkparksville.ca/water-conservation" target="_blank">Let's Talk Parksville: Water conservation</a><br>
+    <a href="https://pqbnews.com/2025/12/05/property-tax-rate-increase-of-6-8-per-cent-forecast-for-parksville-taxpayers/" target="_blank">Tax forecast includes water rate increases</a>
+  </div>
+</section>
+
+<!-- Narrative -->
+<div class="narrative">
+  <h2>The foundation of everything.</h2>
+  <p>Clean water isn't just a utility — it's the foundation of everything a community builds on. Understanding our supply, our infrastructure, and our conservation needs is how Parksville stays prepared.</p>
+  <a href="https://votewood.ca" class="cta-btn">See the full platform &rarr; votewood.ca</a>
+</div>
+
+<footer class="footer">
+  Authorized by Sean Wood, Independent Candidate &middot; 604-868-7914<br>
+  Data: City of Parksville &middot; Englishman River Water Service &middot; BC Government
+</footer>
+
+</body>
+</html>

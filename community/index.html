@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community Wellbeing | Parksville. Prepared.</title>
+<meta name="description" content="Demographics, homelessness, supportive housing, substance use, childcare, and accessibility — the people behind the statistics in Parksville.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --teal: #1D919E;
+  --teal-dark: #166d78;
+  --teal-deep: #0e4a50;
+  --yellow: #FFEB3B;
+  --white: #FFFFFF;
+  --card-bg: #ffffff;
+  --card-text: #14140D;
+  --radius: 14px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.10);
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'Roboto', -apple-system, sans-serif;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--teal-dark);
+  color: var(--white);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Header */
+.header {
+  background: var(--teal-deep);
+  border-bottom: 2px solid var(--yellow);
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+}
+.header a { color: var(--yellow); text-decoration: none; font-weight: 700; }
+.header-right { font-weight: 700; letter-spacing: 1px; }
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 72px 24px 56px;
+  background: linear-gradient(180deg, var(--teal-deep) 0%, var(--teal-dark) 100%);
+}
+.hero-eyebrow {
+  font-family: var(--sans);
+  font-size: 12px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--yellow); margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 6vw, 56px); font-weight: 400;
+  margin-bottom: 20px; line-height: 1.1;
+}
+.hero-sub {
+  max-width: 560px; margin: 0 auto 32px; font-size: 16px;
+  opacity: 0.8; line-height: 1.7;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 24px; padding: 10px 24px; font-size: 13px; font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Sections */
+.section {
+  padding: 56px 24px; max-width: 920px; margin: 0 auto;
+}
+.section-alt {
+  background: rgba(0,0,0,0.08);
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: 28px; font-weight: 400; color: var(--yellow);
+  margin-bottom: 8px;
+}
+.section-subtitle {
+  font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 28px;
+  max-width: 600px;
+}
+
+/* Card grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+.card-full { grid-column: 1 / -1; }
+
+/* Cards */
+.card {
+  background: var(--card-bg); color: var(--card-text);
+  border-radius: var(--radius); padding: 28px 28px 24px;
+  box-shadow: var(--shadow); position: relative;
+  border-left: 4px solid var(--teal);
+  transition: box-shadow 0.2s;
+}
+.card:hover { box-shadow: 0 6px 32px rgba(0,0,0,0.15); }
+
+.card-label {
+  font-size: 11px; font-weight: 900; text-transform: uppercase;
+  letter-spacing: 1.5px; color: #999; margin-bottom: 16px;
+}
+
+.card h3 {
+  font-family: var(--serif); font-size: 22px; color: var(--teal-dark);
+  margin-bottom: 12px; font-weight: 400;
+}
+.card p, .card li {
+  font-size: 14px; color: #555; line-height: 1.7;
+}
+.card ul {
+  list-style: none; padding: 0; margin: 12px 0 0;
+}
+.card ul li {
+  padding: 4px 0 4px 18px; position: relative;
+}
+.card ul li::before {
+  content: "\25B8"; position: absolute; left: 0; color: var(--teal);
+  font-size: 12px; top: 6px;
+}
+.card strong { color: var(--teal-dark); }
+
+/* Stat highlights */
+.stat-row {
+  display: flex; flex-wrap: wrap; gap: 20px; margin: 16px 0;
+}
+.stat-item {
+  text-align: center; flex: 1; min-width: 100px;
+  padding: 16px 8px; background: #f7fbfb; border-radius: 10px;
+}
+.stat-value {
+  font-family: var(--serif); font-size: 32px; color: var(--teal-dark);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 11px; color: #999; margin-top: 6px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+
+/* Accent cards */
+.card-accent-yellow { border-left-color: var(--yellow); }
+.card-accent-amber { border-left-color: #e65100; }
+
+/* News links */
+.news-links {
+  margin-top: 16px; padding-top: 12px; border-top: 1px solid #f0f0f0;
+  font-size: 12px;
+}
+.news-links a {
+  color: var(--teal); text-decoration: none; display: inline-block;
+  margin-right: 12px; margin-bottom: 4px;
+}
+.news-links a:hover { text-decoration: underline; }
+
+/* Narrative */
+.narrative {
+  background: var(--teal-deep);
+  border-top: 2px solid var(--yellow);
+  border-bottom: 2px solid var(--yellow);
+  padding: 64px 24px; text-align: center;
+}
+.narrative h2 {
+  font-family: var(--serif);
+  color: var(--yellow); font-size: clamp(24px, 4vw, 36px);
+  font-weight: 400; margin-bottom: 24px;
+}
+.narrative p {
+  max-width: 560px; margin: 0 auto 16px;
+  font-size: 15px; opacity: 0.8; line-height: 1.8;
+}
+.cta-btn {
+  display: inline-block; margin-top: 24px; padding: 14px 36px;
+  background: var(--yellow); color: var(--teal-deep);
+  font-weight: 900; font-size: 14px; text-decoration: none;
+  border-radius: 6px; letter-spacing: 0.5px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+
+/* Source card */
+.source-card {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius); padding: 28px; color: rgba(255,255,255,0.7);
+  font-size: 13px; line-height: 1.8;
+}
+.source-card strong { color: rgba(255,255,255,0.9); }
+
+/* Footer */
+.footer {
+  background: var(--teal-deep); padding: 32px 24px;
+  text-align: center; font-size: 12px; opacity: 0.6; line-height: 1.8;
+}
+
+@media (max-width: 640px) {
+  .header { flex-direction: column; gap: 4px; text-align: center; }
+  .hero { padding: 48px 20px 40px; }
+  .hero h1 { font-size: 32px; }
+  .section { padding: 40px 16px; }
+  .section-title { font-size: 24px; }
+  .card { padding: 20px; }
+  .card h3 { font-size: 19px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .stat-value { font-size: 26px; }
+  .stat-row { gap: 12px; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a href="https://votewood.ca">&larr; votewood.ca</a>
+  <span class="header-right">PARKSVILLE. PREPARED.</span>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow">Community Wellbeing</div>
+  <h1>Every neighbour matters.</h1>
+  <p class="hero-sub">Behind every statistic is a person. Understanding who lives here, what they need, and where the gaps are is how we build a city that works for everyone.</p>
+  <div class="hero-badge">&#129309; Demographics &middot; Housing &middot; Services &middot; Access</div>
+</div>
+
+<!-- Content Cards -->
+<div class="section">
+  <h2 class="section-title">Who We Are &amp; What We Need</h2>
+  <p class="section-subtitle">Demographics, housing, health, and services across the Oceanside community.</p>
+
+  <div class="card-grid">
+
+    <!-- 1. Demographics -->
+    <div class="card card-full">
+      <div class="card-label">Demographics</div>
+      <h3>Demographics</h3>
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-value">~15K</div>
+          <div class="stat-label">Population</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">46%</div>
+          <div class="stat-label">Seniors 65+</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">9%</div>
+          <div class="stat-label">Under 15</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">55</div>
+          <div class="stat-label">Average Age</div>
+        </div>
+      </div>
+      <p>Population approximately 15,000 (BC Stats 2024). Parksville has the <strong>highest proportion of seniors of any urban area in Canada</strong> at 46% aged 65 and over. Only 9% of the population is under 15.</p>
+      <p style="margin-top: 10px;">This demographic profile creates compounding challenges: workforce shortages, healthcare access pressures, limited family services, and growing demand for age-friendly infrastructure.</p>
+      <div class="news-links">
+        <a href="https://www.statcan.gc.ca/o1/en/plus/3421-parksville-canadas-mediterranean-retirement-community" target="_blank" rel="noopener">StatsCan: Parksville demographics &rarr;</a>
+      </div>
+    </div>
+
+    <!-- 2. Homelessness -->
+    <div class="card card-accent-amber">
+      <div class="card-label">Homelessness</div>
+      <h3>Homelessness</h3>
+      <p>The <strong>Oceanside Task Force on Homelessness</strong> was formed in 2010 by the City of Parksville. Partners include the City, Town of Qualicum Beach, RDN, RCMP, Island Health, and local service organizations.</p>
+      <ul>
+        <li>Parksville-Qualicum Beach has the <strong>3rd highest per capita homelessness rate</strong> on Vancouver Island</li>
+        <li><strong>Housing Outreach Support Team (HOST)</strong> provides inter-agency collaboration</li>
+        <li>Task force reformed in 2025</li>
+      </ul>
+    </div>
+
+    <!-- 3. Supportive Housing -->
+    <div class="card">
+      <div class="card-label">Housing</div>
+      <h3>Supportive Housing</h3>
+      <ul>
+        <li><strong>Orca Place:</strong> 52 supportive housing units, built by BC Housing on land from RDN and the City, operated by Island Crisis Care Society</li>
+        <li><strong>Ballenas Housing Society:</strong> 36-unit non-market rental (delayed 2 years), plus 48-unit Phase 2 approved in 2025</li>
+      </ul>
+      <div class="news-links">
+        <a href="https://pqbnews.com/2025/11/20/development-permit-approved-for-parksville-affordable-housing-project/" target="_blank" rel="noopener">PQB News: Affordable housing approved &rarr;</a>
+      </div>
+    </div>
+
+    <!-- 4. Substance Use -->
+    <div class="card">
+      <div class="card-label">Health &amp; Recovery</div>
+      <h3>Substance Use</h3>
+      <p><strong>Moms Stop the Harm</strong> operates support groups in Parksville for families affected by substance use and loss.</p>
+      <p style="margin-top: 10px;">A <strong>19-bed treatment centre</strong> has been approved after a zoning variance passed in February 2024.</p>
+    </div>
+
+    <!-- 5. Childcare & Families -->
+    <div class="card">
+      <div class="card-label">Families</div>
+      <h3>Childcare &amp; Families</h3>
+      <p>Council maintains a liaison to the <strong>Early Learning and Childcare Council in Oceanside</strong>. Childcare is a recognized need in the City's strategic plan.</p>
+      <p style="margin-top: 10px;">The Community Centre daycare expansion has been completed, adding capacity for <strong>91 spaces</strong>.</p>
+    </div>
+
+    <!-- 6. Accessibility -->
+    <div class="card">
+      <div class="card-label">Inclusion</div>
+      <h3>Accessibility</h3>
+      <p>The City's <strong>Accessibility Advisory Committee</strong> (with councillor liaison) works alongside <strong>Access Oceanside Association</strong> to improve inclusion across the community.</p>
+      <p style="margin-top: 10px;">The PDBA facade and accessibility rejuvenation project includes accessibility improvements throughout the downtown core.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- Sources -->
+<div class="section section-alt">
+  <div class="source-card">
+    <strong>Sources:</strong> City of Parksville, Statistics Canada, BC Stats, Oceanside Task Force on Homelessness, BC Housing, Island Crisis Care Society, Ballenas Housing Society.
+  </div>
+</div>
+
+<!-- Narrative -->
+<div class="narrative">
+  <h2>Caring for everyone</h2>
+  <p>A community is measured by how it cares for its most vulnerable members. Understanding our demographics &mdash; who lives here, what they need, and where the gaps are &mdash; is the first step toward a city that works for everyone.</p>
+  <a href="https://votewood.ca" class="cta-btn">See the full platform &rarr; votewood.ca</a>
+</div>
+
+<footer class="footer">
+  Authorized by Sean Wood, Independent Candidate &middot; 604-868-7914<br>
+  Data: City of Parksville &middot; Statistics Canada &middot; Oceanside Task Force on Homelessness &middot; BC Housing
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Housing &amp; Growth | Parksville. Prepared.</title>
+<meta name="description" content="Parksville's housing landscape — rental vacancy, building permits, development charges, and key projects shaping the community's growth.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --teal: #1D919E;
+  --teal-dark: #166d78;
+  --teal-deep: #0e4a50;
+  --yellow: #FFEB3B;
+  --white: #FFFFFF;
+  --card-bg: #ffffff;
+  --card-text: #14140D;
+  --radius: 14px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.10);
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'Roboto', -apple-system, sans-serif;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--teal-dark);
+  color: var(--white);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Header */
+.header {
+  background: var(--teal-deep);
+  border-bottom: 2px solid var(--yellow);
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+}
+.header a { color: var(--yellow); text-decoration: none; font-weight: 700; }
+.header-right { font-weight: 700; letter-spacing: 1px; }
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 72px 24px 56px;
+  background: linear-gradient(180deg, var(--teal-deep) 0%, var(--teal-dark) 100%);
+}
+.hero-eyebrow {
+  font-family: var(--sans);
+  font-size: 12px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--yellow); margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 6vw, 56px); font-weight: 400;
+  margin-bottom: 20px; line-height: 1.1;
+}
+.hero-sub {
+  max-width: 560px; margin: 0 auto 32px; font-size: 16px;
+  opacity: 0.8; line-height: 1.7;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 24px; padding: 10px 24px; font-size: 13px; font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Sections */
+.section {
+  padding: 56px 24px; max-width: 920px; margin: 0 auto;
+}
+.section-alt {
+  background: rgba(0,0,0,0.08);
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: 28px; font-weight: 400; color: var(--yellow);
+  margin-bottom: 8px;
+}
+.section-subtitle {
+  font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 28px;
+  max-width: 600px;
+}
+
+/* Card grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+.card-full { grid-column: 1 / -1; }
+
+/* Cards */
+.card {
+  background: var(--card-bg); color: var(--card-text);
+  border-radius: var(--radius); padding: 28px 28px 24px;
+  box-shadow: var(--shadow); position: relative;
+  border-left: 4px solid var(--teal);
+  transition: box-shadow 0.2s;
+}
+.card:hover { box-shadow: 0 6px 32px rgba(0,0,0,0.15); }
+
+/* Card accent variants */
+.card-accent-amber { border-left-color: #e65100; }
+.card-accent-green { border-left-color: #2e7d32; }
+
+/* Card label */
+.card-label {
+  font-size: 11px; font-weight: 900; text-transform: uppercase;
+  letter-spacing: 1.5px; color: #999; margin-bottom: 16px;
+}
+
+/* Card title */
+.card-title {
+  font-family: var(--serif); font-size: 22px; color: var(--teal-dark);
+  margin-bottom: 12px; line-height: 1.2;
+}
+
+/* Card body */
+.card p, .card ul {
+  font-size: 14px; color: #555; line-height: 1.75; margin-bottom: 12px;
+}
+.card ul { padding-left: 20px; }
+.card li { margin-bottom: 6px; }
+.card strong { color: var(--teal-dark); }
+
+/* Stat highlight */
+.stat-row {
+  display: flex; flex-wrap: wrap; gap: 24px; margin: 16px 0;
+}
+.stat-item {
+  display: flex; flex-direction: column;
+}
+.stat-value {
+  font-family: var(--serif); font-size: 32px; color: var(--teal-dark); line-height: 1;
+}
+.stat-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: #999; margin-top: 4px;
+}
+
+/* Simple data table */
+.data-table {
+  width: 100%; border-collapse: collapse; font-size: 13px; margin: 16px 0;
+}
+.data-table th {
+  text-align: left; font-size: 10px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 1px; color: #bbb;
+  padding: 6px 8px; border-bottom: 1px solid #e8e8e8;
+}
+.data-table th:last-child { text-align: right; }
+.data-table td {
+  padding: 7px 8px; border-bottom: 1px solid #f4f4f4; color: #666;
+}
+.data-table td:last-child {
+  text-align: right; font-variant-numeric: tabular-nums; font-weight: 700;
+  color: #444;
+}
+.data-table tr.row-highlight td {
+  color: var(--teal-dark); font-weight: 900; background: #f0fafb;
+}
+
+/* News links inside cards */
+.card-links {
+  margin-top: 16px; padding-top: 12px; border-top: 1px solid #f0f0f0;
+  font-size: 12px;
+}
+.card-links a {
+  color: var(--teal); text-decoration: none; display: inline-block;
+  margin-right: 12px; margin-bottom: 4px;
+}
+.card-links a:hover { text-decoration: underline; }
+
+/* Narrative */
+.narrative {
+  background: var(--teal-deep);
+  border-top: 2px solid var(--yellow);
+  border-bottom: 2px solid var(--yellow);
+  padding: 64px 24px; text-align: center;
+}
+.narrative h2 {
+  font-family: var(--serif);
+  color: var(--yellow); font-size: clamp(24px, 4vw, 36px);
+  font-weight: 400; margin-bottom: 24px;
+}
+.narrative p {
+  max-width: 560px; margin: 0 auto 16px;
+  font-size: 15px; opacity: 0.8; line-height: 1.8;
+}
+.cta-btn {
+  display: inline-block; margin-top: 24px; padding: 14px 36px;
+  background: var(--yellow); color: var(--teal-deep);
+  font-weight: 900; font-size: 14px; text-decoration: none;
+  border-radius: 6px; letter-spacing: 0.5px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+
+/* Source card */
+.source-card {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius); padding: 28px; color: rgba(255,255,255,0.7);
+  font-size: 13px; line-height: 1.8;
+}
+.source-card strong { color: rgba(255,255,255,0.9); }
+.source-card a { color: var(--yellow); text-decoration: none; }
+.source-card a:hover { text-decoration: underline; }
+
+/* Footer */
+.footer {
+  background: var(--teal-deep); padding: 32px 24px;
+  text-align: center; font-size: 12px; opacity: 0.6; line-height: 1.8;
+}
+
+@media (max-width: 640px) {
+  .header { flex-direction: column; gap: 4px; text-align: center; }
+  .hero { padding: 48px 20px 40px; }
+  .hero h1 { font-size: 32px; }
+  .section { padding: 40px 16px; }
+  .section-title { font-size: 24px; }
+  .card { padding: 20px; }
+  .card-title { font-size: 19px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .stat-value { font-size: 26px; }
+  .stat-row { gap: 16px; }
+  .data-table { font-size: 12px; }
+  .data-table td, .data-table th { padding: 5px 6px; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a href="https://votewood.ca">&larr; votewood.ca</a>
+  <div class="header-right">SEAN WOOD &middot; PARKSVILLE. PREPARED.</div>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow">Parksville. Prepared.</div>
+  <h1>Growing thoughtfully.</h1>
+  <p class="hero-sub">Balancing growth with livability means understanding the full picture — rental supply, building activity, development costs, and the policy changes shaping Parksville's future.</p>
+  <div class="hero-badge">
+    Rental data &middot; Building permits &middot; Policy reform
+  </div>
+</div>
+
+<!-- Housing Content -->
+<section class="section" id="section-housing">
+  <h2 class="section-title">Housing &amp; Growth</h2>
+  <p class="section-subtitle">Rental market conditions, development activity, and the policy framework guiding how Parksville grows.</p>
+  <div class="card-grid">
+
+    <!-- Card 1: Rental Market -->
+    <div class="card card-accent-amber">
+      <div class="card-label">Rental Market</div>
+      <div class="card-title">Rental Market</div>
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-value">0.9%</div>
+          <div class="stat-label">Vacancy rate</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">$1,573</div>
+          <div class="stat-label">Avg rent / mo</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">$1,625</div>
+          <div class="stat-label">Median rent / mo</div>
+        </div>
+      </div>
+      <p>A <strong>0.9% vacancy rate</strong> signals a very tight rental market — well below the 3% threshold generally considered healthy.</p>
+      <p><strong>1,209 rental units surveyed</strong> by CMHC in the 2025 Rental Market Survey.</p>
+    </div>
+
+    <!-- Card 2: Building Permits -->
+    <div class="card">
+      <div class="card-label">Development Activity</div>
+      <div class="card-title">Building Permits</div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>Permits</th>
+            <th style="text-align:right">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-highlight">
+            <td>2022</td>
+            <td>143</td>
+            <td>$102M</td>
+          </tr>
+          <tr>
+            <td>2023</td>
+            <td>80</td>
+            <td>$68.5M</td>
+          </tr>
+          <tr>
+            <td>2024-25</td>
+            <td colspan="2" style="text-align:right;font-style:italic;color:#999">Steady activity</td>
+          </tr>
+        </tbody>
+      </table>
+      <p><strong>2022 was a record year</strong> — 143 permits worth $102M in construction value. 2023 saw 80 permits including <strong>237 multi-family units</strong>, worth $68.5M.</p>
+    </div>
+
+    <!-- Card 3: Development Cost Charges -->
+    <div class="card">
+      <div class="card-label">Funding Growth</div>
+      <div class="card-title">Development Cost Charges</div>
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-value">$28,345</div>
+          <div class="stat-label">Per new lot</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">$1.94M</div>
+          <div class="stat-label">Collected in 2023</div>
+        </div>
+      </div>
+      <p>DCCs collected in 2023: <strong>water $1.26M</strong>, <strong>roads $582K</strong>. These charges ensure new development pays its share of infrastructure expansion.</p>
+      <p><strong>Total DCC fund balance: $12.9M</strong> at end of 2023 — earmarked for water, sewer, drainage, and road infrastructure tied to growth.</p>
+    </div>
+
+    <!-- Card 4: Provincial Reform -->
+    <div class="card card-full">
+      <div class="card-label">Policy</div>
+      <div class="card-title">Provincial Housing Reform</div>
+      <p><strong>Bills 44 and 46 (2023-2024)</strong> fundamentally changed how BC municipalities plan for housing:</p>
+      <ul>
+        <li><strong>Pre-zone 20-year housing supply</strong> — municipalities must designate enough land upfront</li>
+        <li><strong>Small-scale multi-unit housing</strong> allowed in all single-family zones (up to 4-6 units depending on lot size and transit access)</li>
+        <li><strong>Shift from 5 to 20-year planning horizons</strong> — longer-range infrastructure and land use strategy</li>
+        <li><strong>Public hearings eliminated</strong> for site-by-site rezonings that conform to the Official Community Plan</li>
+      </ul>
+      <p>These reforms mean Parksville must plan further ahead — and invest in the infrastructure to support the housing the province requires.</p>
+    </div>
+
+    <!-- Card 5: Key Projects -->
+    <div class="card card-full card-accent-green">
+      <div class="card-label">Projects</div>
+      <div class="card-title">Key Housing Projects</div>
+      <ul>
+        <li><strong>Ballenas Housing Society:</strong> 48-unit affordable rental (Phase 2, approved 2025)</li>
+        <li><strong>1180 Resort Dr:</strong> 233 rental units, 6-storey (approved 2024)</li>
+        <li><strong>Greig Rd:</strong> 400+ unit proposal (2026)</li>
+        <li><strong>Orca Place:</strong> 52 supportive housing units (BC Housing, built on RDN/City land)</li>
+      </ul>
+      <p>A mix of market rental, affordable, and supportive housing — all at various stages of approval and construction.</p>
+    </div>
+
+    <!-- Card 6: Core Housing Need -->
+    <div class="card card-accent-amber">
+      <div class="card-label">Affordability</div>
+      <div class="card-title">Core Housing Need</div>
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-value">14.2%</div>
+          <div class="stat-label">In core housing need</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">$63,500</div>
+          <div class="stat-label">Median household income</div>
+        </div>
+      </div>
+      <p><strong>14.2% of Parksville residents</strong> are in core housing need (2021 Census) — spending more than 30% of income on shelter that doesn't meet adequacy, suitability, or affordability standards.</p>
+      <p>With a median household income of $63,500, the gap between what residents earn and what housing costs continues to shape the community's greatest challenge.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- News & Sources -->
+<section class="section section-alt">
+  <div class="source-card">
+    <strong>Sources &amp; further reading.</strong><br>
+    Data compiled from CMHC 2025 Rental Market Survey, City of Parksville reports, and Statistics Canada 2021 Census.<br><br>
+    <a href="https://pqbnews.com/2025/11/20/development-permit-approved-for-parksville-affordable-housing-project/" target="_blank">Affordable housing approved</a><br>
+    <a href="https://nanaimonewsnow.com/2026/03/03/balances-the-needs-of-people-nature-and-progress-new-housing-pitched-for-parksville-property/" target="_blank">400+ unit proposal</a><br>
+    <a href="https://nanaimonewsnow.com/2026/01/24/permit-renewed-for-downtown-parksville-condo-development/" target="_blank">Downtown condo permit renewed</a>
+  </div>
+</section>
+
+<!-- Narrative -->
+<div class="narrative">
+  <h2>Growth that strengthens.</h2>
+  <p>Housing is where affordability, infrastructure, and community planning meet. A prepared city grows thoughtfully — ensuring new development strengthens neighbourhoods rather than straining services.</p>
+  <a href="https://votewood.ca" class="cta-btn">See the full platform &rarr; votewood.ca</a>
+</div>
+
+<footer class="footer">
+  Authorized by Sean Wood, Independent Candidate &middot; 604-868-7914<br>
+  Data: CMHC &middot; City of Parksville &middot; Statistics Canada 2021 Census
+</footer>
+
+</body>
+</html>
