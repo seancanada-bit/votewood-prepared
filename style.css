@@ -45,6 +45,25 @@ body {
 
 a { color: var(--yellow); }
 
+/* Links inside white cards — teal with underline for visibility */
+.card a, .chart-card a, .chart-notes a, .source-card a {
+  color: var(--teal);
+  text-decoration: underline;
+  text-decoration-color: rgba(29,145,158,0.35);
+  text-underline-offset: 2px;
+  transition: text-decoration-color 0.15s;
+}
+.card a:hover, .chart-card a:hover, .chart-notes a:hover {
+  text-decoration-color: var(--teal);
+}
+.card a:visited, .chart-card a:visited, .chart-notes a:visited {
+  color: #0e4a50;
+  text-decoration-color: rgba(14,74,80,0.3);
+}
+.source-card a { color: var(--yellow); text-decoration-color: rgba(255,235,59,0.35); }
+.source-card a:visited { color: #ddd07a; }
+.source-card a:hover { text-decoration-color: var(--yellow); }
+
 /* Header */
 .header {
   background: var(--teal-deep);
