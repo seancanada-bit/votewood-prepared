@@ -247,8 +247,8 @@ body {
   letter-spacing: 1.5px; color: #999; margin-bottom: 4px;
 }
 .chart-card-hero {
-  font-family: var(--serif); font-size: 28px; color: var(--teal-dark);
-  margin-bottom: 4px;
+  font-family: var(--serif); font-size: clamp(20px, 4vw, 28px); color: var(--teal-dark);
+  margin-bottom: 4px; line-height: 1.2;
 }
 .chart-card-trend {
   font-size: 12px; font-weight: 700; margin-bottom: 16px;
@@ -274,9 +274,10 @@ body {
 
 /* Chart annotations */
 .chart-notes {
-  margin-top: 16px; padding: 14px 16px;
+  margin-top: 16px; padding: 16px 18px;
   background: #f7fbfb; border-left: 3px solid var(--teal);
-  border-radius: 0 8px 8px 0; font-size: 12px; color: #555; line-height: 1.7;
+  border-radius: 0 8px 8px 0; font-size: 12.5px; color: #555;
+  line-height: 1.75; letter-spacing: 0.01em;
 }
 .chart-notes strong { color: var(--teal-dark); }
 .chart-notes-links {
@@ -284,8 +285,8 @@ body {
   font-size: 11px;
 }
 .chart-notes-links a {
-  color: var(--teal); text-decoration: none; margin-right: 16px;
-  white-space: nowrap;
+  color: var(--teal); text-decoration: none; margin-right: 12px;
+  display: inline-block; margin-bottom: 4px;
 }
 .chart-notes-links a:hover { text-decoration: underline; }
 .chart-notes-links .link-source {
@@ -315,6 +316,14 @@ body {
   .card-grid { grid-template-columns: 1fr; }
   .rank-table { font-size: 12px; }
   .rank-table td, .rank-table th { padding: 5px 6px; }
+  .chart-card { padding: 20px 16px; }
+  .chart-card-label { font-size: 10px; letter-spacing: 1px; }
+  .chart-card-trend { font-size: 11px; }
+  .chart-svg { height: 160px; }
+  .chart-notes { font-size: 11.5px; padding: 12px 14px; }
+  .chart-notes-links { font-size: 10.5px; }
+  .chart-legend { font-size: 10px; gap: 10px; }
+  .chart-source { font-size: 10px; }
 }
 </style>
 </head>
@@ -357,6 +366,7 @@ body {
           <a href="https://www.pqbnews.com/local-news/parksville-council-passes-tax-rate-and-financial-plan-bylaws-7993969" target="_blank">Council passes 2025 financial plan</a>
           <a href="https://www.pqbnews.com/local-news/parksville-property-owners-face-potential-tax-hike-of-66-per-cent-7326506" target="_blank">6.6% tax hike context</a>
           <a href="https://www.pqbnews.com/local-news/parksville-utilized-297m-in-grants-for-projects-in-2023-7362505" target="_blank">$2.97M in grants in 2023</a>
+          <a href="https://www.pqbnews.com/news/covid-19-closures-in-2020-resulted-in-net-losses-for-oceanside-place-in-parksville-1186764" target="_blank">COVID losses at Oceanside Place</a>
           <span class="link-source">PQB News</span>
         </div>
       </div>
@@ -406,6 +416,7 @@ body {
         Parksville has been <strong>steadily paying down debt without new borrowing</strong>. The 2026-2030 financial plan contains no new borrowing. Instead, the city transfers $4.5M annually to reserves for infrastructure replacement, funded through property taxes and utility fees. All debt requires electorate approval.
         <div class="chart-notes-links">
           <a href="https://www.pqbnews.com/local-news/5-year-financial-plan-given-final-adoption-by-parksville-council-7784004" target="_blank">2025-2029 financial plan adopted</a>
+          <a href="https://www.pqbnews.com/local-news/city-of-parksville-receives-clean-yearly-financial-audit-7988188" target="_blank">Clean financial audit (2024)</a>
           <span class="link-source">PQB News</span>
         </div>
       </div>
@@ -430,6 +441,7 @@ body {
           <a href="https://www.pqbnews.com/news/parksvilles-memorial-plaza-part-of-a-downtown-revitalization-plan-opens-to-public-1204564" target="_blank">Memorial Plaza opens (2022)</a>
           <a href="https://www.pqbnews.com/community/city-upgrades-to-parksville-community-park-completed-7353967" target="_blank">Community Park upgrades complete</a>
           <a href="https://www.pqbnews.com/news/improvements-planned-for-parksville-community-park-1211245" target="_blank">2023 park improvements</a>
+          <a href="https://www.pqbnews.com/news/city-of-parksville-juggles-funds-to-make-up-500k-shortfall-for-outdoor-theatre-project-1195739" target="_blank">Theatre $500K shortfall juggled</a>
           <span class="link-source">PQB News</span>
         </div>
       </div>
@@ -511,36 +523,44 @@ body {
     var svg = document.getElementById(svgId);
     if (!svg || !values.length) return;
     var w = svg.clientWidth || 860;
-    var h = 180;
+    var h = 200;
     svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
-    var max = Math.max.apply(null, values.concat(secondValues || [])) * 1.15;
+    var max = Math.max.apply(null, values.concat(secondValues || [])) * 1.18;
     if (max === 0) max = 1;
-    var barW = Math.min(40, (w - 80) / years.length - 8);
-    var gap = (w - 60) / years.length;
+    var n = years.length;
+    var pad = 40;
+    var gap = (w - pad * 2) / n;
+    var barW = Math.min(36, gap * 0.55);
+    // On narrow charts (mobile half-width), show every other label
+    var skipLabels = gap < 52;
+    var labelSize = gap < 44 ? '8' : '9';
+    var yearSize = gap < 44 ? '9' : '10';
     var html = '';
 
     values.forEach(function(v, i) {
-      var bh = (v / max) * (h - 40);
-      var x = 50 + i * gap;
-      var y = h - 24 - bh;
+      var bh = (v / max) * (h - 50);
+      var x = pad + i * gap + gap / 2;
+      var y = h - 28 - bh;
       if (secondValues && secondValues[i] > v) {
-        // Fill area between as surplus
-        var bh2 = (secondValues[i] / max) * (h - 40);
-        html += '<rect x="' + (x - barW/2) + '" y="' + (h - 24 - bh2) + '" width="' + barW + '" height="' + (bh2 - bh) + '" fill="' + GREEN_C + '" opacity="0.15" rx="2"/>';
+        var bh2 = (secondValues[i] / max) * (h - 50);
+        html += '<rect x="' + (x - barW/2) + '" y="' + (h - 28 - bh2) + '" width="' + barW + '" height="' + (bh2 - bh) + '" fill="' + GREEN_C + '" opacity="0.12" rx="2"/>';
       }
       html += '<rect x="' + (x - barW/2) + '" y="' + y + '" width="' + barW + '" height="' + bh + '" fill="' + color + '" rx="3" opacity="0.85"/>';
-      // Value label
-      html += '<text x="' + x + '" y="' + (y - 6) + '" text-anchor="middle" font-size="10" font-weight="700" fill="#888">' + (v >= 1e6 ? (v/1e6).toFixed(1) + 'M' : Math.round(v/1e3) + 'K') + '</text>';
+      // Value label — skip alternating on tight layouts
+      if (!skipLabels || i % 2 === 0 || i === n - 1) {
+        var label = v >= 1e6 ? (v/1e6).toFixed(1) + 'M' : Math.round(v/1e3) + 'K';
+        html += '<text x="' + x + '" y="' + (y - 5) + '" text-anchor="middle" font-size="' + labelSize + '" font-weight="700" fill="#888" font-family="Roboto,sans-serif">' + label + '</text>';
+      }
       // Year label
-      html += '<text x="' + x + '" y="' + (h - 6) + '" text-anchor="middle" font-size="11" fill="#aaa">' + years[i] + '</text>';
+      html += '<text x="' + x + '" y="' + (h - 8) + '" text-anchor="middle" font-size="' + yearSize + '" fill="#aaa" font-family="Roboto,sans-serif">' + (skipLabels && n > 8 ? "'" + String(years[i]).slice(2) : years[i]) + '</text>';
     });
 
     if (secondValues) {
       secondValues.forEach(function(v, i) {
-        var bh = (v / max) * (h - 40);
-        var x = 50 + i * gap + barW/2 + 4;
-        var y = h - 24 - bh;
-        html += '<rect x="' + x + '" y="' + y + '" width="' + (barW * 0.6) + '" height="' + bh + '" fill="' + secondColor + '" rx="3" opacity="0.65"/>';
+        var bh = (v / max) * (h - 50);
+        var x = pad + i * gap + gap / 2 + barW / 2 + 3;
+        var y = h - 28 - bh;
+        html += '<rect x="' + x + '" y="' + y + '" width="' + (barW * 0.55) + '" height="' + bh + '" fill="' + secondColor + '" rx="2" opacity="0.6"/>';
       });
     }
 
@@ -551,31 +571,37 @@ body {
     var svg = document.getElementById(svgId);
     if (!svg) return;
     var w = svg.clientWidth || 860;
-    var h = 220;
+    var h = 240;
     svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
 
     var totals = years.map(function(_, i) {
       return series.reduce(function(s, arr) { return s + (arr[i] || 0); }, 0);
     });
-    var max = Math.max.apply(null, totals) * 1.1;
+    var max = Math.max.apply(null, totals) * 1.12;
     if (max === 0) max = 1;
-    var barW = Math.min(50, (w - 80) / years.length - 6);
-    var gap = (w - 60) / years.length;
+    var n = years.length;
+    var pad = 40;
+    var gap = (w - pad * 2) / n;
+    var barW = Math.min(44, gap * 0.6);
+    var skipLabels = gap < 52;
+    var labelSize = gap < 44 ? '8' : '9';
+    var yearSize = gap < 44 ? '9' : '10';
     var html = '';
 
     years.forEach(function(yr, i) {
-      var x = 50 + i * gap;
-      var cumY = h - 28;
+      var x = pad + i * gap + gap / 2;
+      var cumY = h - 30;
       series.forEach(function(arr, s) {
         var v = arr[i] || 0;
-        var bh = (v / max) * (h - 48);
+        var bh = (v / max) * (h - 52);
         cumY -= bh;
         html += '<rect x="' + (x - barW/2) + '" y="' + cumY + '" width="' + barW + '" height="' + bh + '" fill="' + colors[s] + '" rx="1"/>';
       });
-      // Total on top
-      var totalH = (totals[i] / max) * (h - 48);
-      html += '<text x="' + x + '" y="' + (h - 28 - totalH - 6) + '" text-anchor="middle" font-size="10" font-weight="700" fill="#888">' + (totals[i]/1e6).toFixed(1) + 'M</text>';
-      html += '<text x="' + x + '" y="' + (h - 8) + '" text-anchor="middle" font-size="11" fill="#aaa">' + yr + '</text>';
+      var totalH = (totals[i] / max) * (h - 52);
+      if (!skipLabels || i % 2 === 0 || i === n - 1) {
+        html += '<text x="' + x + '" y="' + (h - 30 - totalH - 5) + '" text-anchor="middle" font-size="' + labelSize + '" font-weight="700" fill="#888" font-family="Roboto,sans-serif">' + (totals[i]/1e6).toFixed(1) + 'M</text>';
+      }
+      html += '<text x="' + x + '" y="' + (h - 10) + '" text-anchor="middle" font-size="' + yearSize + '" fill="#aaa" font-family="Roboto,sans-serif">' + (skipLabels && n > 8 ? "'" + String(yr).slice(2) : yr) + '</text>';
     });
 
     svg.innerHTML = html;
