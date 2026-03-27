@@ -427,6 +427,26 @@ a { color: var(--yellow); }
   letter-spacing: 0.5px;
 }
 
+/* Video embeds */
+.video-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.video-item { text-decoration: none; color: var(--card-text); display: block; }
+.video-thumb {
+  position: relative; width: 100%; padding-bottom: 56.25%;
+  background: #111; border-radius: 10px; overflow: hidden; margin-bottom: 10px;
+}
+.video-thumb iframe {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
+  border-radius: 10px;
+}
+.video-title {
+  font-size: 14px; font-weight: 700; color: var(--card-text); line-height: 1.4;
+  margin-bottom: 4px;
+}
+.video-meta { font-size: 11px; color: #999; }
+
 /* About section (homepage) */
 .about { padding: 64px 24px; max-width: 720px; margin: 0 auto; text-align: center; }
 .about h2 {
