@@ -272,6 +272,19 @@ body {
   padding-top: 10px; border-top: 1px solid #f0f0f0;
 }
 
+/* Chart annotations */
+.chart-notes {
+  margin-top: 16px; padding: 14px 16px;
+  background: #f7fbfb; border-left: 3px solid var(--teal);
+  border-radius: 0 8px 8px 0; font-size: 12px; color: #555; line-height: 1.7;
+}
+.chart-notes strong { color: var(--teal-dark); }
+.chart-notes .note-year {
+  display: inline-block; background: var(--teal); color: white;
+  font-size: 10px; font-weight: 900; padding: 1px 6px;
+  border-radius: 3px; margin-right: 4px; vertical-align: 1px;
+}
+
 /* Stale state */
 .card-stale-msg {
   text-align: center; font-size: 12px; color: #aaa;
@@ -324,6 +337,11 @@ body {
         <div class="chart-legend-item"><div class="chart-legend-swatch" style="background:#e65100"></div>Expenses</div>
         <div class="chart-legend-item"><div class="chart-legend-swatch" style="background:#2e7d32;opacity:0.3"></div>Surplus</div>
       </div>
+      <div class="chart-notes">
+        <span class="note-year">2020</span> Revenue dipped as COVID-19 closed recreation facilities and delayed grants. Building permits stayed strong.<br>
+        <span class="note-year">2022-23</span> Revenue surged on a building boom - 143 permits worth $102M in 2022, plus $4.8M from the provincial Growing Communities Fund in 2023.<br>
+        <span class="note-year">2024</span> Revenue normalized as developer contributions returned to baseline levels.
+      </div>
       <div class="chart-source">Source: Schedules 401 & 402</div>
     </div>
   </div>
@@ -333,6 +351,9 @@ body {
       <div class="chart-card-hero" id="tax-hero">--</div>
       <div class="chart-card-trend" id="tax-trend"></div>
       <svg class="chart-svg" id="svg-tax"></svg>
+      <div class="chart-notes">
+        Property tax revenue has grown steadily - roughly 4-5% per year - reflecting assessment growth and modest rate increases. This is Parksville's most stable revenue source.
+      </div>
       <div class="chart-source">Source: Schedule 401, Col 3</div>
     </div>
     <div class="chart-card" id="chart-reserves">
@@ -340,6 +361,10 @@ body {
       <div class="chart-card-hero" id="reserves-hist-hero">--</div>
       <div class="chart-card-trend" id="reserves-hist-trend"></div>
       <svg class="chart-svg" id="svg-reserves"></svg>
+      <div class="chart-notes">
+        <span class="note-year">2023</span> The apparent dip reflects a reclassification, not a drawdown. Council adopted a new Reserves and Surplus Policy (Bylaw 1589) that moved money between statutory reserve and surplus categories. The city also received $4.8M in Growing Communities Fund money, placed into a new dedicated reserve.<br>
+        <span class="note-year">2024</span> Council formalized Policy 6.20, creating clearer categories for reserves and surplus.
+      </div>
       <div class="chart-source">Source: Schedule 304</div>
     </div>
   </div>
@@ -349,6 +374,9 @@ body {
       <div class="chart-card-hero" id="debt-hist-hero">--</div>
       <div class="chart-card-trend" id="debt-hist-trend"></div>
       <svg class="chart-svg" id="svg-debt"></svg>
+      <div class="chart-notes">
+        Parksville has been <strong>steadily paying down debt without new borrowing</strong>. The 2026-2030 financial plan contains no new borrowing. Instead, the city transfers $4.5M annually to reserves for infrastructure replacement, funded through property taxes and utility fees. All debt requires electorate approval.
+      </div>
       <div class="chart-source">Source: Schedule 302</div>
     </div>
     <div class="chart-card" id="chart-capex">
@@ -360,6 +388,13 @@ body {
         <div class="chart-legend-item"><div class="chart-legend-swatch" style="background:var(--teal)"></div>Capital spending</div>
         <div class="chart-legend-item"><div class="chart-legend-swatch" style="background:#ccc"></div>Amortization</div>
       </div>
+      <div class="chart-notes">
+        Capital spending is naturally lumpy - big projects land in specific years.<br>
+        <span class="note-year">2019</span> Pym Street and Forsyth Avenue watermain and road renewal.<br>
+        <span class="note-year">2022</span> Memorial Avenue downtown revitalization ($4M), Community Centre daycare expansion, new fire truck.<br>
+        <span class="note-year">2023</span> Community Park gathering plaza ($1.6M), new washroom building ($1.45M), Moss Avenue renewal.<br>
+        The grey bars show amortization - the accounting cost of wear and tear. When teal exceeds grey, the city is investing faster than assets are aging.
+      </div>
       <div class="chart-source">Source: Schedule 404</div>
     </div>
   </div>
@@ -368,6 +403,11 @@ body {
       <div class="chart-card-label">Where the Money Goes — Stacked by Department</div>
       <svg class="chart-svg" id="svg-spending" style="height:220px;"></svg>
       <div class="chart-legend" id="spending-legend"></div>
+      <div class="chart-notes">
+        <strong>Protective services</strong> (RCMP + fire) is consistently the largest single expense, growing from $3.6M to $6.5M over the decade.<br>
+        <strong>Parks and recreation</strong> spending nearly doubled, reflecting Community Park investments and expanded programming.<br>
+        <strong>Water and sewer</strong> costs have risen steadily as aging infrastructure requires more maintenance.
+      </div>
       <div class="chart-source">Source: Schedule 402</div>
     </div>
   </div>
