@@ -136,6 +136,25 @@ a { color: var(--yellow); }
 }
 .rank-table tr.rank-highlight { background: #e0f4f5; }
 .rank-table tr.rank-highlight td { font-weight: 900; color: var(--teal-dark); }
+.rank-table tr.rank-row { cursor: pointer; }
+.rank-table tr.rank-row:hover { background: #f8f8f8; }
+.rank-table tr.rank-highlight.rank-row:hover { background: #d0eef0; }
+.rank-table td.rank-arrow {
+  width: 20px; padding: 6px 4px; color: #bbb; font-size: 10px;
+  text-align: center; user-select: none;
+}
+.rank-table tr.rank-highlight td.rank-arrow { color: var(--teal); }
+.rank-detail {
+  display: none;
+}
+.rank-detail.open { display: table-row; }
+.rank-detail td {
+  padding: 8px 8px 12px 36px;
+  font-size: 12px; color: #777; line-height: 1.6;
+  border-bottom: 1px solid #e8e8e8;
+  background: #fafafa;
+}
+.rank-highlight + .rank-detail td { background: #edf7f8; }
 
 .score-row {
   display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 14px;
@@ -372,9 +391,93 @@ a { color: var(--yellow); }
     card.appendChild(msg);
   }
 
-  // Build a ranked table from an array of {name, value, isParksville}
-  // fmt: function to format the value for display
-  function rankedTable(items, targetId, fmt, sortDir) {
+  var dataYear = '';
+  function $(v) { return '$' + Math.round(v).toLocaleString(); }
+  function M(v) { return '$' + (v / 1000000).toFixed(2) + 'M'; }
+
+  function fmtDollars(v) { return '$' + Math.round(v).toLocaleString(); }
+  function fmtPct(v) { return v.toFixed(1) + '%'; }
+  function fmtMonths(v) { return v.toFixed(1) + ' mo'; }
+  function fmtRate(v) { return v.toFixed(3); }
+
+  // Detail text generators - each takes a city object and returns a citation string
+  var detailFns = {
+    reserves_months: function(c) {
+      var r = c.raw;
+      return 'Reserves: ' + $(r.reserves) + ' (Water ' + $(r.waterRes) + ' + Sewer ' + $(r.sewerRes) + ' + Other ' + $(r.otherRes) + '). ' +
+        'Total revenue: ' + $(r.totalRevenue) + '. ' +
+        'Formula: ' + M(r.reserves) + ' / ' + M(r.totalRevenue) + ' x 12 = ' + c.reserves_months.toFixed(1) + ' months. ' +
+        'Source: Schedules 304 & 401, Dec 31 ' + dataYear + '.';
+    },
+    reserves_per_cap: function(c) {
+      var r = c.raw;
+      return 'Reserves: ' + $(r.reserves) + ' (Water ' + $(r.waterRes) + ' + Sewer ' + $(r.sewerRes) + ' + Other ' + $(r.otherRes) + '). ' +
+        'Population: ' + c.pop.toLocaleString() + '. ' +
+        'Formula: ' + M(r.reserves) + ' / ' + c.pop.toLocaleString() + ' = ' + $(c.reserves_per_cap) + '/person. ' +
+        'Source: Schedule 304 & BC Stats, Dec 31 ' + dataYear + '.';
+    },
+    infra_ratio: function(c) {
+      var r = c.raw;
+      return 'Capital acquisitions: ' + $(r.capAcq) + '. Amortization expense: ' + $(r.amort) + '. ' +
+        'Formula: ' + M(r.capAcq) + ' / ' + M(r.amort) + ' x 100 = ' + c.infra_ratio.toFixed(1) + '%. ' +
+        (c.infra_ratio < 100 ? 'Below 100% indicates an infrastructure deficit. ' : 'Above 100% indicates net infrastructure investment. ') +
+        'Source: Schedules 402 & 404, Dec 31 ' + dataYear + '.';
+    },
+    debt_rev_pct: function(c) {
+      var r = c.raw;
+      return 'Long-term debt: ' + $(r.longTermDebt) + '. Total revenue: ' + $(r.totalRevenue) + '. ' +
+        'Formula: ' + M(r.longTermDebt) + ' / ' + M(r.totalRevenue) + ' x 100 = ' + c.debt_rev_pct.toFixed(1) + '%. ' +
+        'Source: Schedules 302 & 401, Dec 31 ' + dataYear + '.';
+    },
+    debt_per_cap: function(c) {
+      var r = c.raw;
+      return 'Long-term debt: ' + $(r.longTermDebt) + '. Population: ' + c.pop.toLocaleString() + '. ' +
+        'Formula: ' + M(r.longTermDebt) + ' / ' + c.pop.toLocaleString() + ' = ' + $(c.debt_per_cap) + '/person. ' +
+        'Source: Schedule 302 & BC Stats, Dec 31 ' + dataYear + '.';
+    },
+    tax_rate: function(c) {
+      var r = c.raw;
+      return 'Residential municipal tax rate: ' + c.tax_rate.toFixed(5) + ' per $1,000 of assessed value. ' +
+        'Total residential assessed value: ' + M(r.assessedVal) + '. ' +
+        'Source: Schedule 707, ' + (parseInt(dataYear) + 1) + ' assessment year.';
+    },
+    tax_dependence: function(c) {
+      var r = c.raw;
+      return 'Own-purpose taxation: ' + $(r.taxation) + '. Total revenue: ' + $(r.totalRevenue) + '. ' +
+        'Formula: ' + M(r.taxation) + ' / ' + M(r.totalRevenue) + ' x 100 = ' + c.tax_dependence.toFixed(1) + '%. ' +
+        'Source: Schedule 401, Dec 31 ' + dataYear + '.';
+    },
+    protective_per_cap: function(c) {
+      var r = c.raw;
+      return 'Protective services (RCMP + fire): ' + $(r.protective) + '. Population: ' + c.pop.toLocaleString() + '. ' +
+        'Formula: ' + M(r.protective) + ' / ' + c.pop.toLocaleString() + ' = ' + $(c.protective_per_cap) + '/person. ' +
+        '(' + (r.totalExp > 0 ? (r.protective / r.totalExp * 100).toFixed(1) : '?') + '% of total expenses.) ' +
+        'Source: Schedule 402, Dec 31 ' + dataYear + '.';
+    },
+    parks_rec_per_cap: function(c) {
+      var r = c.raw;
+      return 'Parks, recreation & culture: ' + $(r.parksRec) + '. Population: ' + c.pop.toLocaleString() + '. ' +
+        'Formula: ' + M(r.parksRec) + ' / ' + c.pop.toLocaleString() + ' = ' + $(c.parks_rec_per_cap) + '/person. ' +
+        '(' + (r.totalExp > 0 ? (r.parksRec / r.totalExp * 100).toFixed(1) : '?') + '% of total expenses.) ' +
+        'Source: Schedule 402, Dec 31 ' + dataYear + '.';
+    },
+    general_per_cap: function(c) {
+      var r = c.raw;
+      return 'General government: ' + $(r.general) + '. Population: ' + c.pop.toLocaleString() + '. ' +
+        'Formula: ' + M(r.general) + ' / ' + c.pop.toLocaleString() + ' = ' + $(c.general_per_cap) + '/person. ' +
+        '(' + (r.totalExp > 0 ? (r.general / r.totalExp * 100).toFixed(1) : '?') + '% of total expenses.) ' +
+        'Source: Schedule 402, Dec 31 ' + dataYear + '.';
+    },
+    expenses_per_cap: function(c) {
+      var r = c.raw;
+      return 'Total expenses: ' + $(r.totalExp) + '. Population: ' + c.pop.toLocaleString() + '. ' +
+        'Formula: ' + M(r.totalExp) + ' / ' + c.pop.toLocaleString() + ' = ' + $(c.expenses_per_cap) + '/person. ' +
+        'Source: Schedule 402, Dec 31 ' + dataYear + '.';
+    },
+  };
+
+  // Build ranked table with expandable detail rows
+  function rankedTable(items, targetId, fmt, sortDir, metric) {
     var rows = items.filter(function(r) { return r.value != null && !isNaN(r.value); });
     if (rows.length === 0) return;
 
@@ -382,19 +485,25 @@ a { color: var(--yellow); }
       return sortDir === 'desc' ? b.value - a.value : a.value - b.value;
     });
 
-    var html = '<table class="rank-table"><thead><tr><th>#</th><th>Community</th><th>Value</th></tr></thead><tbody>';
+    var detailFn = detailFns[metric];
+    var html = '<table class="rank-table"><thead><tr><th>#</th><th>Community</th><th>Value</th>';
+    if (detailFn) html += '<th></th>';
+    html += '</tr></thead><tbody>';
+
     rows.forEach(function(r, i) {
-      var cls = r.isPk ? ' class="rank-highlight"' : '';
-      html += '<tr' + cls + '><td>' + (i + 1) + '</td><td>' + r.name + '</td><td>' + fmt(r.value) + '</td></tr>';
+      var hlCls = r.isPk ? ' rank-highlight' : '';
+      var rowId = targetId + '-' + i;
+      html += '<tr class="rank-row' + hlCls + '" onclick="document.getElementById(\'' + rowId + '\').classList.toggle(\'open\')">';
+      html += '<td>' + (i + 1) + '</td><td>' + r.name + '</td><td>' + fmt(r.value) + '</td>';
+      if (detailFn) html += '<td class="rank-arrow">&#9660;</td>';
+      html += '</tr>';
+      if (detailFn && r.cityData) {
+        html += '<tr class="rank-detail" id="' + rowId + '"><td colspan="4">' + detailFn(r.cityData) + '</td></tr>';
+      }
     });
     html += '</tbody></table>';
     setHTML(targetId, html);
   }
-
-  function fmtDollars(v) { return '$' + Math.round(v).toLocaleString(); }
-  function fmtPct(v) { return v.toFixed(1) + '%'; }
-  function fmtMonths(v) { return v.toFixed(1) + ' mo'; }
-  function fmtRate(v) { return v.toFixed(3); }
 
   function renderFiscal(d) {
     var staleCards = ['card-reserves','card-reserves-cap','card-infra',
@@ -415,32 +524,25 @@ a { color: var(--yellow); }
       return;
     }
 
+    dataYear = d.data_year || '';
+
     function makeRows(metric) {
       return cities.map(function(c) {
-        return { name: c.name, value: c[metric], isPk: c.key === 'parksville' };
+        return { name: c.name, value: c[metric], isPk: c.key === 'parksville', cityData: c };
       });
     }
 
-    // Reserves
-    rankedTable(makeRows('reserves_months'), 'table-reserves', fmtMonths, 'desc');
-    rankedTable(makeRows('reserves_per_cap'), 'table-reserves-cap', fmtDollars, 'desc');
-
-    // Infrastructure gap
-    rankedTable(makeRows('infra_ratio'), 'table-infra', fmtPct, 'desc');
-
-    // Debt
-    rankedTable(makeRows('debt_rev_pct'), 'table-debt-rev', fmtPct, 'asc');
-    rankedTable(makeRows('debt_per_cap'), 'table-debt-cap', fmtDollars, 'asc');
-
-    // Tax
-    rankedTable(makeRows('tax_rate'), 'table-taxrate', fmtRate, 'asc');
-    rankedTable(makeRows('tax_dependence'), 'table-taxdep', fmtPct, 'asc');
-
-    // Spending
-    rankedTable(makeRows('protective_per_cap'), 'table-protective', fmtDollars, 'asc');
-    rankedTable(makeRows('parks_rec_per_cap'), 'table-parksrec', fmtDollars, 'desc');
-    rankedTable(makeRows('general_per_cap'), 'table-admin', fmtDollars, 'asc');
-    rankedTable(makeRows('expenses_per_cap'), 'table-totalexp', fmtDollars, 'asc');
+    rankedTable(makeRows('reserves_months'), 'table-reserves', fmtMonths, 'desc', 'reserves_months');
+    rankedTable(makeRows('reserves_per_cap'), 'table-reserves-cap', fmtDollars, 'desc', 'reserves_per_cap');
+    rankedTable(makeRows('infra_ratio'), 'table-infra', fmtPct, 'desc', 'infra_ratio');
+    rankedTable(makeRows('debt_rev_pct'), 'table-debt-rev', fmtPct, 'asc', 'debt_rev_pct');
+    rankedTable(makeRows('debt_per_cap'), 'table-debt-cap', fmtDollars, 'asc', 'debt_per_cap');
+    rankedTable(makeRows('tax_rate'), 'table-taxrate', fmtRate, 'asc', 'tax_rate');
+    rankedTable(makeRows('tax_dependence'), 'table-taxdep', fmtPct, 'asc', 'tax_dependence');
+    rankedTable(makeRows('protective_per_cap'), 'table-protective', fmtDollars, 'asc', 'protective_per_cap');
+    rankedTable(makeRows('parks_rec_per_cap'), 'table-parksrec', fmtDollars, 'desc', 'parks_rec_per_cap');
+    rankedTable(makeRows('general_per_cap'), 'table-admin', fmtDollars, 'asc', 'general_per_cap');
+    rankedTable(makeRows('expenses_per_cap'), 'table-totalexp', fmtDollars, 'asc', 'expenses_per_cap');
 
     setText('fiscal-updated', 'Updated ' + timeAgo(d.fetched_at));
     setText('fiscal-year', d.data_year ? '(' + d.data_year + ' financial data)' : '');
