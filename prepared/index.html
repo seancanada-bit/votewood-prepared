@@ -231,8 +231,8 @@ a { color: var(--yellow); }
   <h2 class="section-title">&#128679; Infrastructure Investment</h2>
   <div class="card-grid">
     <div class="card card-full" id="card-infra">
-      <div class="card-label">Capital Spending vs Amortization</div>
-      <div class="card-detail" style="margin-bottom:12px;color:#888;">Amortization measures how fast infrastructure wears out. Capital spending is how much the city invests in replacing it. Below 100% means infrastructure is degrading faster than it's being replaced - an infrastructure deficit.</div>
+      <div class="card-label">Capital Spending vs Amortization (5-Year Average)</div>
+      <div class="card-detail" style="margin-bottom:12px;color:#888;">Amortization measures how fast infrastructure wears out. Capital spending is how much the city invests in replacing it. Below 100% means infrastructure is degrading faster than it's being replaced. We use a 5-year average because capital spending is lumpy - a single year can be misleading due to large projects or gaps between them.</div>
       <div id="table-infra"></div>
     </div>
   </div>
@@ -418,10 +418,16 @@ a { color: var(--yellow); }
     },
     infra_ratio: function(c) {
       var r = c.raw;
-      return 'Capital acquisitions: ' + $(r.capAcq) + '. Amortization expense: ' + $(r.amort) + '. ' +
-        'Formula: ' + M(r.capAcq) + ' / ' + M(r.amort) + ' x 100 = ' + c.infra_ratio.toFixed(1) + '%. ' +
-        (c.infra_ratio < 100 ? 'Below 100% indicates an infrastructure deficit. ' : 'Above 100% indicates net infrastructure investment. ') +
-        'Source: Schedules 402 & 404, Dec 31 ' + dataYear + '.';
+      var detail = '5-year totals: capital acquisitions ' + M(r.totalCapAcq5yr) + ', amortization ' + M(r.totalAmort5yr) + '. ';
+      detail += 'Formula: ' + M(r.totalCapAcq5yr) + ' / ' + M(r.totalAmort5yr) + ' x 100 = ' + c.infra_ratio.toFixed(1) + '%. ';
+      if (r.infraByYear && r.infraByYear.length > 0) {
+        detail += 'Year by year: ' + r.infraByYear.map(function(y) {
+          return y.year + ': ' + y.ratio + '% (' + M(y.capAcq) + ' / ' + M(y.amort) + ')';
+        }).join(', ') + '. ';
+      }
+      detail += (c.infra_ratio < 100 ? 'Below 100% indicates an infrastructure deficit. ' : 'Above 100% indicates net infrastructure investment. ');
+      detail += 'Source: Schedule 404, ' + (r.infraByYear && r.infraByYear.length > 0 ? r.infraByYear[0].year + '-' + r.infraByYear[r.infraByYear.length-1].year : dataYear) + '.';
+      return detail;
     },
     debt_rev_pct: function(c) {
       var r = c.raw;
