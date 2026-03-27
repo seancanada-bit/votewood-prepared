@@ -429,7 +429,7 @@ a { color: var(--yellow); }
       <div class="card-detail" id="housing-units"></div>
       <div class="card-meta">
         <span id="housing-updated"></span><br>
-        Source: CMHC Rental Market Survey
+        Source: CMHC Rental Market Survey <span id="housing-year"></span>
       </div>
     </div>
     <div class="card" id="card-housing-rent">
@@ -437,7 +437,7 @@ a { color: var(--yellow); }
       <div class="card-value"><span class="skeleton skeleton-lg"></span></div>
       <div class="card-detail" id="housing-median"></div>
       <div class="card-meta">
-        Source: CMHC Rental Market Survey
+        Source: CMHC Rental Market Survey <span id="housing-year-2"></span>
       </div>
     </div>
   </div>
@@ -455,7 +455,7 @@ a { color: var(--yellow); }
       </div>
       <div class="card-meta">
         <span id="tax-updated"></span><br>
-        Source: BC Government Local Government Statistics (Schedule 707)
+        Source: BC Government Local Government Statistics (Schedule 707) <span id="tax-year"></span>
       </div>
     </div>
   </div>
@@ -715,6 +715,9 @@ a { color: var(--yellow); }
     setHTML('vacancy-pills', vacPill);
     setText('housing-units', d.unit_count != null ? d.unit_count.toLocaleString() + ' rental units surveyed' : '');
     setUpdated('housing-updated', d.fetched_at);
+    var yearLabel = d.data_year ? '(' + d.data_year + ')' : '';
+    setText('housing-year', yearLabel);
+    setText('housing-year-2', yearLabel);
 
     // Rent card
     var rentCard = document.getElementById('card-housing-rent');
@@ -750,6 +753,7 @@ a { color: var(--yellow); }
 
     setHTML('tax-bars', barsHTML);
     setUpdated('tax-updated', d.fetched_at);
+    setText('tax-year', d.data_year ? '(' + d.data_year + ')' : '');
   }
 
   // ---- Main fetch ----
