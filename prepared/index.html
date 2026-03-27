@@ -279,6 +279,18 @@ body {
   border-radius: 0 8px 8px 0; font-size: 12px; color: #555; line-height: 1.7;
 }
 .chart-notes strong { color: var(--teal-dark); }
+.chart-notes-links {
+  margin-top: 10px; padding-top: 8px; border-top: 1px solid #e8eeee;
+  font-size: 11px;
+}
+.chart-notes-links a {
+  color: var(--teal); text-decoration: none; margin-right: 16px;
+  white-space: nowrap;
+}
+.chart-notes-links a:hover { text-decoration: underline; }
+.chart-notes-links .link-source {
+  color: #bbb; font-size: 10px; font-style: italic;
+}
 .chart-notes .note-year {
   display: inline-block; background: var(--teal); color: white;
   font-size: 10px; font-weight: 900; padding: 1px 6px;
@@ -341,6 +353,12 @@ body {
         <span class="note-year">2020</span> Revenue dipped as COVID-19 closed recreation facilities and delayed grants. Building permits stayed strong.<br>
         <span class="note-year">2022-23</span> Revenue surged on a building boom - 143 permits worth $102M in 2022, plus $4.8M from the provincial Growing Communities Fund in 2023.<br>
         <span class="note-year">2024</span> Revenue normalized as developer contributions returned to baseline levels.
+        <div class="chart-notes-links">
+          <a href="https://www.pqbnews.com/local-news/parksville-council-passes-tax-rate-and-financial-plan-bylaws-7993969" target="_blank">Council passes 2025 financial plan</a>
+          <a href="https://www.pqbnews.com/local-news/parksville-property-owners-face-potential-tax-hike-of-66-per-cent-7326506" target="_blank">6.6% tax hike context</a>
+          <a href="https://www.pqbnews.com/local-news/parksville-utilized-297m-in-grants-for-projects-in-2023-7362505" target="_blank">$2.97M in grants in 2023</a>
+          <span class="link-source">PQB News</span>
+        </div>
       </div>
       <div class="chart-source">Source: Schedules 401 & 402</div>
     </div>
@@ -352,7 +370,12 @@ body {
       <div class="chart-card-trend" id="tax-trend"></div>
       <svg class="chart-svg" id="svg-tax"></svg>
       <div class="chart-notes">
-        Property tax revenue has grown steadily - roughly 4-5% per year - reflecting assessment growth and modest rate increases. This is Parksville's most stable revenue source.
+        Property tax revenue has grown steadily - roughly 4-5% per year - reflecting assessment growth and modest rate increases. This is Parksville's most stable revenue source. <strong>A key pressure ahead:</strong> once Parksville's population reaches 15,000, the city's share of RCMP costs jumps from 70% to 90% - an estimated $800K-$1M per year increase.
+        <div class="chart-notes-links">
+          <a href="https://www.pqbnews.com/news/parksville-looking-at-increased-rcmp-service-costs-1213871" target="_blank">RCMP cost increase looming</a>
+          <a href="https://www.pqbnews.com/news/looming-rcmp-cost-hike-concerns-some-members-of-parksville-council-1216386" target="_blank">Council concerns on policing costs</a>
+          <span class="link-source">PQB News</span>
+        </div>
       </div>
       <div class="chart-source">Source: Schedule 401, Col 3</div>
     </div>
@@ -364,6 +387,11 @@ body {
       <div class="chart-notes">
         <span class="note-year">2023</span> The apparent dip reflects a reclassification, not a drawdown. Council adopted a new Reserves and Surplus Policy (Bylaw 1589) that moved money between statutory reserve and surplus categories. The city also received $4.8M in Growing Communities Fund money, placed into a new dedicated reserve.<br>
         <span class="note-year">2024</span> Council formalized Policy 6.20, creating clearer categories for reserves and surplus.
+        <div class="chart-notes-links">
+          <a href="https://www.pqbnews.com/local-news/fund-established-by-parksville-council-for-48m-provincial-grant-6527415" target="_blank">$4.8M Growing Communities Fund</a>
+          <a href="https://www.pqbnews.com/local-news/parksville-council-approves-new-reserves-and-surplus-policy-7617552" target="_blank">New reserves policy approved</a>
+          <span class="link-source">PQB News</span>
+        </div>
       </div>
       <div class="chart-source">Source: Schedule 304</div>
     </div>
@@ -376,6 +404,10 @@ body {
       <svg class="chart-svg" id="svg-debt"></svg>
       <div class="chart-notes">
         Parksville has been <strong>steadily paying down debt without new borrowing</strong>. The 2026-2030 financial plan contains no new borrowing. Instead, the city transfers $4.5M annually to reserves for infrastructure replacement, funded through property taxes and utility fees. All debt requires electorate approval.
+        <div class="chart-notes-links">
+          <a href="https://www.pqbnews.com/local-news/5-year-financial-plan-given-final-adoption-by-parksville-council-7784004" target="_blank">2025-2029 financial plan adopted</a>
+          <span class="link-source">PQB News</span>
+        </div>
       </div>
       <div class="chart-source">Source: Schedule 302</div>
     </div>
@@ -394,6 +426,12 @@ body {
         <span class="note-year">2022</span> Memorial Avenue downtown revitalization ($4M), Community Centre daycare expansion, new fire truck.<br>
         <span class="note-year">2023</span> Community Park gathering plaza ($1.6M), new washroom building ($1.45M), Moss Avenue renewal.<br>
         The grey bars show amortization - the accounting cost of wear and tear. When teal exceeds grey, the city is investing faster than assets are aging.
+        <div class="chart-notes-links">
+          <a href="https://www.pqbnews.com/news/parksvilles-memorial-plaza-part-of-a-downtown-revitalization-plan-opens-to-public-1204564" target="_blank">Memorial Plaza opens (2022)</a>
+          <a href="https://www.pqbnews.com/community/city-upgrades-to-parksville-community-park-completed-7353967" target="_blank">Community Park upgrades complete</a>
+          <a href="https://www.pqbnews.com/news/improvements-planned-for-parksville-community-park-1211245" target="_blank">2023 park improvements</a>
+          <span class="link-source">PQB News</span>
+        </div>
       </div>
       <div class="chart-source">Source: Schedule 404</div>
     </div>
@@ -407,6 +445,11 @@ body {
         <strong>Protective services</strong> (RCMP + fire) is consistently the largest single expense, growing from $3.6M to $6.5M over the decade.<br>
         <strong>Parks and recreation</strong> spending nearly doubled, reflecting Community Park investments and expanded programming.<br>
         <strong>Water and sewer</strong> costs have risen steadily as aging infrastructure requires more maintenance.
+        <div class="chart-notes-links">
+          <a href="https://www.pqbnews.com/local-news/parksville-qualicum-beach-see-another-busy-year-for-building-permits-7294135" target="_blank">Busy year for building permits</a>
+          <a href="https://www.pqbnews.com/local-news/6-storey-multi-building-rental-development-approved-by-parksville-council-7445851" target="_blank">233-unit rental development</a>
+          <span class="link-source">PQB News</span>
+        </div>
       </div>
       <div class="chart-source">Source: Schedule 402</div>
     </div>
@@ -546,17 +589,17 @@ body {
     }
   }
 
-  function trendText(first, last, goodDir, firstYear) {
-    if (!first || !last) return {text:'', cls:'trend-flat'};
-    var pct = ((last - first) / first * 100).toFixed(0);
-    var arrow = last > first ? '\u2191' : last < first ? '\u2193' : '\u2192';
-    var dir = last > first ? 'up' : last < first ? 'down' : 'flat';
+  function trendText(val5yr, valNow, goodDir, year5yr) {
+    if (!val5yr || !valNow) return {text:'', cls:'trend-flat'};
+    var pct = ((valNow - val5yr) / val5yr * 100).toFixed(0);
+    var arrow = valNow > val5yr ? '\u2191' : valNow < val5yr ? '\u2193' : '\u2192';
+    var dir = valNow > val5yr ? 'up' : valNow < val5yr ? 'down' : 'flat';
     var cls = 'trend-flat';
     if (goodDir === 'up' && dir === 'up') cls = 'trend-up-good';
     else if (goodDir === 'up' && dir === 'down') cls = 'trend-down';
     else if (goodDir === 'down' && dir === 'down') cls = 'trend-down-good';
     else if (goodDir === 'down' && dir === 'up') cls = 'trend-up';
-    return {text: arrow + ' ' + Math.abs(pct) + '% since ' + (firstYear || ''), cls: cls};
+    return {text: arrow + ' ' + Math.abs(pct) + '% over 5 years (since ' + (year5yr || '') + ')', cls: cls};
   }
 
   function renderHistory(d) {
@@ -568,6 +611,9 @@ body {
     var years = hist.map(function(h) { return h.year; });
     var latest = hist[hist.length - 1];
     var first = hist[0];
+    // Use 5-year lookback for trends (more honest than full span)
+    var fiveYrIdx = Math.max(0, hist.length - 6);
+    var fiveYr = hist[fiveYrIdx];
 
     // Revenue vs Expenses
     drawBarChart('svg-revexp', years,
@@ -576,7 +622,7 @@ body {
     );
     setText('revexp-hero', '$' + (latest.totalRevenue / 1e6).toFixed(1) + 'M revenue / $' + (latest.totalExp / 1e6).toFixed(1) + 'M expenses');
     var surplus = latest.totalRevenue - latest.totalExp;
-    var t1 = trendText(first.totalRevenue, latest.totalRevenue, 'up', first.year);
+    var t1 = trendText(fiveYr.totalRevenue, latest.totalRevenue, 'up', fiveYr.year);
     var revTrendEl = document.getElementById('revexp-trend');
     if (revTrendEl) {
       revTrendEl.innerHTML = 'Revenue ' + t1.text + '. Surplus: $' + (surplus / 1e6).toFixed(1) + 'M';
@@ -586,21 +632,21 @@ body {
     // Taxation
     drawBarChart('svg-tax', years, hist.map(function(h){return h.taxation;}), TEAL);
     setText('tax-hero', '$' + (latest.taxation / 1e6).toFixed(1) + 'M');
-    var t2 = trendText(first.taxation, latest.taxation, 'neutral', first.year);
+    var t2 = trendText(fiveYr.taxation, latest.taxation, 'neutral', fiveYr.year);
     var taxTrendEl = document.getElementById('tax-trend');
     if (taxTrendEl) { taxTrendEl.textContent = t2.text; taxTrendEl.className = 'chart-card-trend ' + t2.cls; }
 
     // Reserves
     drawBarChart('svg-reserves', years, hist.map(function(h){return h.totalReserves;}), GREEN_C);
     setText('reserves-hist-hero', '$' + (latest.totalReserves / 1e6).toFixed(1) + 'M');
-    var t3 = trendText(first.totalReserves, latest.totalReserves, 'up', first.year);
+    var t3 = trendText(fiveYr.totalReserves, latest.totalReserves, 'up', fiveYr.year);
     var resTrendEl = document.getElementById('reserves-hist-trend');
     if (resTrendEl) { resTrendEl.textContent = t3.text; resTrendEl.className = 'chart-card-trend ' + t3.cls; }
 
     // Debt
     drawBarChart('svg-debt', years, hist.map(function(h){return h.debt;}), AMBER_C);
     setText('debt-hist-hero', '$' + (latest.debt / 1e6).toFixed(1) + 'M');
-    var t4 = trendText(first.debt, latest.debt, 'down', first.year);
+    var t4 = trendText(fiveYr.debt, latest.debt, 'down', fiveYr.year);
     var debtTrendEl = document.getElementById('debt-hist-trend');
     if (debtTrendEl) { debtTrendEl.textContent = t4.text; debtTrendEl.className = 'chart-card-trend ' + t4.cls; }
 
