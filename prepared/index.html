@@ -236,6 +236,42 @@ body {
   text-align: center; font-size: 12px; opacity: 0.6; line-height: 1.8;
 }
 
+/* History charts */
+.chart-card {
+  background: var(--card-bg); color: var(--card-text);
+  border-radius: var(--radius); padding: 28px;
+  box-shadow: var(--shadow); border-left: 4px solid var(--teal);
+}
+.chart-card-label {
+  font-size: 11px; font-weight: 900; text-transform: uppercase;
+  letter-spacing: 1.5px; color: #999; margin-bottom: 4px;
+}
+.chart-card-hero {
+  font-family: var(--serif); font-size: 28px; color: var(--teal-dark);
+  margin-bottom: 4px;
+}
+.chart-card-trend {
+  font-size: 12px; font-weight: 700; margin-bottom: 16px;
+}
+.trend-up { color: var(--red); }
+.trend-down-good { color: var(--green); }
+.trend-up-good { color: var(--green); }
+.trend-down { color: var(--red); }
+.trend-flat { color: #999; }
+.chart-svg { width: 100%; height: 180px; display: block; }
+.chart-legend {
+  display: flex; flex-wrap: wrap; gap: 16px;
+  margin-top: 12px; font-size: 11px; color: #888;
+}
+.chart-legend-item { display: flex; align-items: center; gap: 6px; }
+.chart-legend-swatch {
+  width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0;
+}
+.chart-source {
+  font-size: 11px; color: #bbb; margin-top: 12px;
+  padding-top: 10px; border-top: 1px solid #f0f0f0;
+}
+
 /* Stale state */
 .card-stale-msg {
   text-align: center; font-size: 12px; color: #aaa;
@@ -423,6 +459,70 @@ body {
     <br><br>
     <span id="fiscal-updated" style="opacity:0.6;"></span>
     <span id="fiscal-year" style="opacity:0.6;"></span>
+  </div>
+</section>
+
+<!-- Historical Charts -->
+<section class="section" id="section-history">
+  <h2 class="section-title">Parksville Over Time</h2>
+  <p class="section-subtitle">Six years of financial data from official provincial reports, showing how the city's finances have evolved.</p>
+  <div class="card-grid">
+    <div class="chart-card card-full" id="chart-revexp">
+      <div class="chart-card-label">Revenue vs Expenses</div>
+      <div class="chart-card-hero" id="revexp-hero">--</div>
+      <div class="chart-card-trend" id="revexp-trend"></div>
+      <svg class="chart-svg" id="svg-revexp"></svg>
+      <div class="chart-legend">
+        <div class="chart-legend-item"><div class="chart-legend-swatch" style="background:var(--teal)"></div>Revenue</div>
+        <div class="chart-legend-item"><div class="chart-legend-swatch" style="background:#e65100"></div>Expenses</div>
+        <div class="chart-legend-item"><div class="chart-legend-swatch" style="background:#2e7d32;opacity:0.3"></div>Surplus</div>
+      </div>
+      <div class="chart-source">Source: Schedules 401 & 402</div>
+    </div>
+  </div>
+  <div class="card-grid" style="margin-top:24px;">
+    <div class="chart-card" id="chart-tax">
+      <div class="chart-card-label">Property Tax Revenue</div>
+      <div class="chart-card-hero" id="tax-hero">--</div>
+      <div class="chart-card-trend" id="tax-trend"></div>
+      <svg class="chart-svg" id="svg-tax"></svg>
+      <div class="chart-source">Source: Schedule 401, Col 3</div>
+    </div>
+    <div class="chart-card" id="chart-reserves">
+      <div class="chart-card-label">Statutory Reserves</div>
+      <div class="chart-card-hero" id="reserves-hist-hero">--</div>
+      <div class="chart-card-trend" id="reserves-hist-trend"></div>
+      <svg class="chart-svg" id="svg-reserves"></svg>
+      <div class="chart-source">Source: Schedule 304</div>
+    </div>
+  </div>
+  <div class="card-grid" style="margin-top:24px;">
+    <div class="chart-card" id="chart-debt">
+      <div class="chart-card-label">Long-Term Debt</div>
+      <div class="chart-card-hero" id="debt-hist-hero">--</div>
+      <div class="chart-card-trend" id="debt-hist-trend"></div>
+      <svg class="chart-svg" id="svg-debt"></svg>
+      <div class="chart-source">Source: Schedule 302</div>
+    </div>
+    <div class="chart-card" id="chart-capex">
+      <div class="chart-card-label">Capital Investment vs Amortization</div>
+      <div class="chart-card-hero" id="capex-hero">--</div>
+      <div class="chart-card-trend" id="capex-trend"></div>
+      <svg class="chart-svg" id="svg-capex"></svg>
+      <div class="chart-legend">
+        <div class="chart-legend-item"><div class="chart-legend-swatch" style="background:var(--teal)"></div>Capital spending</div>
+        <div class="chart-legend-item"><div class="chart-legend-swatch" style="background:#ccc"></div>Amortization</div>
+      </div>
+      <div class="chart-source">Source: Schedule 404</div>
+    </div>
+  </div>
+  <div class="card-grid" style="margin-top:24px;">
+    <div class="chart-card card-full" id="chart-spending">
+      <div class="chart-card-label">Where the Money Goes — Stacked by Department</div>
+      <svg class="chart-svg" id="svg-spending" style="height:220px;"></svg>
+      <div class="chart-legend" id="spending-legend"></div>
+      <div class="chart-source">Source: Schedule 402</div>
+    </div>
   </div>
 </section>
 
@@ -651,12 +751,181 @@ body {
     setText('data-year-hero', d.data_year || '');
   }
 
+  // ---- History Charts ----
+  var TEAL = '#1D919E';
+  var AMBER_C = '#e65100';
+  var GREEN_C = '#2e7d32';
+
+  function drawBarChart(svgId, years, values, color, secondValues, secondColor) {
+    var svg = document.getElementById(svgId);
+    if (!svg || !values.length) return;
+    var w = svg.clientWidth || 860;
+    var h = 180;
+    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+    var max = Math.max.apply(null, values.concat(secondValues || [])) * 1.15;
+    if (max === 0) max = 1;
+    var barW = Math.min(40, (w - 80) / years.length - 8);
+    var gap = (w - 60) / years.length;
+    var html = '';
+
+    values.forEach(function(v, i) {
+      var bh = (v / max) * (h - 40);
+      var x = 50 + i * gap;
+      var y = h - 24 - bh;
+      if (secondValues && secondValues[i] > v) {
+        // Fill area between as surplus
+        var bh2 = (secondValues[i] / max) * (h - 40);
+        html += '<rect x="' + (x - barW/2) + '" y="' + (h - 24 - bh2) + '" width="' + barW + '" height="' + (bh2 - bh) + '" fill="' + GREEN_C + '" opacity="0.15" rx="2"/>';
+      }
+      html += '<rect x="' + (x - barW/2) + '" y="' + y + '" width="' + barW + '" height="' + bh + '" fill="' + color + '" rx="3" opacity="0.85"/>';
+      // Value label
+      html += '<text x="' + x + '" y="' + (y - 6) + '" text-anchor="middle" font-size="10" font-weight="700" fill="#888">' + (v >= 1e6 ? (v/1e6).toFixed(1) + 'M' : Math.round(v/1e3) + 'K') + '</text>';
+      // Year label
+      html += '<text x="' + x + '" y="' + (h - 6) + '" text-anchor="middle" font-size="11" fill="#aaa">' + years[i] + '</text>';
+    });
+
+    if (secondValues) {
+      secondValues.forEach(function(v, i) {
+        var bh = (v / max) * (h - 40);
+        var x = 50 + i * gap + barW/2 + 4;
+        var y = h - 24 - bh;
+        html += '<rect x="' + x + '" y="' + y + '" width="' + (barW * 0.6) + '" height="' + bh + '" fill="' + secondColor + '" rx="3" opacity="0.65"/>';
+      });
+    }
+
+    svg.innerHTML = html;
+  }
+
+  function drawStackedChart(svgId, years, series, colors, labels) {
+    var svg = document.getElementById(svgId);
+    if (!svg) return;
+    var w = svg.clientWidth || 860;
+    var h = 220;
+    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+
+    var totals = years.map(function(_, i) {
+      return series.reduce(function(s, arr) { return s + (arr[i] || 0); }, 0);
+    });
+    var max = Math.max.apply(null, totals) * 1.1;
+    if (max === 0) max = 1;
+    var barW = Math.min(50, (w - 80) / years.length - 6);
+    var gap = (w - 60) / years.length;
+    var html = '';
+
+    years.forEach(function(yr, i) {
+      var x = 50 + i * gap;
+      var cumY = h - 28;
+      series.forEach(function(arr, s) {
+        var v = arr[i] || 0;
+        var bh = (v / max) * (h - 48);
+        cumY -= bh;
+        html += '<rect x="' + (x - barW/2) + '" y="' + cumY + '" width="' + barW + '" height="' + bh + '" fill="' + colors[s] + '" rx="1"/>';
+      });
+      // Total on top
+      var totalH = (totals[i] / max) * (h - 48);
+      html += '<text x="' + x + '" y="' + (h - 28 - totalH - 6) + '" text-anchor="middle" font-size="10" font-weight="700" fill="#888">' + (totals[i]/1e6).toFixed(1) + 'M</text>';
+      html += '<text x="' + x + '" y="' + (h - 8) + '" text-anchor="middle" font-size="11" fill="#aaa">' + yr + '</text>';
+    });
+
+    svg.innerHTML = html;
+
+    // Legend
+    var legendEl = document.getElementById('spending-legend');
+    if (legendEl) {
+      legendEl.innerHTML = labels.map(function(l, i) {
+        return '<div class="chart-legend-item"><div class="chart-legend-swatch" style="background:' + colors[i] + '"></div>' + l + '</div>';
+      }).join('');
+    }
+  }
+
+  function trendText(first, last, goodDir) {
+    if (!first || !last) return {text:'', cls:'trend-flat'};
+    var pct = ((last - first) / first * 100).toFixed(0);
+    var arrow = last > first ? '\u2191' : last < first ? '\u2193' : '\u2192';
+    var dir = last > first ? 'up' : last < first ? 'down' : 'flat';
+    var cls = 'trend-flat';
+    if (goodDir === 'up' && dir === 'up') cls = 'trend-up-good';
+    else if (goodDir === 'up' && dir === 'down') cls = 'trend-down';
+    else if (goodDir === 'down' && dir === 'down') cls = 'trend-down-good';
+    else if (goodDir === 'down' && dir === 'up') cls = 'trend-up';
+    return {text: arrow + ' ' + Math.abs(pct) + '% since 2019', cls: cls};
+  }
+
+  function renderHistory(d) {
+    if (!d || !d.data_json) return;
+    var hist = d.data_json;
+    if (typeof hist === 'string') { try { hist = JSON.parse(hist); } catch(e) { return; } }
+    if (!Array.isArray(hist) || hist.length === 0) return;
+
+    var years = hist.map(function(h) { return h.year; });
+    var latest = hist[hist.length - 1];
+    var first = hist[0];
+
+    // Revenue vs Expenses
+    drawBarChart('svg-revexp', years,
+      hist.map(function(h){return h.totalRevenue;}), TEAL,
+      hist.map(function(h){return h.totalExp;}), AMBER_C
+    );
+    setText('revexp-hero', '$' + (latest.totalRevenue / 1e6).toFixed(1) + 'M revenue / $' + (latest.totalExp / 1e6).toFixed(1) + 'M expenses');
+    var surplus = latest.totalRevenue - latest.totalExp;
+    var t1 = trendText(first.totalRevenue, latest.totalRevenue, 'up');
+    var revTrendEl = document.getElementById('revexp-trend');
+    if (revTrendEl) {
+      revTrendEl.innerHTML = 'Revenue ' + t1.text + '. Surplus: $' + (surplus / 1e6).toFixed(1) + 'M';
+      revTrendEl.className = 'chart-card-trend ' + t1.cls;
+    }
+
+    // Taxation
+    drawBarChart('svg-tax', years, hist.map(function(h){return h.taxation;}), TEAL);
+    setText('tax-hero', '$' + (latest.taxation / 1e6).toFixed(1) + 'M');
+    var t2 = trendText(first.taxation, latest.taxation, 'neutral');
+    var taxTrendEl = document.getElementById('tax-trend');
+    if (taxTrendEl) { taxTrendEl.textContent = t2.text; taxTrendEl.className = 'chart-card-trend ' + t2.cls; }
+
+    // Reserves
+    drawBarChart('svg-reserves', years, hist.map(function(h){return h.totalReserves;}), GREEN_C);
+    setText('reserves-hist-hero', '$' + (latest.totalReserves / 1e6).toFixed(1) + 'M');
+    var t3 = trendText(first.totalReserves, latest.totalReserves, 'up');
+    var resTrendEl = document.getElementById('reserves-hist-trend');
+    if (resTrendEl) { resTrendEl.textContent = t3.text; resTrendEl.className = 'chart-card-trend ' + t3.cls; }
+
+    // Debt
+    drawBarChart('svg-debt', years, hist.map(function(h){return h.debt;}), AMBER_C);
+    setText('debt-hist-hero', '$' + (latest.debt / 1e6).toFixed(1) + 'M');
+    var t4 = trendText(first.debt, latest.debt, 'down');
+    var debtTrendEl = document.getElementById('debt-hist-trend');
+    if (debtTrendEl) { debtTrendEl.textContent = t4.text; debtTrendEl.className = 'chart-card-trend ' + t4.cls; }
+
+    // Capital vs Amortization
+    drawBarChart('svg-capex', years,
+      hist.map(function(h){return h.capAcq;}), TEAL,
+      hist.map(function(h){return h.amortCap;}), '#ccc'
+    );
+    setText('capex-hero', '$' + (latest.capAcq / 1e6).toFixed(1) + 'M invested in ' + latest.year);
+
+    // Stacked spending
+    var spendColors = ['#1D919E', '#e65100', '#2e7d32', '#7b1fa2', '#f57c00', '#0277bd', '#c62828', '#455a64'];
+    var spendLabels = ['Protective', 'Parks/Rec', 'Transport', 'Water', 'Sewer', 'Administration', 'Dev Services', 'Solid Waste'];
+    var spendSeries = [
+      hist.map(function(h){return h.protective;}),
+      hist.map(function(h){return h.parksRec;}),
+      hist.map(function(h){return h.transport;}),
+      hist.map(function(h){return h.water;}),
+      hist.map(function(h){return h.sewer;}),
+      hist.map(function(h){return h.general;}),
+      hist.map(function(h){return h.devServices;}),
+      hist.map(function(h){return h.solidWaste;}),
+    ];
+    drawStackedChart('svg-spending', years, spendSeries, spendColors, spendLabels);
+  }
+
   function loadData() {
     fetch(API)
       .then(function(res) { return res.json(); })
       .then(function(json) {
         if (!json.ok || !json.data) return;
         renderFiscal(json.data.fiscal_health_latest);
+        renderHistory(json.data.parksville_history);
       })
       .catch(function(err) { console.error('[prepared]', err); });
   }

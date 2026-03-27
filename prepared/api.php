@@ -13,6 +13,7 @@ $allowed = [
   'air_quality_latest', 'road_events_latest', 'city_scores_latest',
   'demographics_latest', 'wildfire_latest', 'local_events_latest',
   'housing_latest', 'tax_rates_latest', 'fiscal_health_latest',
+  'parksville_history',
 ];
 
 $table = $_GET['table'] ?? '';
