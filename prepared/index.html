@@ -303,169 +303,16 @@ body {
 <div class="hero">
   <div class="hero-eyebrow">Parksville. Prepared.</div>
   <h1>Follow the money.</h1>
-  <p class="hero-sub">How does Parksville's fiscal health compare to similar BC communities? Every number on this page comes from official provincial financial reports.</p>
+  <p class="hero-sub">A decade of Parksville's financial story - revenue, spending, debt, reserves, and infrastructure investment. Every number from official provincial reports.</p>
   <div class="hero-badge">
-    17 communities &middot; <span id="data-year-hero"></span> data &middot; Open source
+    10 years &middot; 2015-2024 &middot; BC Government data
   </div>
 </div>
-
-<!-- 1. Infrastructure -->
-<section class="section">
-  <h2 class="section-title">Infrastructure Investment</h2>
-  <p class="section-subtitle">Is the city keeping up with the wear and tear on its roads, pipes, and buildings?</p>
-  <div class="card-grid">
-    <div class="card card-full" id="card-infra">
-      <div class="card-label">Capital Spending vs Amortization &middot; 5-Year Average</div>
-      <div class="card-hero">
-        <div class="card-hero-value" id="hero-infra">--</div>
-        <div class="card-hero-rank" id="rank-infra"></div>
-      </div>
-      <div class="card-hero-context">Below 100% means infrastructure degrades faster than it's replaced. We use a 5-year average because capital spending is lumpy.</div>
-      <div id="table-infra"></div>
-    </div>
-  </div>
-</section>
-
-<!-- 2. Reserves -->
-<section class="section section-alt">
-  <h2 class="section-title">Reserves</h2>
-  <p class="section-subtitle">The rainy-day fund. How long could the city operate without new revenue?</p>
-  <div class="card-grid">
-    <div class="card" id="card-reserves">
-      <div class="card-label">Months of Revenue in Reserve</div>
-      <div class="card-hero">
-        <div class="card-hero-value" id="hero-reserves">--</div>
-        <div class="card-hero-rank" id="rank-reserves"></div>
-      </div>
-      <div class="card-hero-context">Statutory reserves divided by monthly revenue. More months = more cushion.</div>
-      <div id="table-reserves"></div>
-    </div>
-    <div class="card" id="card-reserves-cap">
-      <div class="card-label">Reserves Per Resident</div>
-      <div class="card-hero">
-        <div class="card-hero-value" id="hero-reserves-cap">--</div>
-        <div class="card-hero-rank" id="rank-reserves-cap"></div>
-      </div>
-      <div class="card-hero-context">Total statutory reserves divided by population.</div>
-      <div id="table-reserves-cap"></div>
-    </div>
-  </div>
-</section>
-
-<!-- 3. Tax Burden -->
-<section class="section">
-  <h2 class="section-title">Tax Burden</h2>
-  <p class="section-subtitle">What are residents paying, and how dependent is the city on property taxes?</p>
-  <div class="card-grid">
-    <div class="card" id="card-taxrate">
-      <div class="card-label">Residential Mill Rate</div>
-      <div class="card-hero">
-        <div class="card-hero-value" id="hero-taxrate">--</div>
-        <div class="card-hero-rank" id="rank-taxrate"></div>
-      </div>
-      <div class="card-hero-context">Tax per $1,000 of assessed home value. Lower is lighter on homeowners.</div>
-      <div id="table-taxrate"></div>
-    </div>
-    <div class="card" id="card-taxdep">
-      <div class="card-label">Tax Dependence</div>
-      <div class="card-hero">
-        <div class="card-hero-value" id="hero-taxdep">--</div>
-        <div class="card-hero-rank" id="rank-taxdep"></div>
-      </div>
-      <div class="card-hero-context">Share of revenue from property taxes. Higher = more reliant on homeowners.</div>
-      <div id="table-taxdep"></div>
-    </div>
-  </div>
-</section>
-
-<!-- 4. Debt -->
-<section class="section section-alt">
-  <h2 class="section-title">Debt Burden</h2>
-  <p class="section-subtitle">How much has the city borrowed, and how does that compare to what it earns?</p>
-  <div class="card-grid">
-    <div class="card" id="card-debt-rev">
-      <div class="card-label">Debt as % of Revenue</div>
-      <div class="card-hero">
-        <div class="card-hero-value" id="hero-debt-rev">--</div>
-        <div class="card-hero-rank" id="rank-debt-rev"></div>
-      </div>
-      <div class="card-hero-context">Long-term debt divided by annual revenue. Lower is healthier.</div>
-      <div id="table-debt-rev"></div>
-    </div>
-    <div class="card" id="card-debt-cap">
-      <div class="card-label">Debt Per Resident</div>
-      <div class="card-hero">
-        <div class="card-hero-value" id="hero-debt-cap">--</div>
-        <div class="card-hero-rank" id="rank-debt-cap"></div>
-      </div>
-      <div class="card-hero-context">Your share of the city's long-term borrowing.</div>
-      <div id="table-debt-cap"></div>
-    </div>
-  </div>
-</section>
-
-<!-- 5. Spending -->
-<section class="section">
-  <h2 class="section-title">Where the Money Goes</h2>
-  <p class="section-subtitle">How Parksville allocates its budget compared to peers.</p>
-  <div class="card-grid">
-    <div class="card" id="card-protective">
-      <div class="card-label">Protective Services Per Resident</div>
-      <div class="card-hero">
-        <div class="card-hero-value" id="hero-protective">--</div>
-        <div class="card-hero-rank" id="rank-protective"></div>
-      </div>
-      <div class="card-hero-context">RCMP + fire. Provincial data combines these; individual splits are in each city's financial plan.</div>
-      <div id="table-protective"></div>
-    </div>
-    <div class="card" id="card-parksrec">
-      <div class="card-label">Parks &amp; Recreation Per Resident</div>
-      <div class="card-hero">
-        <div class="card-hero-value" id="hero-parksrec">--</div>
-        <div class="card-hero-rank" id="rank-parksrec"></div>
-      </div>
-      <div class="card-hero-context">Pools, arenas, parks, trails, community programs.</div>
-      <div id="table-parksrec"></div>
-    </div>
-  </div>
-  <div class="card-grid" style="margin-top:24px;">
-    <div class="card" id="card-admin">
-      <div class="card-label">Administration Per Resident</div>
-      <div class="card-hero">
-        <div class="card-hero-value" id="hero-admin">--</div>
-        <div class="card-hero-rank" id="rank-admin"></div>
-      </div>
-      <div class="card-hero-context">Council, finance, HR, IT - the overhead of running a city.</div>
-      <div id="table-admin"></div>
-    </div>
-    <div class="card" id="card-totalexp">
-      <div class="card-label">Total Spending Per Resident</div>
-      <div class="card-hero">
-        <div class="card-hero-value" id="hero-totalexp">--</div>
-        <div class="card-hero-rank" id="rank-totalexp"></div>
-      </div>
-      <div class="card-hero-context">All expenses including amortization. Cities with water/sewer utilities will be higher.</div>
-      <div id="table-totalexp"></div>
-    </div>
-  </div>
-</section>
-
-<!-- Source -->
-<section class="section section-alt">
-  <div class="source-card">
-    <strong>About this data.</strong> Every figure comes from BC Government Local Government Statistics - the official financial reports all municipalities must file. Schedules 302, 304, 401, 402, 404, and 707. Population from BC Stats. Click any row to see the exact formula and source citation.
-    <br><br>
-    <strong>17 communities</strong> selected across BC, population 3,000 to 39,000, to represent a fair range of comparable small cities and towns.
-    <br><br>
-    <span id="fiscal-updated" style="opacity:0.6;"></span>
-    <span id="fiscal-year" style="opacity:0.6;"></span>
-  </div>
-</section>
 
 <!-- Historical Charts -->
 <section class="section" id="section-history">
   <h2 class="section-title">Parksville Over Time</h2>
-  <p class="section-subtitle">Six years of financial data from official provincial reports, showing how the city's finances have evolved.</p>
+  <p class="section-subtitle">A decade of financial data from official provincial reports, showing how the city's finances have evolved.</p>
   <div class="card-grid">
     <div class="chart-card card-full" id="chart-revexp">
       <div class="chart-card-label">Revenue vs Expenses</div>
@@ -526,6 +373,13 @@ body {
   </div>
 </section>
 
+<!-- Source -->
+<section class="section section-alt">
+  <div class="source-card">
+    <strong>About this data.</strong> Every figure comes from BC Government Local Government Statistics - the official financial reports all municipalities must file. Schedules 302 (Debt), 304 (Reserves), 401 (Revenue), 402 (Expenses), and 404 (Capital). Data covers fiscal years ending December 31, 2015 through December 31, 2024.
+  </div>
+</section>
+
 <!-- Narrative -->
 <div class="narrative">
   <h2>"A prepared city starts with a prepared budget."</h2>
@@ -545,7 +399,6 @@ body {
 
   var API = 'api.php?table=all';
   var REFRESH_MS = 10 * 60 * 1000;
-  var dataYear = '';
 
   function timeAgo(dateStr) {
     if (!dateStr) return '';
@@ -564,191 +417,6 @@ body {
   }
   function setHTML(id, html) {
     var el = document.getElementById(id); if (el) el.innerHTML = html;
-  }
-
-  function markStale(cardId) {
-    var card = document.getElementById(cardId);
-    if (!card || card.querySelector('.card-stale-msg')) return;
-    var msg = document.createElement('div');
-    msg.className = 'card-stale-msg';
-    msg.textContent = 'Data temporarily unavailable';
-    card.appendChild(msg);
-  }
-
-  // Formatting
-  function $(v) { return '$' + Math.round(v).toLocaleString(); }
-  function M(v) { return '$' + (v / 1000000).toFixed(2) + 'M'; }
-  function fmtDollars(v) { return '$' + Math.round(v).toLocaleString(); }
-  function fmtPct(v) { return v.toFixed(1) + '%'; }
-  function fmtMonths(v) { return v.toFixed(1) + ' mo'; }
-  function fmtRate(v) { return v.toFixed(3); }
-
-  // Set hero number + rank badge for a card
-  function setHero(cities, metric, heroId, rankId, cardId, fmt, sortDir) {
-    var sorted = cities.filter(function(c) { return c[metric] != null && !isNaN(c[metric]); });
-    sorted.sort(function(a, b) { return sortDir === 'desc' ? b[metric] - a[metric] : a[metric] - b[metric]; });
-
-    var pkIdx = -1;
-    for (var i = 0; i < sorted.length; i++) {
-      if (sorted[i].key === 'parksville') { pkIdx = i; break; }
-    }
-    if (pkIdx < 0) return;
-
-    var pk = sorted[pkIdx];
-    var rank = pkIdx + 1;
-    var total = sorted.length;
-    var third = total / 3;
-
-    setText(heroId, fmt(pk[metric]));
-
-    var rankEl = document.getElementById(rankId);
-    if (rankEl) {
-      rankEl.innerHTML = '<span style="font-size:16px;">' + rank + '</span><span style="font-size:10px;opacity:0.7;">of ' + total + '</span>';
-      // Color: top third = green, middle = amber, bottom = red
-      var cls = rank <= third ? 'rank-green' : rank <= third * 2 ? 'rank-amber' : 'rank-red';
-      rankEl.className = 'card-hero-rank ' + cls;
-    }
-
-    // Set card accent
-    var card = document.getElementById(cardId);
-    if (card) {
-      card.classList.remove('card-accent-green', 'card-accent-amber', 'card-accent-red');
-      card.classList.add(rank <= third ? 'card-accent-green' : rank <= third * 2 ? 'card-accent-amber' : 'card-accent-red');
-    }
-  }
-
-  // Detail text generators
-  var detailFns = {
-    reserves_months: function(c) {
-      var r = c.raw;
-      return 'Reserves: ' + $(r.reserves) + ' (Water ' + $(r.waterRes) + ' + Sewer ' + $(r.sewerRes) + ' + Other ' + $(r.otherRes) + '). Total revenue: ' + $(r.totalRevenue) + '. Formula: ' + M(r.reserves) + ' / ' + M(r.totalRevenue) + ' x 12 = ' + c.reserves_months.toFixed(1) + ' months. Source: Schedules 304 & 401, Dec 31 ' + dataYear + '.';
-    },
-    reserves_per_cap: function(c) {
-      var r = c.raw;
-      return 'Reserves: ' + $(r.reserves) + ' (Water ' + $(r.waterRes) + ' + Sewer ' + $(r.sewerRes) + ' + Other ' + $(r.otherRes) + '). Pop: ' + c.pop.toLocaleString() + '. Formula: ' + M(r.reserves) + ' / ' + c.pop.toLocaleString() + ' = ' + $(c.reserves_per_cap) + '. Source: Schedule 304, Dec 31 ' + dataYear + '.';
-    },
-    infra_ratio: function(c) {
-      var r = c.raw;
-      var detail = '5-year totals: capital ' + M(r.totalCapAcq5yr) + ', amortization ' + M(r.totalAmort5yr) + '. Formula: ' + M(r.totalCapAcq5yr) + ' / ' + M(r.totalAmort5yr) + ' x 100 = ' + c.infra_ratio.toFixed(1) + '%. ';
-      if (r.infraByYear && r.infraByYear.length > 0) {
-        detail += 'Year by year: ' + r.infraByYear.map(function(y) { return y.year + ': ' + y.ratio + '%'; }).join(', ') + '. ';
-      }
-      detail += 'Source: Schedule 404.';
-      return detail;
-    },
-    debt_rev_pct: function(c) {
-      var r = c.raw;
-      return 'Long-term debt: ' + $(r.longTermDebt) + '. Revenue: ' + $(r.totalRevenue) + '. Formula: ' + M(r.longTermDebt) + ' / ' + M(r.totalRevenue) + ' x 100 = ' + c.debt_rev_pct.toFixed(1) + '%. Source: Schedules 302 & 401, Dec 31 ' + dataYear + '.';
-    },
-    debt_per_cap: function(c) {
-      var r = c.raw;
-      return 'Long-term debt: ' + $(r.longTermDebt) + '. Pop: ' + c.pop.toLocaleString() + '. = ' + $(c.debt_per_cap) + '/person. Source: Schedule 302, Dec 31 ' + dataYear + '.';
-    },
-    tax_rate: function(c) {
-      var r = c.raw;
-      return 'Residential rate: ' + c.tax_rate.toFixed(5) + ' per $1,000 assessed. Residential assessment: ' + M(r.assessedVal) + '. Source: Schedule 707, ' + (parseInt(dataYear)+1) + '.';
-    },
-    tax_dependence: function(c) {
-      var r = c.raw;
-      return 'Taxation: ' + $(r.taxation) + '. Revenue: ' + $(r.totalRevenue) + '. = ' + c.tax_dependence.toFixed(1) + '%. Source: Schedule 401, Dec 31 ' + dataYear + '.';
-    },
-    protective_per_cap: function(c) {
-      var r = c.raw;
-      return 'Protective services: ' + $(r.protective) + '. Pop: ' + c.pop.toLocaleString() + '. = ' + $(c.protective_per_cap) + '/person (' + (r.totalExp > 0 ? (r.protective/r.totalExp*100).toFixed(1) : '?') + '% of total). Source: Schedule 402, Dec 31 ' + dataYear + '.';
-    },
-    parks_rec_per_cap: function(c) {
-      var r = c.raw;
-      return 'Parks/rec: ' + $(r.parksRec) + '. Pop: ' + c.pop.toLocaleString() + '. = ' + $(c.parks_rec_per_cap) + '/person (' + (r.totalExp > 0 ? (r.parksRec/r.totalExp*100).toFixed(1) : '?') + '% of total). Source: Schedule 402, Dec 31 ' + dataYear + '.';
-    },
-    general_per_cap: function(c) {
-      var r = c.raw;
-      return 'General govt: ' + $(r.general) + '. Pop: ' + c.pop.toLocaleString() + '. = ' + $(c.general_per_cap) + '/person (' + (r.totalExp > 0 ? (r.general/r.totalExp*100).toFixed(1) : '?') + '% of total). Source: Schedule 402, Dec 31 ' + dataYear + '.';
-    },
-    expenses_per_cap: function(c) {
-      var r = c.raw;
-      return 'Total expenses: ' + $(r.totalExp) + '. Pop: ' + c.pop.toLocaleString() + '. = ' + $(c.expenses_per_cap) + '/person. Source: Schedule 402, Dec 31 ' + dataYear + '.';
-    },
-  };
-
-  // Ranked table with expandable citations
-  function rankedTable(items, targetId, fmt, sortDir, metric) {
-    var rows = items.filter(function(r) { return r.value != null && !isNaN(r.value); });
-    if (rows.length === 0) return;
-
-    rows.sort(function(a, b) {
-      return sortDir === 'desc' ? b.value - a.value : a.value - b.value;
-    });
-
-    var detailFn = detailFns[metric];
-    var html = '<table class="rank-table"><thead><tr><th>#</th><th>Community</th><th>Value</th>';
-    if (detailFn) html += '<th></th>';
-    html += '</tr></thead><tbody>';
-
-    rows.forEach(function(r, i) {
-      var hlCls = r.isPk ? ' rank-highlight' : '';
-      var rowId = targetId + '-' + i;
-      html += '<tr class="rank-row' + hlCls + '" onclick="document.getElementById(\'' + rowId + '\').classList.toggle(\'open\')">';
-      html += '<td>' + (i + 1) + '</td><td>' + r.name + '</td><td>' + fmt(r.value) + '</td>';
-      if (detailFn) html += '<td class="rank-arrow">&#9660;</td>';
-      html += '</tr>';
-      if (detailFn && r.cityData) {
-        html += '<tr class="rank-detail" id="' + rowId + '"><td colspan="4">' + detailFn(r.cityData) + '</td></tr>';
-      }
-    });
-    html += '</tbody></table>';
-    setHTML(targetId, html);
-  }
-
-  function renderFiscal(d) {
-    var staleCards = ['card-infra','card-reserves','card-reserves-cap',
-      'card-taxrate','card-taxdep','card-debt-rev','card-debt-cap',
-      'card-protective','card-parksrec','card-admin','card-totalexp'];
-
-    if (!d || !d.data_json) { staleCards.forEach(markStale); return; }
-
-    var cities = d.data_json;
-    if (typeof cities === 'string') {
-      try { cities = JSON.parse(cities); } catch(e) { staleCards.forEach(markStale); return; }
-    }
-    if (!Array.isArray(cities) || cities.length === 0) { staleCards.forEach(markStale); return; }
-
-    dataYear = d.data_year || '';
-
-    function makeRows(metric) {
-      return cities.map(function(c) {
-        return { name: c.name, value: c[metric], isPk: c.key === 'parksville', cityData: c };
-      });
-    }
-
-    // Tables
-    rankedTable(makeRows('infra_ratio'), 'table-infra', fmtPct, 'desc', 'infra_ratio');
-    rankedTable(makeRows('reserves_months'), 'table-reserves', fmtMonths, 'desc', 'reserves_months');
-    rankedTable(makeRows('reserves_per_cap'), 'table-reserves-cap', fmtDollars, 'desc', 'reserves_per_cap');
-    rankedTable(makeRows('tax_rate'), 'table-taxrate', fmtRate, 'asc', 'tax_rate');
-    rankedTable(makeRows('tax_dependence'), 'table-taxdep', fmtPct, 'asc', 'tax_dependence');
-    rankedTable(makeRows('debt_rev_pct'), 'table-debt-rev', fmtPct, 'asc', 'debt_rev_pct');
-    rankedTable(makeRows('debt_per_cap'), 'table-debt-cap', fmtDollars, 'asc', 'debt_per_cap');
-    rankedTable(makeRows('protective_per_cap'), 'table-protective', fmtDollars, 'asc', 'protective_per_cap');
-    rankedTable(makeRows('parks_rec_per_cap'), 'table-parksrec', fmtDollars, 'desc', 'parks_rec_per_cap');
-    rankedTable(makeRows('general_per_cap'), 'table-admin', fmtDollars, 'asc', 'general_per_cap');
-    rankedTable(makeRows('expenses_per_cap'), 'table-totalexp', fmtDollars, 'asc', 'expenses_per_cap');
-
-    // Hero numbers + rank badges
-    setHero(cities, 'infra_ratio', 'hero-infra', 'rank-infra', 'card-infra', fmtPct, 'desc');
-    setHero(cities, 'reserves_months', 'hero-reserves', 'rank-reserves', 'card-reserves', fmtMonths, 'desc');
-    setHero(cities, 'reserves_per_cap', 'hero-reserves-cap', 'rank-reserves-cap', 'card-reserves-cap', fmtDollars, 'desc');
-    setHero(cities, 'tax_rate', 'hero-taxrate', 'rank-taxrate', 'card-taxrate', fmtRate, 'asc');
-    setHero(cities, 'tax_dependence', 'hero-taxdep', 'rank-taxdep', 'card-taxdep', fmtPct, 'asc');
-    setHero(cities, 'debt_rev_pct', 'hero-debt-rev', 'rank-debt-rev', 'card-debt-rev', fmtPct, 'asc');
-    setHero(cities, 'debt_per_cap', 'hero-debt-cap', 'rank-debt-cap', 'card-debt-cap', fmtDollars, 'asc');
-    setHero(cities, 'protective_per_cap', 'hero-protective', 'rank-protective', 'card-protective', fmtDollars, 'asc');
-    setHero(cities, 'parks_rec_per_cap', 'hero-parksrec', 'rank-parksrec', 'card-parksrec', fmtDollars, 'desc');
-    setHero(cities, 'general_per_cap', 'hero-admin', 'rank-admin', 'card-admin', fmtDollars, 'asc');
-    setHero(cities, 'expenses_per_cap', 'hero-totalexp', 'rank-totalexp', 'card-totalexp', fmtDollars, 'asc');
-
-    setText('fiscal-updated', 'Updated ' + timeAgo(d.fetched_at) + '. ');
-    setText('fiscal-year', d.data_year ? d.data_year + ' financial data.' : '');
-    setText('data-year-hero', d.data_year || '');
   }
 
   // ---- History Charts ----
@@ -838,7 +506,7 @@ body {
     }
   }
 
-  function trendText(first, last, goodDir) {
+  function trendText(first, last, goodDir, firstYear) {
     if (!first || !last) return {text:'', cls:'trend-flat'};
     var pct = ((last - first) / first * 100).toFixed(0);
     var arrow = last > first ? '\u2191' : last < first ? '\u2193' : '\u2192';
@@ -848,7 +516,7 @@ body {
     else if (goodDir === 'up' && dir === 'down') cls = 'trend-down';
     else if (goodDir === 'down' && dir === 'down') cls = 'trend-down-good';
     else if (goodDir === 'down' && dir === 'up') cls = 'trend-up';
-    return {text: arrow + ' ' + Math.abs(pct) + '% since 2019', cls: cls};
+    return {text: arrow + ' ' + Math.abs(pct) + '% since ' + (firstYear || ''), cls: cls};
   }
 
   function renderHistory(d) {
@@ -868,7 +536,7 @@ body {
     );
     setText('revexp-hero', '$' + (latest.totalRevenue / 1e6).toFixed(1) + 'M revenue / $' + (latest.totalExp / 1e6).toFixed(1) + 'M expenses');
     var surplus = latest.totalRevenue - latest.totalExp;
-    var t1 = trendText(first.totalRevenue, latest.totalRevenue, 'up');
+    var t1 = trendText(first.totalRevenue, latest.totalRevenue, 'up', first.year);
     var revTrendEl = document.getElementById('revexp-trend');
     if (revTrendEl) {
       revTrendEl.innerHTML = 'Revenue ' + t1.text + '. Surplus: $' + (surplus / 1e6).toFixed(1) + 'M';
@@ -878,21 +546,21 @@ body {
     // Taxation
     drawBarChart('svg-tax', years, hist.map(function(h){return h.taxation;}), TEAL);
     setText('tax-hero', '$' + (latest.taxation / 1e6).toFixed(1) + 'M');
-    var t2 = trendText(first.taxation, latest.taxation, 'neutral');
+    var t2 = trendText(first.taxation, latest.taxation, 'neutral', first.year);
     var taxTrendEl = document.getElementById('tax-trend');
     if (taxTrendEl) { taxTrendEl.textContent = t2.text; taxTrendEl.className = 'chart-card-trend ' + t2.cls; }
 
     // Reserves
     drawBarChart('svg-reserves', years, hist.map(function(h){return h.totalReserves;}), GREEN_C);
     setText('reserves-hist-hero', '$' + (latest.totalReserves / 1e6).toFixed(1) + 'M');
-    var t3 = trendText(first.totalReserves, latest.totalReserves, 'up');
+    var t3 = trendText(first.totalReserves, latest.totalReserves, 'up', first.year);
     var resTrendEl = document.getElementById('reserves-hist-trend');
     if (resTrendEl) { resTrendEl.textContent = t3.text; resTrendEl.className = 'chart-card-trend ' + t3.cls; }
 
     // Debt
     drawBarChart('svg-debt', years, hist.map(function(h){return h.debt;}), AMBER_C);
     setText('debt-hist-hero', '$' + (latest.debt / 1e6).toFixed(1) + 'M');
-    var t4 = trendText(first.debt, latest.debt, 'down');
+    var t4 = trendText(first.debt, latest.debt, 'down', first.year);
     var debtTrendEl = document.getElementById('debt-hist-trend');
     if (debtTrendEl) { debtTrendEl.textContent = t4.text; debtTrendEl.className = 'chart-card-trend ' + t4.cls; }
 
@@ -924,7 +592,6 @@ body {
       .then(function(res) { return res.json(); })
       .then(function(json) {
         if (!json.ok || !json.data) return;
-        renderFiscal(json.data.fiscal_health_latest);
         renderHistory(json.data.parksville_history);
       })
       .catch(function(err) { console.error('[prepared]', err); });
