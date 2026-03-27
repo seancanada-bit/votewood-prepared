@@ -7,206 +7,253 @@
 <meta name="description" content="How does Parksville's fiscal health compare? Reserves, debt, infrastructure investment, and spending — ranked against 17 comparable BC communities using official provincial data.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
   --teal: #1D919E;
   --teal-dark: #166d78;
+  --teal-deep: #0e4a50;
   --yellow: #FFEB3B;
   --white: #FFFFFF;
-  --card-bg: rgba(255,255,255,0.93);
+  --card-bg: #ffffff;
   --card-text: #14140D;
-  --radius: 12px;
-  --shadow: 0 2px 16px rgba(0,0,0,0.13);
-  --green-bg: #e8f5e9; --green-text: #2e7d32;
-  --amber-bg: #fff3e0; --amber-text: #e65100;
-  --orange-bg: #fbe9e7; --orange-text: #bf360c;
-  --red-bg: #ffebee; --red-text: #b71c1c;
-  --grey-bg: #f5f5f5; --grey-text: #757575;
+  --radius: 14px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.10);
+  --green: #2e7d32;
+  --amber: #e65100;
+  --red: #c62828;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'Roboto', -apple-system, sans-serif;
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
-  background: var(--teal);
+  font-family: var(--sans);
+  background: var(--teal-dark);
   color: var(--white);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
-a { color: var(--yellow); }
-
+/* Header */
 .header {
-  background: var(--teal-dark);
-  border-bottom: 3px solid var(--yellow);
-  padding: 12px 24px;
+  background: var(--teal-deep);
+  border-bottom: 2px solid var(--yellow);
+  padding: 14px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 14px;
+  font-size: 13px;
+  letter-spacing: 0.3px;
 }
-.header a { text-decoration: none; font-weight: 700; }
-.header-right { font-weight: 700; letter-spacing: 0.5px; }
+.header a { color: var(--yellow); text-decoration: none; font-weight: 700; }
+.header-right { font-weight: 700; letter-spacing: 1px; }
 
+/* Hero */
 .hero {
   text-align: center;
-  padding: 56px 24px 48px;
-  background: var(--teal);
+  padding: 72px 24px 56px;
+  background: linear-gradient(180deg, var(--teal-deep) 0%, var(--teal-dark) 100%);
 }
 .hero-eyebrow {
-  font-size: 14px; font-weight: 700; letter-spacing: 3px;
-  text-transform: uppercase; color: var(--yellow); margin-bottom: 8px;
+  font-family: var(--sans);
+  font-size: 12px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--yellow); margin-bottom: 16px;
 }
 .hero h1 {
-  font-size: clamp(28px, 5vw, 44px); font-weight: 900;
-  margin-bottom: 16px; line-height: 1.15;
+  font-family: var(--serif);
+  font-size: clamp(36px, 6vw, 56px); font-weight: 400;
+  margin-bottom: 20px; line-height: 1.1;
 }
-.hero p {
-  max-width: 640px; margin: 0 auto 24px; font-size: 17px; opacity: 0.92;
+.hero-sub {
+  max-width: 560px; margin: 0 auto 32px; font-size: 16px;
+  opacity: 0.8; line-height: 1.7;
 }
-.live-pill {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(255,255,255,0.15); border-radius: 20px;
-  padding: 8px 20px; font-size: 13px; font-weight: 700;
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 24px; padding: 10px 24px; font-size: 13px; font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
+/* Sections */
 .section {
-  padding: 48px 24px; max-width: 960px; margin: 0 auto;
+  padding: 56px 24px; max-width: 920px; margin: 0 auto;
+}
+.section-alt {
+  background: rgba(0,0,0,0.08);
 }
 .section-title {
-  font-size: 22px; font-weight: 900; color: var(--yellow);
-  margin-bottom: 20px; letter-spacing: 0.5px;
+  font-family: var(--serif);
+  font-size: 28px; font-weight: 400; color: var(--yellow);
+  margin-bottom: 8px;
+}
+.section-subtitle {
+  font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 28px;
+  max-width: 600px;
 }
 
+/* Card grid */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-
-.card {
-  background: var(--card-bg); color: var(--card-text);
-  border-radius: var(--radius); padding: 24px;
-  box-shadow: var(--shadow); position: relative;
-}
-.card-label {
-  font-size: 13px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 1px; color: #666; margin-bottom: 8px;
-}
-.card-value {
-  font-size: 36px; font-weight: 900; line-height: 1.1; margin-bottom: 8px;
-}
-.card-value-unit { font-size: 16px; font-weight: 400; color: #888; }
-.card-detail { font-size: 14px; color: #555; margin-bottom: 4px; }
-.card-meta {
-  font-size: 12px; color: #999; margin-top: 12px;
-  padding-top: 12px; border-top: 1px solid #eee;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
 }
 .card-full { grid-column: 1 / -1; }
 
-.pill {
-  display: inline-flex; align-items: center; padding: 4px 12px;
-  border-radius: 12px; font-size: 13px; font-weight: 700;
-  margin-right: 6px; margin-bottom: 4px;
+/* Cards */
+.card {
+  background: var(--card-bg); color: var(--card-text);
+  border-radius: var(--radius); padding: 28px 28px 24px;
+  box-shadow: var(--shadow); position: relative;
+  border-left: 4px solid #ddd;
+  transition: box-shadow 0.2s;
 }
-.pill-green  { background: var(--green-bg);  color: var(--green-text); }
-.pill-amber  { background: var(--amber-bg);  color: var(--amber-text); }
-.pill-orange { background: var(--orange-bg); color: var(--orange-text); }
-.pill-red    { background: var(--red-bg);    color: var(--red-text); }
-.pill-grey   { background: var(--grey-bg);   color: var(--grey-text); }
+.card:hover { box-shadow: 0 6px 32px rgba(0,0,0,0.15); }
 
+/* Accent colors based on ranking */
+.card-accent-green { border-left-color: var(--green); }
+.card-accent-amber { border-left-color: var(--amber); }
+.card-accent-red   { border-left-color: var(--red); }
+
+/* Card label */
+.card-label {
+  font-size: 11px; font-weight: 900; text-transform: uppercase;
+  letter-spacing: 1.5px; color: #999; margin-bottom: 16px;
+}
+
+/* Hero stat */
+.card-hero {
+  display: flex; align-items: center; gap: 16px; margin-bottom: 16px;
+}
+.card-hero-value {
+  font-family: var(--serif); font-size: 52px; color: var(--teal-dark);
+  line-height: 1;
+}
+.card-hero-rank {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center;
+  min-width: 52px; height: 52px;
+  border-radius: 50%; font-size: 14px; font-weight: 900;
+  line-height: 1.1; text-align: center;
+}
+.rank-green { background: #e8f5e9; color: var(--green); }
+.rank-amber { background: #fff3e0; color: var(--amber); }
+.rank-red   { background: #ffebee; color: var(--red); }
+
+.card-hero-context {
+  font-size: 13px; color: #888; font-style: italic; margin-bottom: 20px;
+}
+
+/* Ranked table */
 .rank-table {
-  width: 100%; border-collapse: collapse; font-size: 14px;
+  width: 100%; border-collapse: collapse; font-size: 13px;
 }
 .rank-table th {
-  text-align: left; font-size: 11px; font-weight: 700;
-  text-transform: uppercase; color: #999;
-  padding: 4px 8px 6px; border-bottom: 2px solid #e0e0e0;
+  text-align: left; font-size: 10px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 1px; color: #bbb;
+  padding: 6px 8px; border-bottom: 1px solid #e8e8e8;
 }
 .rank-table th:last-child { text-align: right; }
 .rank-table td {
-  padding: 6px 8px; border-bottom: 1px solid #f0f0f0;
+  padding: 7px 8px; border-bottom: 1px solid #f4f4f4; color: #666;
 }
 .rank-table td:first-child {
-  width: 28px; color: #999; font-size: 12px; text-align: center;
+  width: 28px; color: #ccc; font-size: 11px; text-align: center;
+  font-weight: 700;
 }
 .rank-table td:last-child {
   text-align: right; font-variant-numeric: tabular-nums; font-weight: 700;
+  color: #444;
 }
-.rank-table tr.rank-highlight { background: #e0f4f5; }
-.rank-table tr.rank-highlight td { font-weight: 900; color: var(--teal-dark); }
-.rank-table tr.rank-row { cursor: pointer; }
-.rank-table tr.rank-row:hover { background: #f8f8f8; }
-.rank-table tr.rank-highlight.rank-row:hover { background: #d0eef0; }
+
+/* Parksville highlight: bold with left accent */
+.rank-table tr.rank-highlight td {
+  color: var(--teal-dark); font-weight: 900; background: #f0fafb;
+}
+.rank-table tr.rank-highlight td:first-child {
+  border-left: 3px solid var(--teal);
+  color: var(--teal);
+}
+
+/* Hover & expand */
+.rank-table tr.rank-row { cursor: pointer; transition: background 0.15s; }
+.rank-table tr.rank-row:hover td { background: #f8f8f8; }
+.rank-table tr.rank-highlight.rank-row:hover td { background: #e4f3f5; }
 .rank-table td.rank-arrow {
-  width: 20px; padding: 6px 4px; color: #bbb; font-size: 10px;
+  width: 20px; padding: 7px 4px; color: #ccc; font-size: 9px;
   text-align: center; user-select: none;
 }
 .rank-table tr.rank-highlight td.rank-arrow { color: var(--teal); }
-.rank-detail {
-  display: none;
-}
+
+/* Detail row */
+.rank-detail { display: none; }
 .rank-detail.open { display: table-row; }
 .rank-detail td {
-  padding: 8px 8px 12px 36px;
-  font-size: 12px; color: #777; line-height: 1.6;
-  border-bottom: 1px solid #e8e8e8;
-  background: #fafafa;
+  padding: 10px 12px 14px 40px;
+  font-size: 11px; color: #888; line-height: 1.7;
+  border-bottom: 1px solid #eee; background: #fafafa;
 }
-.rank-highlight + .rank-detail td { background: #edf7f8; }
+.rank-highlight + .rank-detail td { background: #f0fafb; }
 
-.score-row {
-  display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 14px;
-}
-.score-label { width: 110px; font-weight: 700; color: #555; flex-shrink: 0; }
-.score-bar-bg {
-  flex: 1; height: 8px; background: #e8e8e8; border-radius: 4px; overflow: hidden;
-}
-.score-bar-fill {
-  height: 100%; background: var(--teal); border-radius: 4px; transition: width 0.6s ease;
-}
-.score-val { width: 36px; text-align: right; font-weight: 700; font-size: 13px; }
-
-.card-stale .card-value { opacity: 0.4; }
-.card-stale-msg {
-  text-align: center; font-size: 13px; color: var(--grey-text);
-  background: var(--grey-bg); padding: 10px; border-radius: 8px; margin-top: 8px;
-}
-
+/* Narrative */
 .narrative {
-  background: var(--teal-dark);
-  border-top: 3px solid var(--yellow);
-  border-bottom: 3px solid var(--yellow);
-  padding: 56px 24px; text-align: center;
+  background: var(--teal-deep);
+  border-top: 2px solid var(--yellow);
+  border-bottom: 2px solid var(--yellow);
+  padding: 64px 24px; text-align: center;
 }
 .narrative h2 {
-  color: var(--yellow); font-size: clamp(22px, 4vw, 32px);
-  font-weight: 900; margin-bottom: 20px;
+  font-family: var(--serif);
+  color: var(--yellow); font-size: clamp(24px, 4vw, 36px);
+  font-weight: 400; margin-bottom: 24px;
 }
 .narrative p {
-  max-width: 640px; margin: 0 auto 16px;
-  font-size: 16px; opacity: 0.92; line-height: 1.7;
+  max-width: 560px; margin: 0 auto 16px;
+  font-size: 15px; opacity: 0.8; line-height: 1.8;
 }
 .cta-btn {
-  display: inline-block; margin-top: 20px; padding: 14px 32px;
-  background: var(--yellow); color: var(--teal-dark);
-  font-weight: 900; font-size: 16px; text-decoration: none;
-  border-radius: 8px; transition: transform 0.15s;
+  display: inline-block; margin-top: 24px; padding: 14px 36px;
+  background: var(--yellow); color: var(--teal-deep);
+  font-weight: 900; font-size: 14px; text-decoration: none;
+  border-radius: 6px; letter-spacing: 0.5px;
+  transition: transform 0.15s, box-shadow 0.15s;
 }
-.cta-btn:hover { transform: translateY(-2px); }
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
 
+/* Source card */
+.source-card {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius); padding: 28px; color: rgba(255,255,255,0.7);
+  font-size: 13px; line-height: 1.8;
+}
+.source-card strong { color: rgba(255,255,255,0.9); }
+
+/* Footer */
 .footer {
-  background: var(--teal-dark); padding: 32px 24px;
-  text-align: center; font-size: 13px; opacity: 0.85; line-height: 1.8;
+  background: var(--teal-deep); padding: 32px 24px;
+  text-align: center; font-size: 12px; opacity: 0.6; line-height: 1.8;
 }
 
-@media (max-width: 600px) {
+/* Stale state */
+.card-stale-msg {
+  text-align: center; font-size: 12px; color: #aaa;
+  background: #f5f5f5; padding: 12px; border-radius: 8px; margin-top: 12px;
+}
+
+@media (max-width: 640px) {
   .header { flex-direction: column; gap: 4px; text-align: center; }
-  .card-value { font-size: 28px; }
-  .section { padding: 32px 16px; }
-  .rank-table { font-size: 13px; }
-  .rank-table td, .rank-table th { padding: 5px 4px; }
+  .hero { padding: 48px 20px 40px; }
+  .hero h1 { font-size: 32px; }
+  .section { padding: 40px 16px; }
+  .section-title { font-size: 24px; }
+  .card { padding: 20px; }
+  .card-hero-value { font-size: 40px; }
+  .card-hero-rank { min-width: 44px; height: 44px; font-size: 12px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .rank-table { font-size: 12px; }
+  .rank-table td, .rank-table th { padding: 5px 6px; }
 }
 </style>
 </head>
@@ -220,135 +267,176 @@ a { color: var(--yellow); }
 <div class="hero">
   <div class="hero-eyebrow">Parksville. Prepared.</div>
   <h1>Follow the money.</h1>
-  <p>How does Parksville's fiscal health compare to similar BC communities? All data comes from official BC Government financial reports - the same numbers auditors use.</p>
-  <div class="live-pill">
-    17 communities compared &middot; <span id="data-year-hero"></span> data
+  <p class="hero-sub">How does Parksville's fiscal health compare to similar BC communities? Every number on this page comes from official provincial financial reports.</p>
+  <div class="hero-badge">
+    17 communities &middot; <span id="data-year-hero"></span> data &middot; Open source
   </div>
 </div>
 
-<!-- 1. Infrastructure Gap (Parksville ranked last — 34%) -->
+<!-- 1. Infrastructure -->
 <section class="section">
-  <h2 class="section-title">&#128679; Infrastructure Investment</h2>
+  <h2 class="section-title">Infrastructure Investment</h2>
+  <p class="section-subtitle">Is the city keeping up with the wear and tear on its roads, pipes, and buildings?</p>
   <div class="card-grid">
     <div class="card card-full" id="card-infra">
-      <div class="card-label">Capital Spending vs Amortization (5-Year Average)</div>
-      <div class="card-detail" style="margin-bottom:12px;color:#888;">Amortization measures how fast infrastructure wears out. Capital spending is how much the city invests in replacing it. Below 100% means infrastructure is degrading faster than it's being replaced. We use a 5-year average because capital spending is lumpy - a single year can be misleading due to large projects or gaps between them.</div>
+      <div class="card-label">Capital Spending vs Amortization &middot; 5-Year Average</div>
+      <div class="card-hero">
+        <div class="card-hero-value" id="hero-infra">--</div>
+        <div class="card-hero-rank" id="rank-infra"></div>
+      </div>
+      <div class="card-hero-context">Below 100% means infrastructure degrades faster than it's replaced. We use a 5-year average because capital spending is lumpy.</div>
       <div id="table-infra"></div>
     </div>
   </div>
 </section>
 
-<!-- 2. Reserves (Parksville ranked 4th worst — 2.4 months) -->
-<section class="section">
-  <h2 class="section-title">&#128176; Reserves - The Rainy-Day Fund</h2>
+<!-- 2. Reserves -->
+<section class="section section-alt">
+  <h2 class="section-title">Reserves</h2>
+  <p class="section-subtitle">The rainy-day fund. How long could the city operate without new revenue?</p>
   <div class="card-grid">
     <div class="card" id="card-reserves">
-      <div class="card-label">Reserves as Months of Revenue</div>
-      <div class="card-detail" style="margin-bottom:12px;color:#888;">How many months could the city operate on reserves alone? More months means more cushion for emergencies and capital projects without borrowing.</div>
+      <div class="card-label">Months of Revenue in Reserve</div>
+      <div class="card-hero">
+        <div class="card-hero-value" id="hero-reserves">--</div>
+        <div class="card-hero-rank" id="rank-reserves"></div>
+      </div>
+      <div class="card-hero-context">Statutory reserves divided by monthly revenue. More months = more cushion.</div>
       <div id="table-reserves"></div>
     </div>
     <div class="card" id="card-reserves-cap">
-      <div class="card-label">Reserves Per Capita</div>
-      <div class="card-detail" style="margin-bottom:12px;color:#888;">Statutory reserves (water, sewer, other) divided by population. The dollars set aside per resident.</div>
+      <div class="card-label">Reserves Per Resident</div>
+      <div class="card-hero">
+        <div class="card-hero-value" id="hero-reserves-cap">--</div>
+        <div class="card-hero-rank" id="rank-reserves-cap"></div>
+      </div>
+      <div class="card-hero-context">Total statutory reserves divided by population.</div>
       <div id="table-reserves-cap"></div>
     </div>
   </div>
 </section>
 
-<!-- 3. Tax Burden (Parksville above median) -->
+<!-- 3. Tax Burden -->
 <section class="section">
-  <h2 class="section-title">&#127968; Tax Burden</h2>
+  <h2 class="section-title">Tax Burden</h2>
+  <p class="section-subtitle">What are residents paying, and how dependent is the city on property taxes?</p>
   <div class="card-grid">
     <div class="card" id="card-taxrate">
-      <div class="card-label">Residential Tax Rate (per $1,000 assessed)</div>
-      <div class="card-detail" style="margin-bottom:12px;color:#888;">The municipal mill rate applied to residential property. Higher means more tax per dollar of home value.</div>
+      <div class="card-label">Residential Mill Rate</div>
+      <div class="card-hero">
+        <div class="card-hero-value" id="hero-taxrate">--</div>
+        <div class="card-hero-rank" id="rank-taxrate"></div>
+      </div>
+      <div class="card-hero-context">Tax per $1,000 of assessed home value. Lower is lighter on homeowners.</div>
       <div id="table-taxrate"></div>
     </div>
     <div class="card" id="card-taxdep">
       <div class="card-label">Tax Dependence</div>
-      <div class="card-detail" style="margin-bottom:12px;color:#888;">What share of total revenue comes from property taxes? Higher means the city relies more on homeowners and less on fees, grants, or other revenue.</div>
+      <div class="card-hero">
+        <div class="card-hero-value" id="hero-taxdep">--</div>
+        <div class="card-hero-rank" id="rank-taxdep"></div>
+      </div>
+      <div class="card-hero-context">Share of revenue from property taxes. Higher = more reliant on homeowners.</div>
       <div id="table-taxdep"></div>
     </div>
   </div>
 </section>
 
-<!-- 4. Debt (Parksville moderate — 12.2% of revenue) -->
-<section class="section">
-  <h2 class="section-title">&#128200; Debt Burden</h2>
+<!-- 4. Debt -->
+<section class="section section-alt">
+  <h2 class="section-title">Debt Burden</h2>
+  <p class="section-subtitle">How much has the city borrowed, and how does that compare to what it earns?</p>
   <div class="card-grid">
     <div class="card" id="card-debt-rev">
-      <div class="card-label">Long-Term Debt as % of Revenue</div>
-      <div class="card-detail" style="margin-bottom:12px;color:#888;">How much of the city's annual revenue would it take to pay off all long-term debt? Lower is healthier.</div>
+      <div class="card-label">Debt as % of Revenue</div>
+      <div class="card-hero">
+        <div class="card-hero-value" id="hero-debt-rev">--</div>
+        <div class="card-hero-rank" id="rank-debt-rev"></div>
+      </div>
+      <div class="card-hero-context">Long-term debt divided by annual revenue. Lower is healthier.</div>
       <div id="table-debt-rev"></div>
     </div>
     <div class="card" id="card-debt-cap">
-      <div class="card-label">Long-Term Debt Per Capita</div>
-      <div class="card-detail" style="margin-bottom:12px;color:#888;">Total long-term borrowing divided by population. Your share of the city's debt.</div>
+      <div class="card-label">Debt Per Resident</div>
+      <div class="card-hero">
+        <div class="card-hero-value" id="hero-debt-cap">--</div>
+        <div class="card-hero-rank" id="rank-debt-cap"></div>
+      </div>
+      <div class="card-hero-context">Your share of the city's long-term borrowing.</div>
       <div id="table-debt-cap"></div>
     </div>
   </div>
 </section>
 
-<!-- 5. Spending (Parksville mid-range) -->
+<!-- 5. Spending -->
 <section class="section">
-  <h2 class="section-title">&#128178; Where the Money Goes</h2>
+  <h2 class="section-title">Where the Money Goes</h2>
+  <p class="section-subtitle">How Parksville allocates its budget compared to peers.</p>
   <div class="card-grid">
     <div class="card" id="card-protective">
-      <div class="card-label">Protective Services Per Capita</div>
-      <div class="card-detail" style="margin-bottom:12px;color:#888;">RCMP contracts and fire departments combined. The provincial data does not separate police from fire - that breakdown is only in each city's individual financial plan.</div>
+      <div class="card-label">Protective Services Per Resident</div>
+      <div class="card-hero">
+        <div class="card-hero-value" id="hero-protective">--</div>
+        <div class="card-hero-rank" id="rank-protective"></div>
+      </div>
+      <div class="card-hero-context">RCMP + fire. Provincial data combines these; individual splits are in each city's financial plan.</div>
       <div id="table-protective"></div>
     </div>
     <div class="card" id="card-parksrec">
-      <div class="card-label">Parks &amp; Recreation Per Capita</div>
-      <div class="card-detail" style="margin-bottom:12px;color:#888;">Pools, arenas, parks, trails, and community programs. What you get back in quality of life.</div>
+      <div class="card-label">Parks &amp; Recreation Per Resident</div>
+      <div class="card-hero">
+        <div class="card-hero-value" id="hero-parksrec">--</div>
+        <div class="card-hero-rank" id="rank-parksrec"></div>
+      </div>
+      <div class="card-hero-context">Pools, arenas, parks, trails, community programs.</div>
       <div id="table-parksrec"></div>
     </div>
   </div>
-  <div class="card-grid" style="margin-top:20px;">
+  <div class="card-grid" style="margin-top:24px;">
     <div class="card" id="card-admin">
-      <div class="card-label">General Government Per Capita</div>
-      <div class="card-detail" style="margin-bottom:12px;color:#888;">Administration, council, finance, HR, IT - the overhead of running a city.</div>
+      <div class="card-label">Administration Per Resident</div>
+      <div class="card-hero">
+        <div class="card-hero-value" id="hero-admin">--</div>
+        <div class="card-hero-rank" id="rank-admin"></div>
+      </div>
+      <div class="card-hero-context">Council, finance, HR, IT - the overhead of running a city.</div>
       <div id="table-admin"></div>
     </div>
     <div class="card" id="card-totalexp">
-      <div class="card-label">Total Expenses Per Capita</div>
-      <div class="card-detail" style="margin-bottom:12px;color:#888;">Everything the city spends, including amortization. Context matters - cities with water/sewer utilities will be higher.</div>
+      <div class="card-label">Total Spending Per Resident</div>
+      <div class="card-hero">
+        <div class="card-hero-value" id="hero-totalexp">--</div>
+        <div class="card-hero-rank" id="rank-totalexp"></div>
+      </div>
+      <div class="card-hero-context">All expenses including amortization. Cities with water/sewer utilities will be higher.</div>
       <div id="table-totalexp"></div>
     </div>
   </div>
 </section>
 
 <!-- Source -->
-<section class="section">
-  <div class="card-grid">
-    <div class="card card-full">
-      <div class="card-label">About This Data</div>
-      <div class="card-detail" style="line-height:1.7;">
-        All figures come from BC Government Local Government Statistics - the official financial reports every municipality is required to file. Schedules 302 (Liabilities), 304 (Financial Position), 401 (Revenue), 402 (Expenses), 404 (Changes in Net Financial Assets), and 707 (Tax Rates). Population from BC Stats estimates.
-      </div>
-      <div class="card-detail" style="margin-top:8px;line-height:1.7;">
-        Communities were selected from across BC to represent a range of similar-sized cities and towns (population 3,000 to 39,000). Per-capita figures use BC Stats population estimates. Fiscal ratios use the most recent available annual financial data.
-      </div>
-      <div class="card-meta">
-        <span id="fiscal-updated"></span>
-        <span id="fiscal-year"></span><br>
-        Source: BC Government Local Government Statistics &middot; Open data
-      </div>
-    </div>
+<section class="section section-alt">
+  <div class="source-card">
+    <strong>About this data.</strong> Every figure comes from BC Government Local Government Statistics - the official financial reports all municipalities must file. Schedules 302, 304, 401, 402, 404, and 707. Population from BC Stats. Click any row to see the exact formula and source citation.
+    <br><br>
+    <strong>17 communities</strong> selected across BC, population 3,000 to 39,000, to represent a fair range of comparable small cities and towns.
+    <br><br>
+    <span id="fiscal-updated" style="opacity:0.6;"></span>
+    <span id="fiscal-year" style="opacity:0.6;"></span>
   </div>
 </section>
 
 <!-- Narrative -->
 <div class="narrative">
   <h2>"A prepared city starts with a prepared budget."</h2>
-  <p>Reserves, debt, infrastructure investment - these aren't abstract numbers. They determine whether Parksville can fix a water main without a special levy, replace aging roads without decades of delay, or weather an emergency without borrowing.</p>
+  <p>Reserves, debt, infrastructure investment - these determine whether Parksville can fix a water main without a special levy, replace aging roads without decades of delay, or weather an emergency without borrowing.</p>
   <p>A mayor who understands these numbers - and acts on them before they become crises - is what governance looks like.</p>
   <a href="https://votewood.ca" class="cta-btn">See the full platform &rarr; votewood.ca</a>
 </div>
 
 <footer class="footer">
   Authorized by Sean Wood, Independent Candidate &middot; 604-868-7914<br>
-  Data: BC Government Local Government Statistics, BC Stats, BC Assessment.
+  Data: BC Government Local Government Statistics &middot; BC Stats &middot; Open data
 </footer>
 
 <script>
@@ -357,7 +445,7 @@ a { color: var(--yellow); }
 
   var API = 'api.php?table=all';
   var REFRESH_MS = 10 * 60 * 1000;
-  var STALE_MS = 48 * 60 * 60 * 1000;
+  var dataYear = '';
 
   function timeAgo(dateStr) {
     if (!dateStr) return '';
@@ -372,117 +460,117 @@ a { color: var(--yellow); }
   }
 
   function setText(id, text) {
-    var el = document.getElementById(id);
-    if (el) el.textContent = text;
+    var el = document.getElementById(id); if (el) el.textContent = text;
   }
-
   function setHTML(id, html) {
-    var el = document.getElementById(id);
-    if (el) el.innerHTML = html;
+    var el = document.getElementById(id); if (el) el.innerHTML = html;
   }
 
   function markStale(cardId) {
     var card = document.getElementById(cardId);
     if (!card || card.querySelector('.card-stale-msg')) return;
-    card.classList.add('card-stale');
     var msg = document.createElement('div');
     msg.className = 'card-stale-msg';
-    msg.textContent = 'Data temporarily unavailable - check back soon';
+    msg.textContent = 'Data temporarily unavailable';
     card.appendChild(msg);
   }
 
-  var dataYear = '';
+  // Formatting
   function $(v) { return '$' + Math.round(v).toLocaleString(); }
   function M(v) { return '$' + (v / 1000000).toFixed(2) + 'M'; }
-
   function fmtDollars(v) { return '$' + Math.round(v).toLocaleString(); }
   function fmtPct(v) { return v.toFixed(1) + '%'; }
   function fmtMonths(v) { return v.toFixed(1) + ' mo'; }
   function fmtRate(v) { return v.toFixed(3); }
 
-  // Detail text generators - each takes a city object and returns a citation string
+  // Set hero number + rank badge for a card
+  function setHero(cities, metric, heroId, rankId, cardId, fmt, sortDir) {
+    var sorted = cities.filter(function(c) { return c[metric] != null && !isNaN(c[metric]); });
+    sorted.sort(function(a, b) { return sortDir === 'desc' ? b[metric] - a[metric] : a[metric] - b[metric]; });
+
+    var pkIdx = -1;
+    for (var i = 0; i < sorted.length; i++) {
+      if (sorted[i].key === 'parksville') { pkIdx = i; break; }
+    }
+    if (pkIdx < 0) return;
+
+    var pk = sorted[pkIdx];
+    var rank = pkIdx + 1;
+    var total = sorted.length;
+    var third = total / 3;
+
+    setText(heroId, fmt(pk[metric]));
+
+    var rankEl = document.getElementById(rankId);
+    if (rankEl) {
+      rankEl.innerHTML = '<span style="font-size:16px;">' + rank + '</span><span style="font-size:10px;opacity:0.7;">of ' + total + '</span>';
+      // Color: top third = green, middle = amber, bottom = red
+      var cls = rank <= third ? 'rank-green' : rank <= third * 2 ? 'rank-amber' : 'rank-red';
+      rankEl.className = 'card-hero-rank ' + cls;
+    }
+
+    // Set card accent
+    var card = document.getElementById(cardId);
+    if (card) {
+      card.classList.remove('card-accent-green', 'card-accent-amber', 'card-accent-red');
+      card.classList.add(rank <= third ? 'card-accent-green' : rank <= third * 2 ? 'card-accent-amber' : 'card-accent-red');
+    }
+  }
+
+  // Detail text generators
   var detailFns = {
     reserves_months: function(c) {
       var r = c.raw;
-      return 'Reserves: ' + $(r.reserves) + ' (Water ' + $(r.waterRes) + ' + Sewer ' + $(r.sewerRes) + ' + Other ' + $(r.otherRes) + '). ' +
-        'Total revenue: ' + $(r.totalRevenue) + '. ' +
-        'Formula: ' + M(r.reserves) + ' / ' + M(r.totalRevenue) + ' x 12 = ' + c.reserves_months.toFixed(1) + ' months. ' +
-        'Source: Schedules 304 & 401, Dec 31 ' + dataYear + '.';
+      return 'Reserves: ' + $(r.reserves) + ' (Water ' + $(r.waterRes) + ' + Sewer ' + $(r.sewerRes) + ' + Other ' + $(r.otherRes) + '). Total revenue: ' + $(r.totalRevenue) + '. Formula: ' + M(r.reserves) + ' / ' + M(r.totalRevenue) + ' x 12 = ' + c.reserves_months.toFixed(1) + ' months. Source: Schedules 304 & 401, Dec 31 ' + dataYear + '.';
     },
     reserves_per_cap: function(c) {
       var r = c.raw;
-      return 'Reserves: ' + $(r.reserves) + ' (Water ' + $(r.waterRes) + ' + Sewer ' + $(r.sewerRes) + ' + Other ' + $(r.otherRes) + '). ' +
-        'Population: ' + c.pop.toLocaleString() + '. ' +
-        'Formula: ' + M(r.reserves) + ' / ' + c.pop.toLocaleString() + ' = ' + $(c.reserves_per_cap) + '/person. ' +
-        'Source: Schedule 304 & BC Stats, Dec 31 ' + dataYear + '.';
+      return 'Reserves: ' + $(r.reserves) + ' (Water ' + $(r.waterRes) + ' + Sewer ' + $(r.sewerRes) + ' + Other ' + $(r.otherRes) + '). Pop: ' + c.pop.toLocaleString() + '. Formula: ' + M(r.reserves) + ' / ' + c.pop.toLocaleString() + ' = ' + $(c.reserves_per_cap) + '. Source: Schedule 304, Dec 31 ' + dataYear + '.';
     },
     infra_ratio: function(c) {
       var r = c.raw;
-      var detail = '5-year totals: capital acquisitions ' + M(r.totalCapAcq5yr) + ', amortization ' + M(r.totalAmort5yr) + '. ';
-      detail += 'Formula: ' + M(r.totalCapAcq5yr) + ' / ' + M(r.totalAmort5yr) + ' x 100 = ' + c.infra_ratio.toFixed(1) + '%. ';
+      var detail = '5-year totals: capital ' + M(r.totalCapAcq5yr) + ', amortization ' + M(r.totalAmort5yr) + '. Formula: ' + M(r.totalCapAcq5yr) + ' / ' + M(r.totalAmort5yr) + ' x 100 = ' + c.infra_ratio.toFixed(1) + '%. ';
       if (r.infraByYear && r.infraByYear.length > 0) {
-        detail += 'Year by year: ' + r.infraByYear.map(function(y) {
-          return y.year + ': ' + y.ratio + '% (' + M(y.capAcq) + ' / ' + M(y.amort) + ')';
-        }).join(', ') + '. ';
+        detail += 'Year by year: ' + r.infraByYear.map(function(y) { return y.year + ': ' + y.ratio + '%'; }).join(', ') + '. ';
       }
-      detail += (c.infra_ratio < 100 ? 'Below 100% indicates an infrastructure deficit. ' : 'Above 100% indicates net infrastructure investment. ');
-      detail += 'Source: Schedule 404, ' + (r.infraByYear && r.infraByYear.length > 0 ? r.infraByYear[0].year + '-' + r.infraByYear[r.infraByYear.length-1].year : dataYear) + '.';
+      detail += 'Source: Schedule 404.';
       return detail;
     },
     debt_rev_pct: function(c) {
       var r = c.raw;
-      return 'Long-term debt: ' + $(r.longTermDebt) + '. Total revenue: ' + $(r.totalRevenue) + '. ' +
-        'Formula: ' + M(r.longTermDebt) + ' / ' + M(r.totalRevenue) + ' x 100 = ' + c.debt_rev_pct.toFixed(1) + '%. ' +
-        'Source: Schedules 302 & 401, Dec 31 ' + dataYear + '.';
+      return 'Long-term debt: ' + $(r.longTermDebt) + '. Revenue: ' + $(r.totalRevenue) + '. Formula: ' + M(r.longTermDebt) + ' / ' + M(r.totalRevenue) + ' x 100 = ' + c.debt_rev_pct.toFixed(1) + '%. Source: Schedules 302 & 401, Dec 31 ' + dataYear + '.';
     },
     debt_per_cap: function(c) {
       var r = c.raw;
-      return 'Long-term debt: ' + $(r.longTermDebt) + '. Population: ' + c.pop.toLocaleString() + '. ' +
-        'Formula: ' + M(r.longTermDebt) + ' / ' + c.pop.toLocaleString() + ' = ' + $(c.debt_per_cap) + '/person. ' +
-        'Source: Schedule 302 & BC Stats, Dec 31 ' + dataYear + '.';
+      return 'Long-term debt: ' + $(r.longTermDebt) + '. Pop: ' + c.pop.toLocaleString() + '. = ' + $(c.debt_per_cap) + '/person. Source: Schedule 302, Dec 31 ' + dataYear + '.';
     },
     tax_rate: function(c) {
       var r = c.raw;
-      return 'Residential municipal tax rate: ' + c.tax_rate.toFixed(5) + ' per $1,000 of assessed value. ' +
-        'Total residential assessed value: ' + M(r.assessedVal) + '. ' +
-        'Source: Schedule 707, ' + (parseInt(dataYear) + 1) + ' assessment year.';
+      return 'Residential rate: ' + c.tax_rate.toFixed(5) + ' per $1,000 assessed. Residential assessment: ' + M(r.assessedVal) + '. Source: Schedule 707, ' + (parseInt(dataYear)+1) + '.';
     },
     tax_dependence: function(c) {
       var r = c.raw;
-      return 'Own-purpose taxation: ' + $(r.taxation) + '. Total revenue: ' + $(r.totalRevenue) + '. ' +
-        'Formula: ' + M(r.taxation) + ' / ' + M(r.totalRevenue) + ' x 100 = ' + c.tax_dependence.toFixed(1) + '%. ' +
-        'Source: Schedule 401, Dec 31 ' + dataYear + '.';
+      return 'Taxation: ' + $(r.taxation) + '. Revenue: ' + $(r.totalRevenue) + '. = ' + c.tax_dependence.toFixed(1) + '%. Source: Schedule 401, Dec 31 ' + dataYear + '.';
     },
     protective_per_cap: function(c) {
       var r = c.raw;
-      return 'Protective services (RCMP + fire): ' + $(r.protective) + '. Population: ' + c.pop.toLocaleString() + '. ' +
-        'Formula: ' + M(r.protective) + ' / ' + c.pop.toLocaleString() + ' = ' + $(c.protective_per_cap) + '/person. ' +
-        '(' + (r.totalExp > 0 ? (r.protective / r.totalExp * 100).toFixed(1) : '?') + '% of total expenses.) ' +
-        'Source: Schedule 402, Dec 31 ' + dataYear + '.';
+      return 'Protective services: ' + $(r.protective) + '. Pop: ' + c.pop.toLocaleString() + '. = ' + $(c.protective_per_cap) + '/person (' + (r.totalExp > 0 ? (r.protective/r.totalExp*100).toFixed(1) : '?') + '% of total). Source: Schedule 402, Dec 31 ' + dataYear + '.';
     },
     parks_rec_per_cap: function(c) {
       var r = c.raw;
-      return 'Parks, recreation & culture: ' + $(r.parksRec) + '. Population: ' + c.pop.toLocaleString() + '. ' +
-        'Formula: ' + M(r.parksRec) + ' / ' + c.pop.toLocaleString() + ' = ' + $(c.parks_rec_per_cap) + '/person. ' +
-        '(' + (r.totalExp > 0 ? (r.parksRec / r.totalExp * 100).toFixed(1) : '?') + '% of total expenses.) ' +
-        'Source: Schedule 402, Dec 31 ' + dataYear + '.';
+      return 'Parks/rec: ' + $(r.parksRec) + '. Pop: ' + c.pop.toLocaleString() + '. = ' + $(c.parks_rec_per_cap) + '/person (' + (r.totalExp > 0 ? (r.parksRec/r.totalExp*100).toFixed(1) : '?') + '% of total). Source: Schedule 402, Dec 31 ' + dataYear + '.';
     },
     general_per_cap: function(c) {
       var r = c.raw;
-      return 'General government: ' + $(r.general) + '. Population: ' + c.pop.toLocaleString() + '. ' +
-        'Formula: ' + M(r.general) + ' / ' + c.pop.toLocaleString() + ' = ' + $(c.general_per_cap) + '/person. ' +
-        '(' + (r.totalExp > 0 ? (r.general / r.totalExp * 100).toFixed(1) : '?') + '% of total expenses.) ' +
-        'Source: Schedule 402, Dec 31 ' + dataYear + '.';
+      return 'General govt: ' + $(r.general) + '. Pop: ' + c.pop.toLocaleString() + '. = ' + $(c.general_per_cap) + '/person (' + (r.totalExp > 0 ? (r.general/r.totalExp*100).toFixed(1) : '?') + '% of total). Source: Schedule 402, Dec 31 ' + dataYear + '.';
     },
     expenses_per_cap: function(c) {
       var r = c.raw;
-      return 'Total expenses: ' + $(r.totalExp) + '. Population: ' + c.pop.toLocaleString() + '. ' +
-        'Formula: ' + M(r.totalExp) + ' / ' + c.pop.toLocaleString() + ' = ' + $(c.expenses_per_cap) + '/person. ' +
-        'Source: Schedule 402, Dec 31 ' + dataYear + '.';
+      return 'Total expenses: ' + $(r.totalExp) + '. Pop: ' + c.pop.toLocaleString() + '. = ' + $(c.expenses_per_cap) + '/person. Source: Schedule 402, Dec 31 ' + dataYear + '.';
     },
   };
 
-  // Build ranked table with expandable detail rows
+  // Ranked table with expandable citations
   function rankedTable(items, targetId, fmt, sortDir, metric) {
     var rows = items.filter(function(r) { return r.value != null && !isNaN(r.value); });
     if (rows.length === 0) return;
@@ -512,23 +600,17 @@ a { color: var(--yellow); }
   }
 
   function renderFiscal(d) {
-    var staleCards = ['card-reserves','card-reserves-cap','card-infra',
-      'card-debt-rev','card-debt-cap','card-taxrate','card-taxdep',
+    var staleCards = ['card-infra','card-reserves','card-reserves-cap',
+      'card-taxrate','card-taxdep','card-debt-rev','card-debt-cap',
       'card-protective','card-parksrec','card-admin','card-totalexp'];
 
-    if (!d || !d.data_json) {
-      staleCards.forEach(markStale);
-      return;
-    }
+    if (!d || !d.data_json) { staleCards.forEach(markStale); return; }
 
     var cities = d.data_json;
     if (typeof cities === 'string') {
       try { cities = JSON.parse(cities); } catch(e) { staleCards.forEach(markStale); return; }
     }
-    if (!Array.isArray(cities) || cities.length === 0) {
-      staleCards.forEach(markStale);
-      return;
-    }
+    if (!Array.isArray(cities) || cities.length === 0) { staleCards.forEach(markStale); return; }
 
     dataYear = d.data_year || '';
 
@@ -538,20 +620,34 @@ a { color: var(--yellow); }
       });
     }
 
+    // Tables
+    rankedTable(makeRows('infra_ratio'), 'table-infra', fmtPct, 'desc', 'infra_ratio');
     rankedTable(makeRows('reserves_months'), 'table-reserves', fmtMonths, 'desc', 'reserves_months');
     rankedTable(makeRows('reserves_per_cap'), 'table-reserves-cap', fmtDollars, 'desc', 'reserves_per_cap');
-    rankedTable(makeRows('infra_ratio'), 'table-infra', fmtPct, 'desc', 'infra_ratio');
-    rankedTable(makeRows('debt_rev_pct'), 'table-debt-rev', fmtPct, 'asc', 'debt_rev_pct');
-    rankedTable(makeRows('debt_per_cap'), 'table-debt-cap', fmtDollars, 'asc', 'debt_per_cap');
     rankedTable(makeRows('tax_rate'), 'table-taxrate', fmtRate, 'asc', 'tax_rate');
     rankedTable(makeRows('tax_dependence'), 'table-taxdep', fmtPct, 'asc', 'tax_dependence');
+    rankedTable(makeRows('debt_rev_pct'), 'table-debt-rev', fmtPct, 'asc', 'debt_rev_pct');
+    rankedTable(makeRows('debt_per_cap'), 'table-debt-cap', fmtDollars, 'asc', 'debt_per_cap');
     rankedTable(makeRows('protective_per_cap'), 'table-protective', fmtDollars, 'asc', 'protective_per_cap');
     rankedTable(makeRows('parks_rec_per_cap'), 'table-parksrec', fmtDollars, 'desc', 'parks_rec_per_cap');
     rankedTable(makeRows('general_per_cap'), 'table-admin', fmtDollars, 'asc', 'general_per_cap');
     rankedTable(makeRows('expenses_per_cap'), 'table-totalexp', fmtDollars, 'asc', 'expenses_per_cap');
 
-    setText('fiscal-updated', 'Updated ' + timeAgo(d.fetched_at));
-    setText('fiscal-year', d.data_year ? '(' + d.data_year + ' financial data)' : '');
+    // Hero numbers + rank badges
+    setHero(cities, 'infra_ratio', 'hero-infra', 'rank-infra', 'card-infra', fmtPct, 'desc');
+    setHero(cities, 'reserves_months', 'hero-reserves', 'rank-reserves', 'card-reserves', fmtMonths, 'desc');
+    setHero(cities, 'reserves_per_cap', 'hero-reserves-cap', 'rank-reserves-cap', 'card-reserves-cap', fmtDollars, 'desc');
+    setHero(cities, 'tax_rate', 'hero-taxrate', 'rank-taxrate', 'card-taxrate', fmtRate, 'asc');
+    setHero(cities, 'tax_dependence', 'hero-taxdep', 'rank-taxdep', 'card-taxdep', fmtPct, 'asc');
+    setHero(cities, 'debt_rev_pct', 'hero-debt-rev', 'rank-debt-rev', 'card-debt-rev', fmtPct, 'asc');
+    setHero(cities, 'debt_per_cap', 'hero-debt-cap', 'rank-debt-cap', 'card-debt-cap', fmtDollars, 'asc');
+    setHero(cities, 'protective_per_cap', 'hero-protective', 'rank-protective', 'card-protective', fmtDollars, 'asc');
+    setHero(cities, 'parks_rec_per_cap', 'hero-parksrec', 'rank-parksrec', 'card-parksrec', fmtDollars, 'desc');
+    setHero(cities, 'general_per_cap', 'hero-admin', 'rank-admin', 'card-admin', fmtDollars, 'asc');
+    setHero(cities, 'expenses_per_cap', 'hero-totalexp', 'rank-totalexp', 'card-totalexp', fmtDollars, 'asc');
+
+    setText('fiscal-updated', 'Updated ' + timeAgo(d.fetched_at) + '. ');
+    setText('fiscal-year', d.data_year ? d.data_year + ' financial data.' : '');
     setText('data-year-hero', d.data_year || '');
   }
 
@@ -562,9 +658,7 @@ a { color: var(--yellow); }
         if (!json.ok || !json.data) return;
         renderFiscal(json.data.fiscal_health_latest);
       })
-      .catch(function(err) {
-        console.error('[prepared] Fetch failed:', err);
-      });
+      .catch(function(err) { console.error('[prepared]', err); });
   }
 
   loadData();
