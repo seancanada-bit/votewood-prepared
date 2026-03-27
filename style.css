@@ -46,23 +46,41 @@ body {
 a { color: var(--yellow); }
 
 /* Links inside white cards — teal with underline for visibility */
-.card a, .chart-card a, .chart-notes a, .source-card a {
-  color: var(--teal);
-  text-decoration: underline;
-  text-decoration-color: rgba(29,145,158,0.35);
+.card a:not(.cta-btn),
+.chart-card a,
+.chart-notes a,
+.chart-notes-links a,
+.card-links a,
+.card-meta a,
+.data-table a,
+.grant-table a {
+  color: var(--teal) !important;
+  text-decoration: underline !important;
+  text-decoration-color: rgba(29,145,158,0.35) !important;
   text-underline-offset: 2px;
   transition: text-decoration-color 0.15s;
 }
-.card a:hover, .chart-card a:hover, .chart-notes a:hover {
-  text-decoration-color: var(--teal);
+.card a:not(.cta-btn):hover,
+.chart-card a:hover,
+.chart-notes a:hover,
+.card-links a:hover,
+.data-table a:hover,
+.grant-table a:hover {
+  text-decoration-color: var(--teal) !important;
 }
-.card a:visited, .chart-card a:visited, .chart-notes a:visited {
-  color: #0e4a50;
-  text-decoration-color: rgba(14,74,80,0.3);
+.card a:not(.cta-btn):visited,
+.chart-card a:visited,
+.chart-notes a:visited,
+.card-links a:visited,
+.data-table a:visited,
+.grant-table a:visited {
+  color: #0e4a50 !important;
+  text-decoration-color: rgba(14,74,80,0.3) !important;
 }
-.source-card a { color: var(--yellow); text-decoration-color: rgba(255,235,59,0.35); }
-.source-card a:visited { color: #ddd07a; }
-.source-card a:hover { text-decoration-color: var(--yellow); }
+/* Source cards on dark backgrounds keep yellow */
+.source-card a { color: var(--yellow) !important; text-decoration-color: rgba(255,235,59,0.35) !important; }
+.source-card a:visited { color: #ddd07a !important; }
+.source-card a:hover { text-decoration-color: var(--yellow) !important; }
 
 /* Header */
 .header {
