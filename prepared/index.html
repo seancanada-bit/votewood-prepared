@@ -332,7 +332,7 @@ a { color: var(--yellow); }
       <div class="card-detail" id="river-level"></div>
       <div class="card-meta">
         <span id="river-updated"></span><br>
-        Source: Water Survey of Canada
+        Source: Water Survey of Canada <span id="river-datadate"></span>
       </div>
     </div>
     <div class="card" id="card-snowpack">
@@ -342,7 +342,7 @@ a { color: var(--yellow); }
       <div class="card-detail" id="snowpack-depth"></div>
       <div class="card-meta">
         <span id="snowpack-updated"></span><br>
-        Source: BC River Forecast Centre / RDN
+        Source: BC River Forecast Centre / RDN <span id="snowpack-datadate"></span>
       </div>
     </div>
   </div>
@@ -359,7 +359,7 @@ a { color: var(--yellow); }
       <div class="card-detail" id="fire-detail"></div>
       <div class="card-meta">
         <span id="fire-updated"></span><br>
-        Source: BC Wildfire Service
+        Source: BC Wildfire Service <span id="fire-datadate"></span>
       </div>
     </div>
     <div class="card" id="card-roads">
@@ -412,7 +412,7 @@ a { color: var(--yellow); }
       </div>
       <div class="card-meta">
         <span id="aqhi-updated"></span><br>
-        Source: Environment and Climate Change Canada
+        Source: Environment and Climate Change Canada <span id="aqhi-datadate"></span>
       </div>
     </div>
   </div>
@@ -510,6 +510,23 @@ a { color: var(--yellow); }
   const API = 'api.php?table=all';
   const REFRESH_MS = 10 * 60 * 1000; // 10 minutes
   const STALE_MS = 24 * 60 * 60 * 1000; // 24 hours
+
+  function formatDataDate(dateStr) {
+    if (!dateStr) return '';
+    var d = new Date(dateStr);
+    if (isNaN(d.getTime())) return '';
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear() +
+      ' ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+  }
+
+  function formatDataDateShort(dateStr) {
+    if (!dateStr) return '';
+    var d = new Date(dateStr);
+    if (isNaN(d.getTime())) return '';
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+  }
 
   function timeAgo(dateStr) {
     if (!dateStr) return '';
@@ -614,6 +631,7 @@ a { color: var(--yellow); }
       (d.pct_median != null ? pillHTML(d.pct_median + '% of median', 'grey') : ''));
     setText('river-level', d.level_m != null ? 'Water level: ' + parseFloat(d.level_m).toFixed(2) + ' m' : '');
     setUpdated('river-updated', d.fetched_at);
+    setText('river-datadate', d.data_date ? '· Reading: ' + formatDataDate(d.data_date) : '');
   }
 
   function renderSnowpack(d) {
@@ -626,6 +644,7 @@ a { color: var(--yellow); }
       (d.season_active == 0 ? pillHTML('Off-season', 'grey') : ''));
     setText('snowpack-depth', d.depth_cm != null ? 'Snow depth: ' + parseFloat(d.depth_cm).toFixed(0) + ' cm' : '');
     setUpdated('snowpack-updated', d.fetched_at);
+    setText('snowpack-datadate', d.data_date ? '· Reading: ' + formatDataDate(d.data_date) : '');
   }
 
   function renderFire(d) {
@@ -640,6 +659,7 @@ a { color: var(--yellow); }
     if (d.bui != null) details.push('BUI: ' + parseFloat(d.bui).toFixed(1));
     setText('fire-detail', details.join(' | '));
     setUpdated('fire-updated', d.fetched_at);
+    setText('fire-datadate', d.data_date ? '· ' + formatDataDateShort(d.data_date) : '');
   }
 
   function renderRoads(d) {
@@ -695,6 +715,7 @@ a { color: var(--yellow); }
     card.querySelector('.card-value').textContent = d.aqhi != null ? d.aqhi : '--';
     setHTML('aqhi-pills', aqhiPill(d.aqhi, d.risk_level));
     setUpdated('aqhi-updated', d.fetched_at);
+    setText('aqhi-datadate', d.data_date ? '· Reading: ' + formatDataDate(d.data_date) : '');
   }
 
   function renderHousing(d) {
