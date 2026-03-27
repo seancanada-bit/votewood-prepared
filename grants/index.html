@@ -4,8 +4,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Grant-in-Aid Tracker | Parksville. Prepared.</title>
-<meta name="description" content="Tracking how Parksville distributes grant-in-aid funding to local non-profit organizations — transparency in community investment.">
-    <link rel="stylesheet" href="/style.css">
+<meta name="description" content="12 years of Parksville grant-in-aid data — every applicant, every recipient, every dollar. Full transparency on community funding.">
+<link rel="stylesheet" href="/style.css">
+<style>
+.intake-card { margin-bottom: 0; }
+.intake-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.intake-title { font-family: var(--serif); font-size: 20px; color: var(--teal-dark); }
+.intake-meta { font-size: 12px; color: #999; }
+.intake-stats { display: flex; gap: 20px; margin-bottom: 14px; font-size: 13px; }
+.intake-stat { display: flex; align-items: baseline; gap: 4px; }
+.intake-stat-val { font-weight: 900; color: var(--teal-dark); font-size: 16px; }
+.intake-stat-label { color: #888; }
+.grant-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.grant-table th { text-align: left; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; color: #bbb; padding: 5px 8px; border-bottom: 1px solid #e8e8e8; }
+.grant-table th:last-child { text-align: right; }
+.grant-table td { padding: 5px 8px; border-bottom: 1px solid #f4f4f4; color: #555; }
+.grant-table td:last-child { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; color: #444; }
+.grant-table tr.denied td { color: #ccc; }
+.grant-table tr.denied td:last-child { color: #ccc; font-weight: 400; }
+.grant-table tfoot td { font-weight: 900; color: var(--teal-dark); border-top: 2px solid #e0e0e0; border-bottom: none; }
+.gap-note { font-size: 12px; color: #aaa; font-style: italic; padding: 12px 0; }
+.standing-grants { margin-top: 8px; }
+.year-divider { font-family: var(--serif); font-size: 24px; color: var(--yellow); margin: 32px 0 16px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.15); }
+.year-divider:first-of-type { margin-top: 0; }
+@media (max-width: 640px) {
+  .intake-header { flex-direction: column; }
+  .grant-table { font-size: 12px; }
+  .grant-table td, .grant-table th { padding: 4px 6px; }
+}
+</style>
 </head>
 <body>
 
@@ -17,153 +44,433 @@
 <div class="hero">
   <div class="hero-eyebrow">Parksville. Prepared.</div>
   <h1>Your tax dollars, their community work.</h1>
-  <p class="hero-sub">Transparency in how the City of Parksville supports local non-profit organizations through its grant-in-aid program — who applies, who receives funding, and how much.</p>
+  <p class="hero-sub">12 years of grant-in-aid data - every applicant, every recipient, every dollar. This is what transparency looks like.</p>
   <div class="hero-badge">
-    2 intakes per year &middot; Non-profit organizations &middot; Council reviewed
+    2 intakes per year &middot; $5,000 annual budget &middot; Council reviewed
   </div>
 </div>
 
-<!-- Grants Content -->
-<section class="section" id="section-grants">
-  <h2 class="section-title">Grant-in-Aid Tracker</h2>
-  <p class="section-subtitle">How Parksville's grant-in-aid program works, who it supports, and why transparency matters.</p>
+<!-- Program Overview -->
+<section class="section">
+  <h2 class="section-title">How the Program Works</h2>
   <div class="card-grid">
-
-    <!-- Card 1: How It Works -->
     <div class="card card-full">
       <div class="card-label">Process</div>
-      <div class="card-title">How It Works</div>
-      <p>The City of Parksville runs <strong>two grant-in-aid intakes per year</strong>:</p>
-      <ul>
-        <li><strong>Spring intake</strong> — deadline in late February</li>
-        <li><strong>Fall intake</strong> — deadline in late August</li>
-      </ul>
-      <p>Applications are <strong>reviewed by council</strong>. Grants go to non-profit organizations serving the Parksville community. Application forms are available on parksville.ca.</p>
-      <p>The program is small in dollar terms but meaningful to the organizations that rely on it. Transparency about the process and outcomes matters.</p>
-    </div>
-
-    <!-- Card 2: Spring 2025 Grants -->
-    <div class="card card-full">
-      <div class="card-label">Spring 2025</div>
-      <div class="card-title">Spring 2025 Grants</div>
-      <div class="stat-row">
-        <div class="stat-item">
-          <div class="stat-value">$2,500</div>
-          <div class="stat-label">Total allocated</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-value">5</div>
-          <div class="stat-label">Recipients</div>
-        </div>
+      <p style="color:#555;line-height:1.7;margin-bottom:12px;">The City of Parksville runs <strong>two grant-in-aid intakes per year</strong> under Policy No. 3.26 (adopted February 2000). A Select Committee of two councillors plus the Deputy Corporate Officer reviews applications and recommends allocations to Council for approval.</p>
+      <div class="intake-stats">
+        <div class="intake-stat"><span class="intake-stat-val">$5,000</span><span class="intake-stat-label">/year</span></div>
+        <div class="intake-stat"><span class="intake-stat-val">$2,500</span><span class="intake-stat-label">per intake</span></div>
+        <div class="intake-stat"><span class="intake-stat-val">Spring + Fall</span><span class="intake-stat-label">deadlines</span></div>
       </div>
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Organization</th>
-            <th>Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Arrowsmith Health Care Foundation</td>
-            <td>$500</td>
-          </tr>
-          <tr>
-            <td>Friends of Foster Park</td>
-            <td>$500</td>
-          </tr>
-          <tr>
-            <td>Haven Society</td>
-            <td>$500</td>
-          </tr>
-          <tr>
-            <td>Mount Arrowsmith Pipe Band</td>
-            <td>$500</td>
-          </tr>
-          <tr>
-            <td>Parksville Historical Society</td>
-            <td>$500</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td>Total</td>
-            <td>$2,500</td>
-          </tr>
-        </tfoot>
-      </table>
-      <p>Five organizations, $500 each. These are modest grants, but for small community non-profits, they represent recognition and support from the city.</p>
+      <div class="chart-notes" style="margin-top:0;">
+        <span class="note-year">2023</span> Budget briefly doubled to $10,000/year, then reduced back to $5,000 in February 2024.<br>
+        Demand consistently exceeds supply - Fall 2025 saw $16,000 in requests for $2,500 available.
+      </div>
     </div>
 
-    <!-- Card 3: Historical Context -->
-    <div class="card card-accent-amber">
-      <div class="card-label">Context</div>
-      <div class="card-title">Historical Context</div>
-      <p>The grant-in-aid program has been <strong>modest in recent years</strong>. The spring 2025 allocation of $2,500 across five organizations reflects current budget realities.</p>
-      <p>In contrast, the <strong>spring 2020 intake was frozen</strong> entirely — $55K in applications were paused due to COVID budget constraints. Council created a separate <strong>$280K COVID Relief Grant-in-Aid program</strong> for non-profits to address the emergency.</p>
-      <p>The program reflects <strong>council's priorities</strong> about which community organizations receive public support and at what level. The allocations tell a story about what the city values.</p>
-    </div>
-
-    <!-- Card 4: Separate from Major Grants -->
     <div class="card">
-      <div class="card-label">Important Distinction</div>
-      <div class="card-title">Separate from Major Grants</div>
-      <div class="stat-row">
-        <div class="stat-item">
-          <div class="stat-value">$2.97M</div>
-          <div class="stat-label">Grants received (2023)</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-value">$2,500</div>
-          <div class="stat-label">Grants given (Spring 2025)</div>
-        </div>
+      <div class="card-label">Grants Received vs Given</div>
+      <div style="display:flex;gap:24px;flex-wrap:wrap;margin:12px 0;">
+        <div><div style="font-family:var(--serif);font-size:28px;color:var(--teal-dark);">$2.97M</div><div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;">Grants received (2023)</div></div>
+        <div><div style="font-family:var(--serif);font-size:28px;color:var(--teal-dark);">$5,000</div><div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;">Grants given (annual)</div></div>
       </div>
-      <p>An important distinction: the city <strong>receives</strong> major grants — for example, $2.97M in 2023 from federal and provincial programs for infrastructure projects.</p>
-      <p>The grant-in-aid program is what the city <strong>gives</strong> to local non-profits. Much smaller sums, but important for community organizations that depend on every dollar of support.</p>
-      <p>Both matter. One funds infrastructure, the other funds community.</p>
+      <p style="color:#555;font-size:13px;line-height:1.6;">The city <strong>receives</strong> millions in federal/provincial grants for infrastructure. The grant-in-aid program is what the city <strong>gives</strong> to local non-profits. Both matter.</p>
     </div>
 
-    <!-- Card 5: How to Apply -->
-    <div class="card card-accent-green">
-      <div class="card-label">Apply</div>
-      <div class="card-title">How to Apply</div>
-      <p>Organizations must meet the following criteria:</p>
-      <ul>
-        <li><strong>Non-profit status</strong> — registered non-profit organization</li>
-        <li><strong>Serve Parksville residents</strong> — programs or services benefiting the local community</li>
-        <li><strong>Submit during intake periods</strong> — spring (late February) or fall (late August)</li>
-      </ul>
-      <p>Contact the <strong>City of Parksville</strong> for application forms. Council reviews all applications and allocates based on available budget.</p>
+    <div class="card">
+      <div class="card-label">Standing Annual Grants</div>
+      <p style="color:#555;font-size:13px;line-height:1.6;margin-bottom:10px;">Separate from grant-in-aid, the city makes fixed annual grants totalling ~$83,500:</p>
+      <table class="grant-table standing-grants">
+        <tbody>
+          <tr><td>Parksville & District Chamber of Commerce</td><td>$57,500</td></tr>
+          <tr><td>Beach Festival</td><td>$5,000</td></tr>
+          <tr><td>Mount Arrowsmith Biosphere Society</td><td>$5,000</td></tr>
+          <tr><td>Oceanside Community Arts Council (MAC)</td><td>$5,000</td></tr>
+          <tr><td>Parksville & District Historical Society (Museum)</td><td>$5,000</td></tr>
+          <tr><td>Grant-in-Aid (community)</td><td>$5,000</td></tr>
+          <tr><td>Ballenas Annual Scholarship</td><td>$500</td></tr>
+          <tr><td>VIU Bursary</td><td>$500</td></tr>
+        </tbody>
+        <tfoot><tr><td>Total annual grants</td><td>~$83,500</td></tr></tfoot>
+      </table>
+      <div style="font-size:11px;color:#999;margin-top:8px;">Source: 2025-2029 Financial Plan</div>
     </div>
+  </div>
+</section>
 
+<!-- Historical Data -->
+<section class="section section-alt">
+  <h2 class="section-title">Every Intake on Record</h2>
+  <p class="section-subtitle">Grant-in-aid allocations from council records, 2014-2026. Denied applications are shown in grey. Data gaps noted where council minutes were not publicly accessible online.</p>
+
+  <!-- 2026 -->
+  <div class="year-divider">2026</div>
+  <div class="card-grid">
+    <div class="card card-full intake-card">
+      <div class="intake-header">
+        <div class="intake-title">Spring 2026</div>
+        <div class="intake-meta">Council: March 16, 2026 &middot; Committee: Cllrs Beil & Gaur</div>
+      </div>
+      <div class="intake-stats">
+        <div class="intake-stat"><span class="intake-stat-val">12</span><span class="intake-stat-label">applications</span></div>
+        <div class="intake-stat"><span class="intake-stat-val">6</span><span class="intake-stat-label">approved</span></div>
+        <div class="intake-stat"><span class="intake-stat-val">$2,500</span><span class="intake-stat-label">allocated</span></div>
+      </div>
+      <table class="grant-table">
+        <thead><tr><th>Organization</th><th>Amount</th></tr></thead>
+        <tbody>
+          <tr><td>Ballenas Secondary School PAC</td><td>$500</td></tr>
+          <tr><td>Broombusters Invasive Plant Society</td><td>$400</td></tr>
+          <tr><td>Craig Bay Choristers</td><td>$250</td></tr>
+          <tr><td>Friends of Foster Park</td><td>$200</td></tr>
+          <tr><td>Oceanside Community Makerspace Society</td><td>$250</td></tr>
+          <tr><td>Parksville and District Historical Society</td><td>$400</td></tr>
+          <tr><td>Parksville Curling Club</td><td>$500</td></tr>
+          <tr class="denied"><td>BGC Central Vancouver Island</td><td>Denied</td></tr>
+          <tr class="denied"><td>Mount Arrowsmith Pipe Band</td><td>Denied</td></tr>
+          <tr class="denied"><td>Nous Chantons</td><td>Denied</td></tr>
+          <tr class="denied"><td>Oceanside Hospice Society</td><td>Denied</td></tr>
+          <tr class="denied"><td>Parksville/Qualicum Mixed Orthodox Softball League</td><td>Denied</td></tr>
+        </tbody>
+        <tfoot><tr><td>Total</td><td>$2,500</td></tr></tfoot>
+      </table>
+      <div style="font-size:11px;color:#999;margin-top:8px;">Source: <a href="https://parksville.civicweb.net/filepro/document/80865/" target="_blank" style="color:var(--teal);">CivicWeb Document 80865</a></div>
+    </div>
   </div>
 
-  <!-- Placeholder note -->
-  <div class="placeholder-note">
-    We're working to compile complete historical grant-in-aid data from council meeting minutes. If your organization has applied for or received a grant and would like to help complete this record, please contact us.
+  <!-- 2025 -->
+  <div class="year-divider">2025</div>
+  <div class="card-grid">
+    <div class="card intake-card">
+      <div class="intake-header">
+        <div class="intake-title">Fall 2025</div>
+        <div class="intake-meta">Cllrs Grenz & Martin</div>
+      </div>
+      <div class="intake-stats">
+        <div class="intake-stat"><span class="intake-stat-val">$16,000</span><span class="intake-stat-label">requested</span></div>
+        <div class="intake-stat"><span class="intake-stat-val">$2,500</span><span class="intake-stat-label">allocated</span></div>
+      </div>
+      <table class="grant-table">
+        <thead><tr><th>Organization</th><th>Amount</th></tr></thead>
+        <tbody>
+          <tr><td>Ravensong Aquatic Club</td><td>$500</td></tr>
+          <tr><td>Oceanside Community Arts Council</td><td>$400</td></tr>
+          <tr><td>Friends of Foster Park</td><td>$350</td></tr>
+          <tr><td>Oceanside Music Association</td><td>$350</td></tr>
+          <tr><td>Parksville Community Garden Society</td><td>$350</td></tr>
+          <tr><td>Parksville and District Historical Society</td><td>$300</td></tr>
+          <tr><td>Craig Bay Choristers</td><td>$250</td></tr>
+        </tbody>
+        <tfoot><tr><td>Total</td><td>$2,500</td></tr></tfoot>
+      </table>
+    </div>
+    <div class="card intake-card">
+      <div class="intake-header">
+        <div class="intake-title">Spring 2025</div>
+        <div class="intake-meta">Cllrs Beil & Wood</div>
+      </div>
+      <div class="intake-stats">
+        <div class="intake-stat"><span class="intake-stat-val">5</span><span class="intake-stat-label">approved</span></div>
+        <div class="intake-stat"><span class="intake-stat-val">$2,500</span><span class="intake-stat-label">allocated</span></div>
+      </div>
+      <table class="grant-table">
+        <thead><tr><th>Organization</th><th>Amount</th></tr></thead>
+        <tbody>
+          <tr><td>Arrowsmith Health Care Foundation</td><td>$800</td></tr>
+          <tr><td>Haven Society</td><td>$500</td></tr>
+          <tr><td>Mount Arrowsmith Pipe Band</td><td>$500</td></tr>
+          <tr><td>Parksville and District Historical Society</td><td>$350</td></tr>
+          <tr><td>Friends of Foster Park</td><td>$350</td></tr>
+        </tbody>
+        <tfoot><tr><td>Total</td><td>$2,500</td></tr></tfoot>
+      </table>
+    </div>
+  </div>
+
+  <!-- 2024 -->
+  <div class="year-divider">2024</div>
+  <div class="card-grid">
+    <div class="card intake-card">
+      <div class="intake-header">
+        <div class="intake-title">Fall 2024</div>
+        <div class="intake-meta">Oct 7 &middot; Cllrs Beil & Gaur</div>
+      </div>
+      <table class="grant-table">
+        <thead><tr><th>Organization</th><th>Amount</th></tr></thead>
+        <tbody>
+          <tr><td>Friends of Foster Park</td><td>$500</td></tr>
+          <tr><td>Mount Arrowsmith Pipe Band</td><td>$500</td></tr>
+          <tr><td>Oceanside Minor Hockey Association</td><td>$500</td></tr>
+          <tr><td>Parksville and District Historical Society</td><td>$500</td></tr>
+          <tr><td>Parksville Community Garden Society</td><td>$500</td></tr>
+          <tr class="denied"><td>Island Rescue Veterinary Society</td><td>Denied</td></tr>
+          <tr class="denied"><td>Parksville & District Chamber of Commerce</td><td>Denied</td></tr>
+          <tr class="denied"><td>Ravensong Aquatic Club</td><td>Denied</td></tr>
+        </tbody>
+        <tfoot><tr><td>Total</td><td>$2,500</td></tr></tfoot>
+      </table>
+    </div>
+    <div class="card intake-card">
+      <div class="intake-header">
+        <div class="intake-title">Spring 2024</div>
+      </div>
+      <table class="grant-table">
+        <thead><tr><th>Organization</th><th>Amount</th></tr></thead>
+        <tbody>
+          <tr><td>Parksville Community Garden Society</td><td>$755</td></tr>
+          <tr><td>Oceanside Minor Softball Association</td><td>$595</td></tr>
+          <tr><td>Whalers Football Support Society</td><td>$595</td></tr>
+          <tr><td>Friends of Foster Park</td><td>$555</td></tr>
+        </tbody>
+        <tfoot><tr><td>Total</td><td>$2,500</td></tr></tfoot>
+      </table>
+    </div>
+  </div>
+
+  <!-- 2023 -->
+  <div class="year-divider">2023</div>
+  <div class="card-grid">
+    <div class="card card-full intake-card">
+      <div class="gap-note">Budget doubled to $10,000/year ($5,000 per intake) in March 2023. Detailed recipient lists for Spring and Fall 2023 intakes were not found in publicly accessible online records. Council meeting minutes from these periods may contain the full data.</div>
+    </div>
+  </div>
+
+  <!-- 2022 -->
+  <div class="year-divider">2022</div>
+  <div class="card-grid">
+    <div class="card card-full intake-card">
+      <div class="gap-note">Detailed recipient lists for Spring and Fall 2022 intakes were not found in publicly accessible online records.</div>
+    </div>
+  </div>
+
+  <!-- 2021 -->
+  <div class="year-divider">2021</div>
+  <div class="card-grid">
+    <div class="card card-full card-accent-amber intake-card">
+      <div class="intake-header">
+        <div class="intake-title">COVID Relief Grant-in-Aid (Special Program)</div>
+        <div class="intake-meta">One-time &middot; Two intakes</div>
+      </div>
+      <div class="intake-stats">
+        <div class="intake-stat"><span class="intake-stat-val">$280,000</span><span class="intake-stat-label">total budget</span></div>
+        <div class="intake-stat"><span class="intake-stat-val">15+</span><span class="intake-stat-label">organizations</span></div>
+        <div class="intake-stat"><span class="intake-stat-val">2</span><span class="intake-stat-label">intakes</span></div>
+      </div>
+      <p style="color:#555;font-size:13px;line-height:1.6;margin-bottom:8px;"><strong>First intake (June 2021):</strong> 15 applications received, 11 approved, $130,160 allocated. Covered PPE, cleaning, adaptation costs for non-profits.</p>
+      <p style="color:#555;font-size:13px;line-height:1.6;margin-bottom:8px;"><strong>Second intake (December 2021):</strong> $149,000 remaining; $181,726 in requests received.</p>
+      <p style="color:#555;font-size:13px;line-height:1.6;">Individual organization-level detail for the COVID relief grants is available in the June 7 and December 2021 council meeting minutes.</p>
+      <div class="gap-note">Regular grant-in-aid program also continued in 2021 alongside the COVID relief program. Detailed regular grant data not found online.</div>
+    </div>
+  </div>
+
+  <!-- 2020 -->
+  <div class="year-divider">2020</div>
+  <div class="card-grid">
+    <div class="card card-full intake-card">
+      <div class="intake-header">
+        <div class="intake-title">Spring 2020 — Applications Received</div>
+        <div class="intake-meta">8 applications &middot; $7,575 requested for $2,500 available</div>
+      </div>
+      <table class="grant-table">
+        <thead><tr><th>Organization</th><th>Requested</th><th>Prior grants (from application history)</th></tr></thead>
+        <tbody>
+          <tr><td>Parksville Curling Club</td><td>$2,500</td><td>No prior</td></tr>
+          <tr><td>Ballenas Secondary Prom/Dry Grad</td><td>$2,000</td><td>2019: $450, 2015: $800</td></tr>
+          <tr><td>Friends of Foster Park</td><td>$650</td><td>2019: $650, 2018: $500, 2017: $500, 2016: $500</td></tr>
+          <tr><td>Mount Arrowsmith Pipe Band</td><td>$500</td><td>2019: $265, 2018: $1,100, 2017: $1,050, 2016: $600</td></tr>
+          <tr><td>Oceanside Building Learning Together</td><td>$500</td><td>No prior</td></tr>
+          <tr><td>Oceanside Kidfest Society</td><td>$500</td><td>2019: $400</td></tr>
+          <tr><td>Oceanside Stroke Recovery Association</td><td>$425</td><td>2016: $500</td></tr>
+          <tr><td>Qualicum Beach Cinema Society</td><td>$500</td><td>No prior</td></tr>
+        </tbody>
+      </table>
+      <div class="gap-note">Approval report not found in publicly accessible records. The application data above includes historical grant amounts from prior years (cross-referenced from the requesting report).</div>
+      <div style="font-size:11px;color:#999;margin-top:4px;">Source: <a href="https://parksville.civicweb.net/filepro/document/42361/" target="_blank" style="color:var(--teal);">CivicWeb Document 42361</a></div>
+    </div>
+  </div>
+
+  <!-- 2019 -->
+  <div class="year-divider">2019</div>
+  <div class="card-grid">
+    <div class="card intake-card">
+      <div class="intake-header">
+        <div class="intake-title">Fall 2019</div>
+        <div class="intake-meta">Oct 7</div>
+      </div>
+      <table class="grant-table">
+        <thead><tr><th>Organization</th><th>Amount</th></tr></thead>
+        <tbody>
+          <tr><td>Access Oceanside Association</td><td>$1,200</td></tr>
+          <tr><td>Oceanside Hospice Society</td><td>$400</td></tr>
+          <tr><td>Oceanside Community Safety Volunteers</td><td>$370</td></tr>
+          <tr><td>Mount Arrowsmith Pipe Band</td><td>$265</td></tr>
+          <tr><td>Ravensong Aquatic Club</td><td>$265</td></tr>
+          <tr class="denied"><td>North Island Wildlife Recovery Association</td><td>Denied</td></tr>
+          <tr class="denied"><td>Oceanside Community Makerspace Society</td><td>Denied</td></tr>
+        </tbody>
+        <tfoot><tr><td>Total</td><td>$2,500</td></tr></tfoot>
+      </table>
+      <div style="font-size:11px;color:#999;margin-top:8px;">Source: <a href="https://parksville.civicweb.net/document/40045/" target="_blank" style="color:var(--teal);">CivicWeb Document 40045</a></div>
+    </div>
+    <div class="card intake-card">
+      <div class="intake-header">
+        <div class="intake-title">Spring 2019</div>
+        <div class="intake-meta">Partial data via cross-references</div>
+      </div>
+      <table class="grant-table">
+        <thead><tr><th>Organization</th><th>Amount</th></tr></thead>
+        <tbody>
+          <tr><td>Friends of Foster Park</td><td>$650</td></tr>
+          <tr><td>Ballenas Secondary Prom/Dry Grad</td><td>$450</td></tr>
+          <tr><td>Oceanside Kidfest Society</td><td>$400</td></tr>
+          <tr><td>Mount Arrowsmith Pipe Band</td><td>$265</td></tr>
+          <tr><td style="color:#aaa;font-style:italic;">Other recipients (data not yet located)</td><td style="color:#aaa;">$735</td></tr>
+        </tbody>
+        <tfoot><tr><td>Total</td><td>$2,500</td></tr></tfoot>
+      </table>
+    </div>
+  </div>
+
+  <!-- 2018 -->
+  <div class="year-divider">2018</div>
+  <div class="card-grid">
+    <div class="card card-full intake-card">
+      <div class="gap-note">Partial data available from cross-references: Friends of Foster Park received $500, Mount Arrowsmith Pipe Band received $1,100 in Spring 2018. Full intake records require council minutes access.</div>
+    </div>
+  </div>
+
+  <!-- 2017 -->
+  <div class="year-divider">2017</div>
+  <div class="card-grid">
+    <div class="card intake-card">
+      <div class="intake-header">
+        <div class="intake-title">Fall 2017</div>
+        <div class="intake-meta">Oct 16 &middot; Cllrs Burden & Powell</div>
+      </div>
+      <p style="color:#555;font-size:12px;margin-bottom:10px;">Note: Council amended the Select Committee's original recommendations during the meeting.</p>
+      <table class="grant-table">
+        <thead><tr><th>Organization</th><th>Committee rec.</th><th>Council approved</th></tr></thead>
+        <tbody>
+          <tr><td>Big Brothers Big Sisters of Central VI</td><td>$850</td><td>$1,200</td></tr>
+          <tr><td>Mount Arrowsmith Pipe Band</td><td>$300</td><td>$500</td></tr>
+          <tr><td>BC SPCA - Parksville-QB Branch</td><td>$300</td><td>$450</td></tr>
+          <tr><td>Parksville Quilt House Quilters Guild</td><td>$250</td><td>$350</td></tr>
+          <tr class="denied"><td>North Island Wildlife Recovery Association</td><td>$0</td><td>Denied</td></tr>
+          <tr class="denied"><td>Manna Homeless Society</td><td>$800</td><td>Denied</td></tr>
+        </tbody>
+        <tfoot><tr><td>Total</td><td>$2,500</td><td>$2,500</td></tr></tfoot>
+      </table>
+      <div style="font-size:11px;color:#999;margin-top:8px;">Source: <a href="https://parksville.civicweb.net/document/29268/" target="_blank" style="color:var(--teal);">CivicWeb Document 29268</a></div>
+    </div>
+    <div class="card intake-card">
+      <div class="intake-header">
+        <div class="intake-title">Spring 2017</div>
+        <div class="intake-meta">Mar 20 &middot; Cllrs Burden & Powell &middot; 12 applications</div>
+      </div>
+      <table class="grant-table">
+        <thead><tr><th>Organization</th><th>Amount</th></tr></thead>
+        <tbody>
+          <tr><td>Mount Arrowsmith Pipe Band</td><td>$550</td></tr>
+          <tr><td>Inclusion Parksville</td><td>$500</td></tr>
+          <tr><td>Parksville & District Musical Association</td><td>$500</td></tr>
+          <tr><td>Friends of Foster Park</td><td>$500</td></tr>
+          <tr><td>Broombusters Invasive Plant Society</td><td>$450</td></tr>
+        </tbody>
+        <tfoot><tr><td>Total</td><td>$2,500</td></tr></tfoot>
+      </table>
+      <div style="font-size:11px;color:#999;margin-top:8px;">Source: <a href="https://parksville.civicweb.net/document/26631/" target="_blank" style="color:var(--teal);">CivicWeb Document 26631</a></div>
+    </div>
+  </div>
+
+  <!-- 2016 -->
+  <div class="year-divider">2016</div>
+  <div class="card-grid">
+    <div class="card card-full intake-card">
+      <div class="gap-note">Partial data: Friends of Foster Park received $500, Mount Arrowsmith Pipe Band received $600, Oceanside Stroke Recovery Association received $500 in Spring 2016. Full records require council minutes access.</div>
+    </div>
+  </div>
+
+  <!-- 2015 -->
+  <div class="year-divider">2015</div>
+  <div class="card-grid">
+    <div class="card intake-card">
+      <div class="intake-header">
+        <div class="intake-title">Fall 2015 — Applications Received</div>
+        <div class="intake-meta">3 applications &middot; $8,880 requested</div>
+      </div>
+      <table class="grant-table">
+        <thead><tr><th>Organization</th><th>Requested</th></tr></thead>
+        <tbody>
+          <tr><td>Oceanside Hospice Society</td><td>$5,880</td></tr>
+          <tr><td>Canadian Red Cross Society</td><td>$2,500</td></tr>
+          <tr><td>Craig Bay Security and Emergency Assistance</td><td>$500</td></tr>
+        </tbody>
+      </table>
+      <div class="gap-note">Approval report not found online. Partial Spring 2015 data: Ballenas Secondary received $800, Oceanside Hospice Society received $1,000.</div>
+      <div style="font-size:11px;color:#999;margin-top:4px;">Source: <a href="https://parksville.civicweb.net/filepro/document/18431/" target="_blank" style="color:var(--teal);">CivicWeb Document 18431</a></div>
+    </div>
+    <div class="card intake-card card-accent-amber" style="display:flex;flex-direction:column;justify-content:center;">
+      <div class="intake-title" style="margin-bottom:8px;">Oldest online record</div>
+      <p style="color:#555;font-size:13px;line-height:1.6;">The Fall 2015 requesting report is the oldest grant-in-aid document available in the CivicWeb public document centre.</p>
+    </div>
+  </div>
+
+  <!-- 2014 -->
+  <div class="year-divider">2014</div>
+  <div class="card-grid">
+    <div class="card card-full intake-card">
+      <div class="intake-header">
+        <div class="intake-title">Fall 2014</div>
+        <div class="intake-meta">Sep 15 &middot; Cllrs Lefebvre & Neufeld &middot; 6 applications</div>
+      </div>
+      <table class="grant-table">
+        <thead><tr><th>Organization</th><th>Amount</th></tr></thead>
+        <tbody>
+          <tr><td>Royal Canadian Legion Ladies Auxiliary (Branch 49)</td><td>$750</td></tr>
+          <tr><td>Haven Society</td><td>$500</td></tr>
+          <tr><td>Oceanside Building Learning Together</td><td>$500</td></tr>
+          <tr><td>Parksville Seniors Activity & Drop-in Centre</td><td>$250</td></tr>
+          <tr><td>Parksville/Qualicum Branch BC SPCA</td><td>$250</td></tr>
+          <tr><td>Vancouver Island Opera</td><td>$250</td></tr>
+        </tbody>
+        <tfoot><tr><td>Total</td><td>$2,500</td></tr></tfoot>
+      </table>
+      <div style="font-size:11px;color:#999;margin-top:8px;">Source: <a href="https://parksville.civicweb.net/filepro/document/13348/" target="_blank" style="color:var(--teal);">CivicWeb Document 13348</a></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- Help Us Complete the Record -->
+<section class="section">
+  <div class="card card-full card-accent-amber">
+    <div class="card-label">Help complete this record</div>
+    <p style="color:#555;font-size:14px;line-height:1.7;">We've compiled every grant-in-aid record we could find in publicly accessible online council documents. Some intakes (2016, 2018, 2020 approvals, 2022, 2023) have gaps where the approval reports weren't available through the CivicWeb document centre.</p>
+    <p style="color:#555;font-size:14px;line-height:1.7;margin-top:8px;">If your organization has applied for or received a Parksville grant-in-aid and can help complete this record, please contact us at <strong>604-868-7914</strong>.</p>
   </div>
 </section>
 
 <!-- Sources -->
 <section class="section section-alt">
   <div class="source-card">
-    <strong>Sources &amp; further reading.</strong><br>
-    Data compiled from City of Parksville records and council meeting minutes.<br><br>
-    City of Parksville — Grant-in-Aid program information<br>
-    Council Meeting Minutes — Grant allocation decisions and application reviews
+    <strong>Sources.</strong> All data from official City of Parksville records:<br><br>
+    <a href="https://parksville.civicweb.net/filepro/documents/" target="_blank" style="color:var(--yellow);">Parksville CivicWeb Document Centre</a> — Grant-in-aid requesting and approval reports<br>
+    <a href="http://www.parksville.ca/cms.asp?wpID=436" target="_blank" style="color:var(--yellow);">City of Parksville Grant-in-Aid Program</a> — Application information<br>
+    Council meeting minutes — Grant allocation decisions and amendments
   </div>
 </section>
 
 <!-- Narrative -->
 <div class="narrative">
-  <h2>Small grants, big transparency.</h2>
-  <p>Even the smallest grants tell a story about what a community values. Full transparency about who applies, who receives support, and how much — that's how residents know their tax dollars are working for the community.</p>
+  <h2>"Even the smallest grants tell a story."</h2>
+  <p>$2,500 twice a year. It's not a lot of money. But which organizations apply, which ones are approved, and how council amends the committee's recommendations - these choices reflect what a community values.</p>
+  <p>Full transparency about every dollar, every applicant, every decision. That's how trust is built.</p>
   <a href="https://votewood.ca" class="cta-btn">See the full platform &rarr; votewood.ca</a>
 </div>
 
 <footer class="footer">
   Authorized by Sean Wood, Independent Candidate &middot; 604-868-7914<br>
-  Data: City of Parksville &middot; Council Meeting Minutes
+  Data: City of Parksville CivicWeb &middot; Council Meeting Minutes &middot; PQB News
 </footer>
 
 </body>
