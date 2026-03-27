@@ -295,10 +295,51 @@ a { color: var(--yellow); }
   margin-top: 8px;
 }
 
+/* Ranked table */
+.rank-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.rank-table th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #999;
+  padding: 4px 8px 6px;
+  border-bottom: 2px solid #e0e0e0;
+}
+.rank-table th:last-child { text-align: right; }
+.rank-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.rank-table td:first-child {
+  width: 28px;
+  color: #999;
+  font-size: 12px;
+  text-align: center;
+}
+.rank-table td:last-child {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.rank-table tr.rank-highlight {
+  background: #e0f4f5;
+}
+.rank-table tr.rank-highlight td {
+  font-weight: 900;
+  color: var(--teal-dark);
+}
+
 @media (max-width: 600px) {
   .header { flex-direction: column; gap: 4px; text-align: center; }
   .card-value { font-size: 28px; }
   .section { padding: 32px 16px; }
+  .rank-table { font-size: 13px; }
+  .rank-table td, .rank-table th { padding: 5px 4px; }
 }
 </style>
 </head>
@@ -463,43 +504,39 @@ a { color: var(--yellow); }
 
 <!-- Fiscal Health -->
 <section class="section">
-  <h2 class="section-title">&#128200; Fiscal Health Comparison</h2>
+  <h2 class="section-title">&#128200; Fiscal Health - How Parksville Compares</h2>
   <div class="card-grid">
     <div class="card" id="card-fiscal-reserves">
       <div class="card-label">Reserves Per Capita</div>
-      <div id="fiscal-reserves-bars"></div>
-      <div class="card-detail" style="margin-top:12px;font-style:italic;color:#888;">
-        Reserves are the rainy-day fund a city can draw on in an emergency or to fund capital projects without borrowing.
-      </div>
-      <div class="card-meta">
-        <span id="fiscal-updated"></span><br>
-        Source: BC Government Schedule 304 <span id="fiscal-year"></span>
-      </div>
+      <div class="card-detail" style="margin-bottom:8px;color:#888;">The rainy-day fund. Higher is better - more capacity for emergencies and capital projects.</div>
+      <div id="fiscal-reserves-table"></div>
     </div>
     <div class="card" id="card-fiscal-debt">
       <div class="card-label">Long-Term Debt Per Capita</div>
-      <div id="fiscal-debt-bars"></div>
-      <div class="card-detail" style="margin-top:12px;font-style:italic;color:#888;">
-        Long-term debt is what the city owes on infrastructure borrowing. Lower is better - it means less of your taxes go to interest payments.
-      </div>
-      <div class="card-meta">
-        Source: BC Government Schedule 302
-      </div>
+      <div class="card-detail" style="margin-bottom:8px;color:#888;">What the city owes on borrowing. Lower means less of your taxes go to interest.</div>
+      <div id="fiscal-debt-table"></div>
     </div>
   </div>
   <div class="card-grid" style="margin-top:20px;">
-    <div class="card" id="card-fiscal-revenue">
-      <div class="card-label">Revenue Per Capita</div>
-      <div id="fiscal-revenue-bars"></div>
-      <div class="card-meta" style="margin-top:12px;">
-        Source: BC Government Schedule 401
-      </div>
+    <div class="card" id="card-fiscal-protective">
+      <div class="card-label">Policing &amp; Fire Per Capita</div>
+      <div class="card-detail" style="margin-bottom:8px;color:#888;">RCMP and fire department costs. Varies by contract type, call volume, and staffing model.</div>
+      <div id="fiscal-protective-table"></div>
     </div>
-    <div class="card" id="card-fiscal-expenses">
-      <div class="card-label">Expenses Per Capita</div>
-      <div id="fiscal-expenses-bars"></div>
+    <div class="card" id="card-fiscal-parksrec">
+      <div class="card-label">Parks &amp; Recreation Per Capita</div>
+      <div class="card-detail" style="margin-bottom:8px;color:#888;">What the city spends on parks, pools, arenas, and community programs.</div>
+      <div id="fiscal-parksrec-table"></div>
+    </div>
+  </div>
+  <div class="card-grid" style="margin-top:20px;">
+    <div class="card card-full" id="card-fiscal-expenses">
+      <div class="card-label">Total Expenses Per Capita</div>
+      <div class="card-detail" style="margin-bottom:8px;color:#888;">Overall municipal spending. Lower suggests efficiency, but context matters - cities with water utilities or large recreation facilities will spend more.</div>
+      <div id="fiscal-expenses-table"></div>
       <div class="card-meta" style="margin-top:12px;">
-        Source: BC Government Schedule 402
+        <span id="fiscal-updated"></span><br>
+        Source: BC Government Local Government Statistics - Schedules 302, 304, 401, 402 <span id="fiscal-year"></span>
       </div>
     </div>
   </div>
@@ -659,7 +696,7 @@ a { color: var(--yellow); }
   function markAllStale() {
     ['card-river','card-snowpack','card-fire','card-roads',
      'card-wildfire','card-aqhi','card-housing-vacancy','card-housing-rent','card-tax',
-     'card-fiscal-reserves','card-fiscal-debt','card-fiscal-revenue','card-fiscal-expenses'].forEach(markStale);
+     'card-fiscal-reserves','card-fiscal-debt','card-fiscal-protective','card-fiscal-parksrec','card-fiscal-expenses'].forEach(markStale);
   }
 
   // ---- Render functions ----
@@ -822,42 +859,33 @@ a { color: var(--yellow); }
     setText('tax-year', d.data_year ? '(' + d.data_year + ')' : '');
   }
 
-  function fiscalBars(data, metric, targetId) {
-    var cities = [
-      ['Parksville', data.parksville, true],
-      ['Qualicum Bch', data.qualicum, false],
-      ['Comox', data.comox, false],
-      ['Courtenay', data.courtenay, false],
-      ['Duncan', data.duncan, false],
-    ].map(function(c) {
-      return [c[0], c[1] ? c[1][metric] : null, c[2]];
-    }).filter(function(c) { return c[1] != null; });
+  // Build a ranked table: sorted array of {name, value, isParksville}
+  // sortDir: 'desc' = highest first (good for reserves), 'asc' = lowest first (good for debt/expenses)
+  function rankedTable(cities, metric, targetId, sortDir) {
+    var rows = cities.map(function(c) {
+      return { name: c.name, value: c[metric], isPk: c.key === 'parksville' };
+    }).filter(function(r) { return r.value != null; });
 
-    if (cities.length === 0) return;
+    if (rows.length === 0) return;
 
-    var maxVal = Math.max.apply(null, cities.map(function(c) { return c[1]; }));
-    if (maxVal === 0) maxVal = 1;
+    rows.sort(function(a, b) {
+      return sortDir === 'desc' ? b.value - a.value : a.value - b.value;
+    });
 
-    var html = cities.map(function(c) {
-      var pct = Math.round((c[1] / maxVal) * 100);
-      var highlight = c[2] ? 'font-weight:900;color:var(--card-text);' : '';
-      var barColor = c[2] ? 'background:var(--teal);' : 'background:#b0d4d8;';
-      return '<div class="score-row">' +
-        '<span class="score-label" style="width:110px;' + highlight + '">' + c[0] + '</span>' +
-        '<div class="score-bar-bg"><div class="score-bar-fill" style="width:' + pct + '%;' + barColor + '"></div></div>' +
-        '<span class="score-val" style="width:55px;' + highlight + '">$' + parseInt(c[1]).toLocaleString() + '</span>' +
-        '</div>';
-    }).join('');
+    var html = '<table class="rank-table"><thead><tr><th>#</th><th>Community</th><th>Per Capita</th></tr></thead><tbody>';
+    rows.forEach(function(r, i) {
+      var cls = r.isPk ? ' class="rank-highlight"' : '';
+      html += '<tr' + cls + '><td>' + (i + 1) + '</td><td>' + r.name + '</td><td>$' + r.value.toLocaleString() + '</td></tr>';
+    });
+    html += '</tbody></table>';
 
     setHTML(targetId, html);
   }
 
   function renderFiscalHealth(d) {
+    var staleCards = ['card-fiscal-reserves','card-fiscal-debt','card-fiscal-protective','card-fiscal-parksrec','card-fiscal-expenses'];
     if (!d || !d.data_json) {
-      markStale('card-fiscal-reserves');
-      markStale('card-fiscal-debt');
-      markStale('card-fiscal-revenue');
-      markStale('card-fiscal-expenses');
+      staleCards.forEach(markStale);
       return;
     }
 
@@ -865,11 +893,17 @@ a { color: var(--yellow); }
     if (typeof data === 'string') {
       try { data = JSON.parse(data); } catch(e) { return; }
     }
+    // data is now an array of city objects
+    if (!Array.isArray(data) || data.length === 0) {
+      staleCards.forEach(markStale);
+      return;
+    }
 
-    fiscalBars(data, 'reserves_per_cap', 'fiscal-reserves-bars');
-    fiscalBars(data, 'debt_per_cap', 'fiscal-debt-bars');
-    fiscalBars(data, 'revenue_per_cap', 'fiscal-revenue-bars');
-    fiscalBars(data, 'expenses_per_cap', 'fiscal-expenses-bars');
+    rankedTable(data, 'reserves_per_cap', 'fiscal-reserves-table', 'desc');
+    rankedTable(data, 'debt_per_cap', 'fiscal-debt-table', 'asc');
+    rankedTable(data, 'protective_per_cap', 'fiscal-protective-table', 'asc');
+    rankedTable(data, 'parks_rec_per_cap', 'fiscal-parksrec-table', 'desc');
+    rankedTable(data, 'expenses_per_cap', 'fiscal-expenses-table', 'asc');
     setUpdated('fiscal-updated', d.fetched_at);
     setText('fiscal-year', d.data_year ? '(' + d.data_year + ')' : '');
   }
