@@ -226,7 +226,19 @@ a { color: var(--yellow); }
   </div>
 </div>
 
-<!-- Reserves Coverage -->
+<!-- 1. Infrastructure Gap (Parksville ranked last — 34%) -->
+<section class="section">
+  <h2 class="section-title">&#128679; Infrastructure Investment</h2>
+  <div class="card-grid">
+    <div class="card card-full" id="card-infra">
+      <div class="card-label">Capital Spending vs Amortization</div>
+      <div class="card-detail" style="margin-bottom:12px;color:#888;">Amortization measures how fast infrastructure wears out. Capital spending is how much the city invests in replacing it. Below 100% means infrastructure is degrading faster than it's being replaced - an infrastructure deficit.</div>
+      <div id="table-infra"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Reserves (Parksville ranked 4th worst — 2.4 months) -->
 <section class="section">
   <h2 class="section-title">&#128176; Reserves - The Rainy-Day Fund</h2>
   <div class="card-grid">
@@ -243,36 +255,7 @@ a { color: var(--yellow); }
   </div>
 </section>
 
-<!-- Infrastructure Gap -->
-<section class="section">
-  <h2 class="section-title">&#128679; Infrastructure Investment</h2>
-  <div class="card-grid">
-    <div class="card card-full" id="card-infra">
-      <div class="card-label">Capital Spending vs Amortization</div>
-      <div class="card-detail" style="margin-bottom:12px;color:#888;">Amortization measures how fast infrastructure wears out. Capital spending is how much the city invests in replacing it. Below 100% means infrastructure is degrading faster than it's being replaced - an infrastructure deficit.</div>
-      <div id="table-infra"></div>
-    </div>
-  </div>
-</section>
-
-<!-- Debt -->
-<section class="section">
-  <h2 class="section-title">&#128200; Debt Burden</h2>
-  <div class="card-grid">
-    <div class="card" id="card-debt-rev">
-      <div class="card-label">Long-Term Debt as % of Revenue</div>
-      <div class="card-detail" style="margin-bottom:12px;color:#888;">How much of the city's annual revenue would it take to pay off all long-term debt? Lower is healthier.</div>
-      <div id="table-debt-rev"></div>
-    </div>
-    <div class="card" id="card-debt-cap">
-      <div class="card-label">Long-Term Debt Per Capita</div>
-      <div class="card-detail" style="margin-bottom:12px;color:#888;">Total long-term borrowing divided by population. Your share of the city's debt.</div>
-      <div id="table-debt-cap"></div>
-    </div>
-  </div>
-</section>
-
-<!-- Tax Rate -->
+<!-- 3. Tax Burden (Parksville above median) -->
 <section class="section">
   <h2 class="section-title">&#127968; Tax Burden</h2>
   <div class="card-grid">
@@ -289,13 +272,30 @@ a { color: var(--yellow); }
   </div>
 </section>
 
-<!-- Spending -->
+<!-- 4. Debt (Parksville moderate — 12.2% of revenue) -->
+<section class="section">
+  <h2 class="section-title">&#128200; Debt Burden</h2>
+  <div class="card-grid">
+    <div class="card" id="card-debt-rev">
+      <div class="card-label">Long-Term Debt as % of Revenue</div>
+      <div class="card-detail" style="margin-bottom:12px;color:#888;">How much of the city's annual revenue would it take to pay off all long-term debt? Lower is healthier.</div>
+      <div id="table-debt-rev"></div>
+    </div>
+    <div class="card" id="card-debt-cap">
+      <div class="card-label">Long-Term Debt Per Capita</div>
+      <div class="card-detail" style="margin-bottom:12px;color:#888;">Total long-term borrowing divided by population. Your share of the city's debt.</div>
+      <div id="table-debt-cap"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Spending (Parksville mid-range) -->
 <section class="section">
   <h2 class="section-title">&#128178; Where the Money Goes</h2>
   <div class="card-grid">
     <div class="card" id="card-protective">
-      <div class="card-label">Policing &amp; Fire Per Capita</div>
-      <div class="card-detail" style="margin-bottom:12px;color:#888;">RCMP contracts and fire departments. The single largest expense category for most small cities.</div>
+      <div class="card-label">Protective Services Per Capita</div>
+      <div class="card-detail" style="margin-bottom:12px;color:#888;">RCMP contracts and fire departments combined. The provincial data does not separate police from fire - that breakdown is only in each city's individual financial plan.</div>
       <div id="table-protective"></div>
     </div>
     <div class="card" id="card-parksrec">
