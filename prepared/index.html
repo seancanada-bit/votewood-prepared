@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Parksville. Prepared. | Sean Wood for Mayor</title>
-<meta name="description" content="Real-time civic data dashboard for Parksville - water, fire, air quality, and regional context. Updated automatically from public government sources.">
+<meta name="description" content="How does Parksville's fiscal health compare? Reserves, debt, infrastructure investment, and spending — ranked against 17 comparable BC communities using official provincial data.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
@@ -37,7 +37,6 @@ body {
 
 a { color: var(--yellow); }
 
-/* Header */
 .header {
   background: var(--teal-dark);
   border-bottom: 3px solid var(--yellow);
@@ -50,129 +49,66 @@ a { color: var(--yellow); }
 .header a { text-decoration: none; font-weight: 700; }
 .header-right { font-weight: 700; letter-spacing: 0.5px; }
 
-/* Hero */
 .hero {
   text-align: center;
   padding: 56px 24px 48px;
   background: var(--teal);
 }
 .hero-eyebrow {
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--yellow);
-  margin-bottom: 8px;
+  font-size: 14px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--yellow); margin-bottom: 8px;
 }
 .hero h1 {
-  font-size: clamp(28px, 5vw, 44px);
-  font-weight: 900;
-  margin-bottom: 16px;
-  line-height: 1.15;
+  font-size: clamp(28px, 5vw, 44px); font-weight: 900;
+  margin-bottom: 16px; line-height: 1.15;
 }
 .hero p {
-  max-width: 640px;
-  margin: 0 auto 24px;
-  font-size: 17px;
-  opacity: 0.92;
+  max-width: 640px; margin: 0 auto 24px; font-size: 17px; opacity: 0.92;
 }
 .live-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255,255,255,0.15);
-  border-radius: 20px;
-  padding: 8px 20px;
-  font-size: 13px;
-  font-weight: 700;
-}
-.live-dot {
-  width: 8px; height: 8px;
-  background: var(--yellow);
-  border-radius: 50%;
-  animation: pulse 2s ease-in-out infinite;
-}
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.15); border-radius: 20px;
+  padding: 8px 20px; font-size: 13px; font-weight: 700;
 }
 
-/* Sections */
 .section {
-  padding: 48px 24px;
-  max-width: 960px;
-  margin: 0 auto;
+  padding: 48px 24px; max-width: 960px; margin: 0 auto;
 }
 .section-title {
-  font-size: 22px;
-  font-weight: 900;
-  color: var(--yellow);
-  margin-bottom: 20px;
-  letter-spacing: 0.5px;
+  font-size: 22px; font-weight: 900; color: var(--yellow);
+  margin-bottom: 20px; letter-spacing: 0.5px;
 }
 
-/* Card grid */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
 }
-.card-grid-4 {
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-}
 
-/* Cards */
 .card {
-  background: var(--card-bg);
-  color: var(--card-text);
-  border-radius: var(--radius);
-  padding: 24px;
-  box-shadow: var(--shadow);
-  position: relative;
+  background: var(--card-bg); color: var(--card-text);
+  border-radius: var(--radius); padding: 24px;
+  box-shadow: var(--shadow); position: relative;
 }
 .card-label {
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #666;
-  margin-bottom: 8px;
+  font-size: 13px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: #666; margin-bottom: 8px;
 }
 .card-value {
-  font-size: 36px;
-  font-weight: 900;
-  line-height: 1.1;
-  margin-bottom: 8px;
+  font-size: 36px; font-weight: 900; line-height: 1.1; margin-bottom: 8px;
 }
-.card-value-unit {
-  font-size: 16px;
-  font-weight: 400;
-  color: #888;
-}
-.card-detail {
-  font-size: 14px;
-  color: #555;
-  margin-bottom: 4px;
-}
+.card-value-unit { font-size: 16px; font-weight: 400; color: #888; }
+.card-detail { font-size: 14px; color: #555; margin-bottom: 4px; }
 .card-meta {
-  font-size: 12px;
-  color: #999;
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 1px solid #eee;
+  font-size: 12px; color: #999; margin-top: 12px;
+  padding-top: 12px; border-top: 1px solid #eee;
 }
 .card-full { grid-column: 1 / -1; }
 
-/* Status pills */
 .pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 4px 12px;
-  border-radius: 12px;
-  font-size: 13px;
-  font-weight: 700;
-  margin-right: 6px;
-  margin-bottom: 4px;
+  display: inline-flex; align-items: center; padding: 4px 12px;
+  border-radius: 12px; font-size: 13px; font-weight: 700;
+  margin-right: 6px; margin-bottom: 4px;
 }
 .pill-green  { background: var(--green-bg);  color: var(--green-text); }
 .pill-amber  { background: var(--amber-bg);  color: var(--amber-text); }
@@ -180,158 +116,70 @@ a { color: var(--yellow); }
 .pill-red    { background: var(--red-bg);    color: var(--red-text); }
 .pill-grey   { background: var(--grey-bg);   color: var(--grey-text); }
 
-/* Comparison bar */
+.rank-table {
+  width: 100%; border-collapse: collapse; font-size: 14px;
+}
+.rank-table th {
+  text-align: left; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; color: #999;
+  padding: 4px 8px 6px; border-bottom: 2px solid #e0e0e0;
+}
+.rank-table th:last-child { text-align: right; }
+.rank-table td {
+  padding: 6px 8px; border-bottom: 1px solid #f0f0f0;
+}
+.rank-table td:first-child {
+  width: 28px; color: #999; font-size: 12px; text-align: center;
+}
+.rank-table td:last-child {
+  text-align: right; font-variant-numeric: tabular-nums; font-weight: 700;
+}
+.rank-table tr.rank-highlight { background: #e0f4f5; }
+.rank-table tr.rank-highlight td { font-weight: 900; color: var(--teal-dark); }
+
 .score-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
-  font-size: 14px;
+  display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 14px;
 }
 .score-label { width: 110px; font-weight: 700; color: #555; flex-shrink: 0; }
 .score-bar-bg {
-  flex: 1;
-  height: 8px;
-  background: #e8e8e8;
-  border-radius: 4px;
-  overflow: hidden;
+  flex: 1; height: 8px; background: #e8e8e8; border-radius: 4px; overflow: hidden;
 }
 .score-bar-fill {
-  height: 100%;
-  background: var(--teal);
-  border-radius: 4px;
-  transition: width 0.6s ease;
+  height: 100%; background: var(--teal); border-radius: 4px; transition: width 0.6s ease;
 }
 .score-val { width: 36px; text-align: right; font-weight: 700; font-size: 13px; }
 
-/* Event list */
-.event-list {
-  max-height: 200px;
-  overflow-y: auto;
-  margin-top: 8px;
-}
-.event-item {
-  padding: 8px 0;
-  border-bottom: 1px solid #eee;
-  font-size: 14px;
-}
-.event-item:last-child { border-bottom: none; }
-.event-type {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #999;
+.card-stale .card-value { opacity: 0.4; }
+.card-stale-msg {
+  text-align: center; font-size: 13px; color: var(--grey-text);
+  background: var(--grey-bg); padding: 10px; border-radius: 8px; margin-top: 8px;
 }
 
-/* Skeleton loading */
-.skeleton {
-  background: linear-gradient(90deg, #e8e8e8 25%, #f0f0f0 50%, #e8e8e8 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-  border-radius: 6px;
-}
-.skeleton-lg { height: 42px; width: 120px; margin-bottom: 8px; }
-.skeleton-md { height: 20px; width: 180px; margin-bottom: 6px; }
-.skeleton-sm { height: 16px; width: 140px; }
-@keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-/* Narrative */
 .narrative {
   background: var(--teal-dark);
   border-top: 3px solid var(--yellow);
   border-bottom: 3px solid var(--yellow);
-  padding: 56px 24px;
-  text-align: center;
+  padding: 56px 24px; text-align: center;
 }
 .narrative h2 {
-  color: var(--yellow);
-  font-size: clamp(22px, 4vw, 32px);
-  font-weight: 900;
-  margin-bottom: 20px;
+  color: var(--yellow); font-size: clamp(22px, 4vw, 32px);
+  font-weight: 900; margin-bottom: 20px;
 }
 .narrative p {
-  max-width: 640px;
-  margin: 0 auto 16px;
-  font-size: 16px;
-  opacity: 0.92;
-  line-height: 1.7;
+  max-width: 640px; margin: 0 auto 16px;
+  font-size: 16px; opacity: 0.92; line-height: 1.7;
 }
 .cta-btn {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 14px 32px;
-  background: var(--yellow);
-  color: var(--teal-dark);
-  font-weight: 900;
-  font-size: 16px;
-  text-decoration: none;
-  border-radius: 8px;
-  transition: transform 0.15s;
+  display: inline-block; margin-top: 20px; padding: 14px 32px;
+  background: var(--yellow); color: var(--teal-dark);
+  font-weight: 900; font-size: 16px; text-decoration: none;
+  border-radius: 8px; transition: transform 0.15s;
 }
 .cta-btn:hover { transform: translateY(-2px); }
 
-/* Footer */
 .footer {
-  background: var(--teal-dark);
-  padding: 32px 24px;
-  text-align: center;
-  font-size: 13px;
-  opacity: 0.85;
-  line-height: 1.8;
-}
-
-/* Stale / error state */
-.card-stale .card-value { opacity: 0.4; }
-.card-stale-msg {
-  text-align: center;
-  font-size: 13px;
-  color: var(--grey-text);
-  background: var(--grey-bg);
-  padding: 10px;
-  border-radius: 8px;
-  margin-top: 8px;
-}
-
-/* Ranked table */
-.rank-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
-}
-.rank-table th {
-  text-align: left;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #999;
-  padding: 4px 8px 6px;
-  border-bottom: 2px solid #e0e0e0;
-}
-.rank-table th:last-child { text-align: right; }
-.rank-table td {
-  padding: 6px 8px;
-  border-bottom: 1px solid #f0f0f0;
-}
-.rank-table td:first-child {
-  width: 28px;
-  color: #999;
-  font-size: 12px;
-  text-align: center;
-}
-.rank-table td:last-child {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-  font-weight: 700;
-}
-.rank-table tr.rank-highlight {
-  background: #e0f4f5;
-}
-.rank-table tr.rank-highlight td {
-  font-weight: 900;
-  color: var(--teal-dark);
+  background: var(--teal-dark); padding: 32px 24px;
+  text-align: center; font-size: 13px; opacity: 0.85; line-height: 1.8;
 }
 
 @media (max-width: 600px) {
@@ -345,324 +193,163 @@ a { color: var(--yellow); }
 </head>
 <body>
 
-<!-- Header -->
 <header class="header">
   <a href="https://votewood.ca">&larr; votewood.ca</a>
   <div class="header-right">SEAN WOOD &middot; PARKSVILLE. PREPARED.</div>
 </header>
 
-<!-- Hero -->
 <div class="hero">
   <div class="hero-eyebrow">Parksville. Prepared.</div>
-  <h1>Real-time data. Responsible governance.</h1>
-  <p>The same public data used by emergency managers - updated automatically so you always have a current picture.</p>
+  <h1>Follow the money.</h1>
+  <p>How does Parksville's fiscal health compare to similar BC communities? All data comes from official BC Government financial reports - the same numbers auditors use.</p>
   <div class="live-pill">
-    <span class="live-dot"></span>
-    Refreshes every 10 minutes
+    17 communities compared &middot; <span id="data-year-hero"></span> data
   </div>
 </div>
 
-<!-- Water Security -->
+<!-- Reserves Coverage -->
 <section class="section">
-  <h2 class="section-title">&#128167; Water Security</h2>
+  <h2 class="section-title">&#128176; Reserves - The Rainy-Day Fund</h2>
   <div class="card-grid">
-    <div class="card" id="card-river">
-      <div class="card-label">River Flow - Englishman River</div>
-      <div class="card-value"><span class="skeleton skeleton-lg"></span></div>
-      <div id="river-pills"></div>
-      <div class="card-detail" id="river-level"></div>
-      <div class="card-meta">
-        <span id="river-updated"></span><br>
-        Source: Water Survey of Canada <span id="river-datadate"></span>
-      </div>
+    <div class="card" id="card-reserves">
+      <div class="card-label">Reserves as Months of Revenue</div>
+      <div class="card-detail" style="margin-bottom:12px;color:#888;">How many months could the city operate on reserves alone? More months means more cushion for emergencies and capital projects without borrowing.</div>
+      <div id="table-reserves"></div>
     </div>
-    <div class="card" id="card-snowpack">
-      <div class="card-label">Snowpack - Mt. Arrowsmith</div>
-      <div class="card-value"><span class="skeleton skeleton-lg"></span></div>
-      <div id="snowpack-pills"></div>
-      <div class="card-detail" id="snowpack-depth"></div>
-      <div class="card-meta">
-        <span id="snowpack-updated"></span><br>
-        Source: BC River Forecast Centre / RDN <span id="snowpack-datadate"></span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Emergency Preparedness -->
-<section class="section">
-  <h2 class="section-title">&#128293; Emergency Preparedness</h2>
-  <div class="card-grid">
-    <div class="card" id="card-fire">
-      <div class="card-label">Fire Weather Index</div>
-      <div class="card-value"><span class="skeleton skeleton-lg"></span></div>
-      <div id="fire-pills"></div>
-      <div class="card-detail" id="fire-detail"></div>
-      <div class="card-meta">
-        <span id="fire-updated"></span><br>
-        Source: BC Wildfire Service <span id="fire-datadate"></span>
-      </div>
-    </div>
-    <div class="card" id="card-roads">
-      <div class="card-label">Road Events - Parksville Area</div>
-      <div class="card-value"><span class="skeleton skeleton-lg"></span></div>
-      <div class="event-list" id="road-events-list"></div>
-      <div class="card-meta">
-        <span id="roads-updated"></span><br>
-        Source: DriveBC
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Wildfire -->
-<section class="section" id="section-wildfire">
-  <h2 class="section-title">&#127794; Wildfire Activity</h2>
-  <div class="card-grid">
-    <div class="card card-full" id="card-wildfire">
-      <div class="card-label">Active Fires - Vancouver Island Region</div>
-      <div style="display:flex;gap:32px;flex-wrap:wrap;align-items:baseline;">
-        <div>
-          <div class="card-value"><span class="skeleton skeleton-lg"></span></div>
-          <div class="card-detail">fires in wider region</div>
-        </div>
-        <div>
-          <div class="card-value" id="wildfire-vi" style="font-size:28px;"><span class="skeleton skeleton-lg"></span></div>
-          <div class="card-detail">on Vancouver Island</div>
-        </div>
-      </div>
-      <div id="wildfire-pills" style="margin-top:12px;"></div>
-      <div class="card-meta">
-        <span id="wildfire-updated"></span><br>
-        Source: BC Wildfire Service ESRI REST
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Air Quality -->
-<section class="section">
-  <h2 class="section-title">&#127788;&#65039; Air Quality</h2>
-  <div class="card-grid">
-    <div class="card card-full" id="card-aqhi">
-      <div class="card-label">Air Quality Health Index - Nanaimo</div>
-      <div class="card-value"><span class="skeleton skeleton-lg"></span></div>
-      <div id="aqhi-pills"></div>
-      <div class="card-detail" style="margin-top:8px;color:#888;font-size:13px;">
-        1-3 Low &nbsp;|&nbsp; 4-6 Moderate &nbsp;|&nbsp; 7-10 High &nbsp;|&nbsp; 10+ Very High
-      </div>
-      <div class="card-meta">
-        <span id="aqhi-updated"></span><br>
-        Source: Environment and Climate Change Canada <span id="aqhi-datadate"></span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Housing -->
-<section class="section">
-  <h2 class="section-title">&#127968; Housing - Parksville</h2>
-  <div class="card-grid">
-    <div class="card" id="card-housing-vacancy">
-      <div class="card-label">Rental Vacancy Rate</div>
-      <div class="card-value"><span class="skeleton skeleton-lg"></span></div>
-      <div id="vacancy-pills"></div>
-      <div class="card-detail" id="housing-units"></div>
-      <div class="card-meta">
-        <span id="housing-updated"></span><br>
-        Source: CMHC Rental Market Survey <span id="housing-year"></span>
-      </div>
-    </div>
-    <div class="card" id="card-housing-rent">
-      <div class="card-label">Average Rent</div>
-      <div class="card-value"><span class="skeleton skeleton-lg"></span></div>
-      <div class="card-detail" id="housing-median"></div>
-      <div class="card-meta">
-        Source: CMHC Rental Market Survey <span id="housing-year-2"></span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Tax Burden -->
-<section class="section">
-  <h2 class="section-title">&#128176; Tax Burden Comparison</h2>
-  <div class="card-grid">
-    <div class="card card-full" id="card-tax">
-      <div class="card-label">Municipal Residential Tax Per Capita</div>
-      <div id="tax-bars" style="margin-top:16px;"></div>
-      <div class="card-detail" style="margin-top:16px;font-style:italic;color:#888;">
-        Comparing Parksville's residential tax per capita to similar Vancouver Island communities.
-      </div>
-      <div class="card-meta">
-        <span id="tax-updated"></span><br>
-        Source: BC Government Local Government Statistics (Schedule 707) <span id="tax-year"></span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Fiscal Health -->
-<section class="section">
-  <h2 class="section-title">&#128200; Fiscal Health - How Parksville Compares</h2>
-  <div class="card-grid">
-    <div class="card" id="card-fiscal-reserves">
+    <div class="card" id="card-reserves-cap">
       <div class="card-label">Reserves Per Capita</div>
-      <div class="card-detail" style="margin-bottom:8px;color:#888;">The rainy-day fund. Higher is better - more capacity for emergencies and capital projects.</div>
-      <div id="fiscal-reserves-table"></div>
-    </div>
-    <div class="card" id="card-fiscal-debt">
-      <div class="card-label">Long-Term Debt Per Capita</div>
-      <div class="card-detail" style="margin-bottom:8px;color:#888;">What the city owes on borrowing. Lower means less of your taxes go to interest.</div>
-      <div id="fiscal-debt-table"></div>
-    </div>
-  </div>
-  <div class="card-grid" style="margin-top:20px;">
-    <div class="card" id="card-fiscal-protective">
-      <div class="card-label">Policing &amp; Fire Per Capita</div>
-      <div class="card-detail" style="margin-bottom:8px;color:#888;">RCMP and fire department costs. Varies by contract type, call volume, and staffing model.</div>
-      <div id="fiscal-protective-table"></div>
-    </div>
-    <div class="card" id="card-fiscal-parksrec">
-      <div class="card-label">Parks &amp; Recreation Per Capita</div>
-      <div class="card-detail" style="margin-bottom:8px;color:#888;">What the city spends on parks, pools, arenas, and community programs.</div>
-      <div id="fiscal-parksrec-table"></div>
-    </div>
-  </div>
-  <div class="card-grid" style="margin-top:20px;">
-    <div class="card card-full" id="card-fiscal-expenses">
-      <div class="card-label">Total Expenses Per Capita</div>
-      <div class="card-detail" style="margin-bottom:8px;color:#888;">Overall municipal spending. Lower suggests efficiency, but context matters - cities with water utilities or large recreation facilities will spend more.</div>
-      <div id="fiscal-expenses-table"></div>
-      <div class="card-meta" style="margin-top:12px;">
-        <span id="fiscal-updated"></span><br>
-        Source: BC Government Local Government Statistics - Schedules 302, 304, 401, 402 <span id="fiscal-year"></span>
-      </div>
+      <div class="card-detail" style="margin-bottom:12px;color:#888;">Statutory reserves (water, sewer, other) divided by population. The dollars set aside per resident.</div>
+      <div id="table-reserves-cap"></div>
     </div>
   </div>
 </section>
 
-<!-- Who We Are -->
+<!-- Infrastructure Gap -->
 <section class="section">
-  <h2 class="section-title">&#128101; Who We Are</h2>
-  <div class="card-grid card-grid-4">
-    <div class="card">
-      <div class="card-label">Population</div>
-      <div class="card-value">14,178</div>
-      <div class="card-meta">Source: BC Stats 2025 Estimate</div>
+  <h2 class="section-title">&#128679; Infrastructure Investment</h2>
+  <div class="card-grid">
+    <div class="card card-full" id="card-infra">
+      <div class="card-label">Capital Spending vs Amortization</div>
+      <div class="card-detail" style="margin-bottom:12px;color:#888;">Amortization measures how fast infrastructure wears out. Capital spending is how much the city invests in replacing it. Below 100% means infrastructure is degrading faster than it's being replaced - an infrastructure deficit.</div>
+      <div id="table-infra"></div>
     </div>
-    <div class="card">
-      <div class="card-label">Seniors 65+</div>
-      <div class="card-value">43.6<span class="card-value-unit">%</span></div>
-      <div class="card-meta">Source: Statistics Canada 2021 Census</div>
+  </div>
+</section>
+
+<!-- Debt -->
+<section class="section">
+  <h2 class="section-title">&#128200; Debt Burden</h2>
+  <div class="card-grid">
+    <div class="card" id="card-debt-rev">
+      <div class="card-label">Long-Term Debt as % of Revenue</div>
+      <div class="card-detail" style="margin-bottom:12px;color:#888;">How much of the city's annual revenue would it take to pay off all long-term debt? Lower is healthier.</div>
+      <div id="table-debt-rev"></div>
     </div>
-    <div class="card">
-      <div class="card-label">Median Household Income</div>
-      <div class="card-value">$63,500</div>
-      <div class="card-meta">Source: Statistics Canada 2021 Census</div>
+    <div class="card" id="card-debt-cap">
+      <div class="card-label">Long-Term Debt Per Capita</div>
+      <div class="card-detail" style="margin-bottom:12px;color:#888;">Total long-term borrowing divided by population. Your share of the city's debt.</div>
+      <div id="table-debt-cap"></div>
     </div>
-    <div class="card">
-      <div class="card-label">Core Housing Need</div>
-      <div class="card-value">14.2<span class="card-value-unit">%</span></div>
-      <div class="card-meta">Source: Statistics Canada 2021 Census</div>
+  </div>
+</section>
+
+<!-- Tax Rate -->
+<section class="section">
+  <h2 class="section-title">&#127968; Tax Burden</h2>
+  <div class="card-grid">
+    <div class="card" id="card-taxrate">
+      <div class="card-label">Residential Tax Rate (per $1,000 assessed)</div>
+      <div class="card-detail" style="margin-bottom:12px;color:#888;">The municipal mill rate applied to residential property. Higher means more tax per dollar of home value.</div>
+      <div id="table-taxrate"></div>
+    </div>
+    <div class="card" id="card-taxdep">
+      <div class="card-label">Tax Dependence</div>
+      <div class="card-detail" style="margin-bottom:12px;color:#888;">What share of total revenue comes from property taxes? Higher means the city relies more on homeowners and less on fees, grants, or other revenue.</div>
+      <div id="table-taxdep"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Spending -->
+<section class="section">
+  <h2 class="section-title">&#128178; Where the Money Goes</h2>
+  <div class="card-grid">
+    <div class="card" id="card-protective">
+      <div class="card-label">Policing &amp; Fire Per Capita</div>
+      <div class="card-detail" style="margin-bottom:12px;color:#888;">RCMP contracts and fire departments. The single largest expense category for most small cities.</div>
+      <div id="table-protective"></div>
+    </div>
+    <div class="card" id="card-parksrec">
+      <div class="card-label">Parks &amp; Recreation Per Capita</div>
+      <div class="card-detail" style="margin-bottom:12px;color:#888;">Pools, arenas, parks, trails, and community programs. What you get back in quality of life.</div>
+      <div id="table-parksrec"></div>
+    </div>
+  </div>
+  <div class="card-grid" style="margin-top:20px;">
+    <div class="card" id="card-admin">
+      <div class="card-label">General Government Per Capita</div>
+      <div class="card-detail" style="margin-bottom:12px;color:#888;">Administration, council, finance, HR, IT - the overhead of running a city.</div>
+      <div id="table-admin"></div>
+    </div>
+    <div class="card" id="card-totalexp">
+      <div class="card-label">Total Expenses Per Capita</div>
+      <div class="card-detail" style="margin-bottom:12px;color:#888;">Everything the city spends, including amortization. Context matters - cities with water/sewer utilities will be higher.</div>
+      <div id="table-totalexp"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Source -->
+<section class="section">
+  <div class="card-grid">
+    <div class="card card-full">
+      <div class="card-label">About This Data</div>
+      <div class="card-detail" style="line-height:1.7;">
+        All figures come from BC Government Local Government Statistics - the official financial reports every municipality is required to file. Schedules 302 (Liabilities), 304 (Financial Position), 401 (Revenue), 402 (Expenses), 404 (Changes in Net Financial Assets), and 707 (Tax Rates). Population from BC Stats estimates.
+      </div>
+      <div class="card-detail" style="margin-top:8px;line-height:1.7;">
+        Communities were selected from across BC to represent a range of similar-sized cities and towns (population 3,000 to 39,000). Per-capita figures use BC Stats population estimates. Fiscal ratios use the most recent available annual financial data.
+      </div>
+      <div class="card-meta">
+        <span id="fiscal-updated"></span>
+        <span id="fiscal-year"></span><br>
+        Source: BC Government Local Government Statistics &middot; Open data
+      </div>
     </div>
   </div>
 </section>
 
 <!-- Narrative -->
 <div class="narrative">
-  <h2>"Data is how a prepared community governs."</h2>
-  <p>This dashboard pulls from the same public data sources used by emergency managers, watershed planners, and municipal engineers. It refreshes automatically so residents always have a current picture of Parksville's water supply, fire risk, and regional health.</p>
-  <p>A mayor who can read this data - and act on it before a crisis - is what "Parksville. Prepared." means. Not a slogan. A standard.</p>
+  <h2>"A prepared city starts with a prepared budget."</h2>
+  <p>Reserves, debt, infrastructure investment - these aren't abstract numbers. They determine whether Parksville can fix a water main without a special levy, replace aging roads without decades of delay, or weather an emergency without borrowing.</p>
+  <p>A mayor who understands these numbers - and acts on them before they become crises - is what governance looks like.</p>
   <a href="https://votewood.ca" class="cta-btn">See the full platform &rarr; votewood.ca</a>
 </div>
 
-<!-- Footer -->
 <footer class="footer">
   Authorized by Sean Wood, Independent Candidate &middot; 604-868-7914<br>
-  Data sources: Water Survey of Canada, BC River Forecast Centre, BC Wildfire Service,<br>
-  Environment and Climate Change Canada, DriveBC, CMHC, BC Government, BC Stats, Statistics Canada.
+  Data: BC Government Local Government Statistics, BC Stats, BC Assessment.
 </footer>
 
 <script>
 (function() {
   'use strict';
 
-  const API = 'api.php?table=all';
-  const REFRESH_MS = 10 * 60 * 1000; // 10 minutes
-  const STALE_MS = 24 * 60 * 60 * 1000; // 24 hours
-
-  function formatDataDate(dateStr) {
-    if (!dateStr) return '';
-    var d = new Date(dateStr);
-    if (isNaN(d.getTime())) return '';
-    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    return months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear() +
-      ' ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
-  }
-
-  function formatDataDateShort(dateStr) {
-    if (!dateStr) return '';
-    var d = new Date(dateStr);
-    if (isNaN(d.getTime())) return '';
-    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    return months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
-  }
+  var API = 'api.php?table=all';
+  var REFRESH_MS = 10 * 60 * 1000;
+  var STALE_MS = 48 * 60 * 60 * 1000;
 
   function timeAgo(dateStr) {
     if (!dateStr) return '';
-    const diff = Date.now() - new Date(dateStr).getTime();
-    if (diff < 0) return 'just now';
-    const mins = Math.floor(diff / 60000);
-    if (mins < 1) return 'just now';
+    var diff = Date.now() - new Date(dateStr).getTime();
+    if (diff < 60000) return 'just now';
+    var mins = Math.floor(diff / 60000);
     if (mins < 60) return mins + ' min ago';
-    const hrs = Math.floor(mins / 60);
+    var hrs = Math.floor(mins / 60);
     if (hrs < 24) return hrs + ' hr' + (hrs > 1 ? 's' : '') + ' ago';
-    const days = Math.floor(hrs / 24);
+    var days = Math.floor(hrs / 24);
     return days + ' day' + (days > 1 ? 's' : '') + ' ago';
-  }
-
-  function isStale(dateStr) {
-    if (!dateStr) return true;
-    return (Date.now() - new Date(dateStr).getTime()) > STALE_MS;
-  }
-
-  function pillHTML(text, level) {
-    return '<span class="pill pill-' + level + '">' + text + '</span>';
-  }
-
-  function droughtPill(lvl) {
-    if (lvl == null) return pillHTML('Flow data only', 'grey');
-    var map = [
-      ['Normal flow', 'green'], ['Below normal', 'amber'],
-      ['Dry conditions', 'amber'], ['Drought', 'orange'],
-      ['Severe drought', 'red'], ['Exceptional drought', 'red']
-    ];
-    var entry = map[lvl] || ['Unknown', 'grey'];
-    return pillHTML(entry[0], entry[1]);
-  }
-
-  function dangerPill(rating) {
-    if (!rating) return pillHTML('No data', 'grey');
-    var map = {
-      'Low': 'green', 'Moderate': 'amber', 'High': 'orange',
-      'Very High': 'red', 'Extreme': 'red'
-    };
-    return pillHTML(rating, map[rating] || 'grey');
-  }
-
-  function aqhiPill(aqhi, risk) {
-    if (aqhi == null) return pillHTML('No data', 'grey');
-    var map = { 'Low': 'green', 'Moderate': 'amber', 'High': 'orange', 'Very High': 'red' };
-    return pillHTML(risk + ' risk', map[risk] || 'grey');
-  }
-
-  function snowpackPill(pct) {
-    if (pct == null) return pillHTML('% of normal unavailable', 'grey');
-    if (pct >= 90) return pillHTML(pct + '% - Near normal', 'green');
-    if (pct >= 70) return pillHTML(pct + '% - Below normal', 'amber');
-    if (pct >= 50) return pillHTML(pct + '% - Well below normal', 'orange');
-    return pillHTML(pct + '% - Critically low', 'red');
   }
 
   function setText(id, text) {
@@ -675,263 +362,100 @@ a { color: var(--yellow); }
     if (el) el.innerHTML = html;
   }
 
-  function setUpdated(id, dateStr) {
-    setText(id, 'Updated ' + timeAgo(dateStr));
-  }
-
   function markStale(cardId) {
     var card = document.getElementById(cardId);
-    if (!card) return;
+    if (!card || card.querySelector('.card-stale-msg')) return;
     card.classList.add('card-stale');
-    var val = card.querySelector('.card-value');
-    if (val && !val.dataset.loaded) val.textContent = '--';
-    if (!card.querySelector('.card-stale-msg')) {
-      var msg = document.createElement('div');
-      msg.className = 'card-stale-msg';
-      msg.textContent = 'Data temporarily unavailable - check back soon';
-      card.appendChild(msg);
-    }
+    var msg = document.createElement('div');
+    msg.className = 'card-stale-msg';
+    msg.textContent = 'Data temporarily unavailable - check back soon';
+    card.appendChild(msg);
   }
 
-  function markAllStale() {
-    ['card-river','card-snowpack','card-fire','card-roads',
-     'card-wildfire','card-aqhi','card-housing-vacancy','card-housing-rent','card-tax',
-     'card-fiscal-reserves','card-fiscal-debt','card-fiscal-protective','card-fiscal-parksrec','card-fiscal-expenses'].forEach(markStale);
-  }
-
-  // ---- Render functions ----
-
-  function renderRiver(d) {
-    if (!d) { markStale('card-river'); return; }
-    if (isStale(d.fetched_at)) { markStale('card-river'); }
-    var val = d.flow_m3s != null ? parseFloat(d.flow_m3s).toFixed(1) : '--';
-    var card = document.getElementById('card-river');
-    var valEl = card.querySelector('.card-value');
-    valEl.innerHTML = val + ' <span class="card-value-unit">m&sup3;/s</span>';
-    valEl.dataset.loaded = '1';
-    setHTML('river-pills', droughtPill(d.drought_lvl) +
-      (d.pct_median != null ? pillHTML(d.pct_median + '% of median', 'grey') : ''));
-    setText('river-level', d.level_m != null ? 'Water level: ' + parseFloat(d.level_m).toFixed(2) + ' m' : '');
-    setUpdated('river-updated', d.fetched_at);
-    setText('river-datadate', d.data_date ? '· Reading: ' + formatDataDate(d.data_date) : '');
-  }
-
-  function renderSnowpack(d) {
-    if (!d) { markStale('card-snowpack'); return; }
-    if (isStale(d.fetched_at)) { markStale('card-snowpack'); }
-    var card = document.getElementById('card-snowpack');
-    var val = d.swe_mm != null ? parseFloat(d.swe_mm).toFixed(0) : '--';
-    card.querySelector('.card-value').innerHTML = val + ' <span class="card-value-unit">mm SWE</span>';
-    setHTML('snowpack-pills', snowpackPill(d.pct_normal) +
-      (d.season_active == 0 ? pillHTML('Off-season', 'grey') : ''));
-    setText('snowpack-depth', d.depth_cm != null ? 'Snow depth: ' + parseFloat(d.depth_cm).toFixed(0) + ' cm' : '');
-    setUpdated('snowpack-updated', d.fetched_at);
-    setText('snowpack-datadate', d.data_date ? '· Reading: ' + formatDataDate(d.data_date) : '');
-  }
-
-  function renderFire(d) {
-    if (!d) { markStale('card-fire'); return; }
-    if (isStale(d.fetched_at)) { markStale('card-fire'); }
-    var card = document.getElementById('card-fire');
-    var val = d.fwi != null ? parseFloat(d.fwi).toFixed(1) : '--';
-    card.querySelector('.card-value').innerHTML = val;
-    setHTML('fire-pills', dangerPill(d.danger_rating));
-    var details = [];
-    if (d.isi != null) details.push('ISI: ' + parseFloat(d.isi).toFixed(1));
-    if (d.bui != null) details.push('BUI: ' + parseFloat(d.bui).toFixed(1));
-    setText('fire-detail', details.join(' | '));
-    setUpdated('fire-updated', d.fetched_at);
-    setText('fire-datadate', d.data_date ? '· ' + formatDataDateShort(d.data_date) : '');
-  }
-
-  function renderRoads(d) {
-    if (!d) { markStale('card-roads'); return; }
-    if (isStale(d.fetched_at)) { markStale('card-roads'); }
-    var card = document.getElementById('card-roads');
-    var count = d.event_count != null ? d.event_count : 0;
-    card.querySelector('.card-value').innerHTML = count + ' <span class="card-value-unit">active events</span>';
-
-    var events = d.events_json || [];
-    if (!Array.isArray(events)) {
-      try { events = JSON.parse(events); } catch(e) { events = []; }
-    }
-    var listEl = document.getElementById('road-events-list');
-    if (events.length === 0) {
-      listEl.innerHTML = '<div class="event-item" style="color:#888;">No active road events in the Parksville area.</div>';
-    } else {
-      listEl.innerHTML = events.map(function(e) {
-        return '<div class="event-item"><div class="event-type">' +
-          (e.event_type || 'Event') + (e.severity ? ' - ' + e.severity : '') +
-          '</div>' + (e.headline || '') +
-          (e.roads && e.roads.length ? '<br><small style="color:#999;">' + e.roads.join(', ') + '</small>' : '') +
-          '</div>';
-      }).join('');
-    }
-    setUpdated('roads-updated', d.fetched_at);
-  }
-
-  function renderWildfire(d) {
-    if (!d) { markStale('card-wildfire'); return; }
-    if (isStale(d.fetched_at)) { markStale('card-wildfire'); }
-    var card = document.getElementById('card-wildfire');
-    var vals = card.querySelectorAll('.card-value');
-    vals[0].textContent = d.active_count != null ? d.active_count : '--';
-    var viEl = document.getElementById('wildfire-vi');
-    if (viEl) viEl.textContent = d.vi_count != null ? d.vi_count : '--';
-
-    var seasonPill = d.season_active == 1 ? pillHTML('Fire season active', 'amber') : pillHTML('Off-season', 'grey');
-    var countPill = '';
-    if (d.active_count != null) {
-      if (d.active_count === 0) countPill = pillHTML('No active fires', 'green');
-      else if (d.active_count <= 5) countPill = pillHTML(d.active_count + ' active', 'amber');
-      else countPill = pillHTML(d.active_count + ' active', 'red');
-    }
-    setHTML('wildfire-pills', countPill + seasonPill);
-    setUpdated('wildfire-updated', d.fetched_at);
-  }
-
-  function renderAQHI(d) {
-    if (!d) { markStale('card-aqhi'); return; }
-    if (isStale(d.fetched_at)) { markStale('card-aqhi'); }
-    var card = document.getElementById('card-aqhi');
-    card.querySelector('.card-value').textContent = d.aqhi != null ? d.aqhi : '--';
-    setHTML('aqhi-pills', aqhiPill(d.aqhi, d.risk_level));
-    setUpdated('aqhi-updated', d.fetched_at);
-    setText('aqhi-datadate', d.data_date ? '· Reading: ' + formatDataDate(d.data_date) : '');
-  }
-
-  function renderHousing(d) {
-    if (!d) { markStale('card-housing-vacancy'); markStale('card-housing-rent'); return; }
-
-    // Vacancy card
-    var vacCard = document.getElementById('card-housing-vacancy');
-    var vacVal = d.vacancy_rate != null ? parseFloat(d.vacancy_rate).toFixed(1) : '--';
-    vacCard.querySelector('.card-value').innerHTML = vacVal + '<span class="card-value-unit">%</span>';
-
-    var vacPill = '';
-    if (d.vacancy_rate != null) {
-      var vr = parseFloat(d.vacancy_rate);
-      if (vr >= 3) vacPill = pillHTML('Healthy vacancy', 'green');
-      else if (vr >= 1.5) vacPill = pillHTML('Tight market', 'amber');
-      else vacPill = pillHTML('Very tight market', 'red');
-    }
-    setHTML('vacancy-pills', vacPill);
-    setText('housing-units', d.unit_count != null ? d.unit_count.toLocaleString() + ' rental units surveyed' : '');
-    setUpdated('housing-updated', d.fetched_at);
-    var yearLabel = d.data_year ? '(' + d.data_year + ')' : '';
-    setText('housing-year', yearLabel);
-    setText('housing-year-2', yearLabel);
-
-    // Rent card
-    var rentCard = document.getElementById('card-housing-rent');
-    var avgVal = d.avg_rent != null ? '$' + parseInt(d.avg_rent).toLocaleString() : '--';
-    rentCard.querySelector('.card-value').innerHTML = avgVal + '<span class="card-value-unit">/mo</span>';
-    setText('housing-median', d.median_rent != null ? 'Median rent: $' + parseInt(d.median_rent).toLocaleString() + '/mo' : '');
-  }
-
-  function renderTaxRates(d) {
-    if (!d) { markStale('card-tax'); return; }
-    var cities = [
-      ['Parksville', d.parksville_tax, true],
-      ['Qualicum Beach', d.qualicum_tax, false],
-      ['Comox', d.comox_tax, false],
-      ['Courtenay', d.courtenay_tax, false],
-      ['Duncan', d.duncan_tax, false],
-    ].filter(function(c) { return c[1] != null; });
-
-    if (cities.length === 0) { markStale('card-tax'); return; }
-
-    var maxTax = Math.max.apply(null, cities.map(function(c) { return c[1]; }));
-
-    var barsHTML = cities.map(function(c) {
-      var pct = maxTax > 0 ? Math.round((c[1] / maxTax) * 100) : 0;
-      var highlight = c[2] ? 'font-weight:900;color:var(--card-text);' : '';
-      var barColor = c[2] ? 'background:var(--teal);' : 'background:#b0d4d8;';
-      return '<div class="score-row">' +
-        '<span class="score-label" style="width:130px;' + highlight + '">' + c[0] + '</span>' +
-        '<div class="score-bar-bg"><div class="score-bar-fill" style="width:' + pct + '%;' + barColor + '"></div></div>' +
-        '<span class="score-val" style="width:60px;' + highlight + '">$' + parseInt(c[1]).toLocaleString() + '</span>' +
-        '</div>';
-    }).join('');
-
-    setHTML('tax-bars', barsHTML);
-    setUpdated('tax-updated', d.fetched_at);
-    setText('tax-year', d.data_year ? '(' + d.data_year + ')' : '');
-  }
-
-  // Build a ranked table: sorted array of {name, value, isParksville}
-  // sortDir: 'desc' = highest first (good for reserves), 'asc' = lowest first (good for debt/expenses)
-  function rankedTable(cities, metric, targetId, sortDir) {
-    var rows = cities.map(function(c) {
-      return { name: c.name, value: c[metric], isPk: c.key === 'parksville' };
-    }).filter(function(r) { return r.value != null; });
-
+  // Build a ranked table from an array of {name, value, isParksville}
+  // fmt: function to format the value for display
+  function rankedTable(items, targetId, fmt, sortDir) {
+    var rows = items.filter(function(r) { return r.value != null && !isNaN(r.value); });
     if (rows.length === 0) return;
 
     rows.sort(function(a, b) {
       return sortDir === 'desc' ? b.value - a.value : a.value - b.value;
     });
 
-    var html = '<table class="rank-table"><thead><tr><th>#</th><th>Community</th><th>Per Capita</th></tr></thead><tbody>';
+    var html = '<table class="rank-table"><thead><tr><th>#</th><th>Community</th><th>Value</th></tr></thead><tbody>';
     rows.forEach(function(r, i) {
       var cls = r.isPk ? ' class="rank-highlight"' : '';
-      html += '<tr' + cls + '><td>' + (i + 1) + '</td><td>' + r.name + '</td><td>$' + r.value.toLocaleString() + '</td></tr>';
+      html += '<tr' + cls + '><td>' + (i + 1) + '</td><td>' + r.name + '</td><td>' + fmt(r.value) + '</td></tr>';
     });
     html += '</tbody></table>';
-
     setHTML(targetId, html);
   }
 
-  function renderFiscalHealth(d) {
-    var staleCards = ['card-fiscal-reserves','card-fiscal-debt','card-fiscal-protective','card-fiscal-parksrec','card-fiscal-expenses'];
+  function fmtDollars(v) { return '$' + Math.round(v).toLocaleString(); }
+  function fmtPct(v) { return v.toFixed(1) + '%'; }
+  function fmtMonths(v) { return v.toFixed(1) + ' mo'; }
+  function fmtRate(v) { return v.toFixed(3); }
+
+  function renderFiscal(d) {
+    var staleCards = ['card-reserves','card-reserves-cap','card-infra',
+      'card-debt-rev','card-debt-cap','card-taxrate','card-taxdep',
+      'card-protective','card-parksrec','card-admin','card-totalexp'];
+
     if (!d || !d.data_json) {
       staleCards.forEach(markStale);
       return;
     }
 
-    var data = d.data_json;
-    if (typeof data === 'string') {
-      try { data = JSON.parse(data); } catch(e) { return; }
+    var cities = d.data_json;
+    if (typeof cities === 'string') {
+      try { cities = JSON.parse(cities); } catch(e) { staleCards.forEach(markStale); return; }
     }
-    // data is now an array of city objects
-    if (!Array.isArray(data) || data.length === 0) {
+    if (!Array.isArray(cities) || cities.length === 0) {
       staleCards.forEach(markStale);
       return;
     }
 
-    rankedTable(data, 'reserves_per_cap', 'fiscal-reserves-table', 'desc');
-    rankedTable(data, 'debt_per_cap', 'fiscal-debt-table', 'asc');
-    rankedTable(data, 'protective_per_cap', 'fiscal-protective-table', 'asc');
-    rankedTable(data, 'parks_rec_per_cap', 'fiscal-parksrec-table', 'desc');
-    rankedTable(data, 'expenses_per_cap', 'fiscal-expenses-table', 'asc');
-    setUpdated('fiscal-updated', d.fetched_at);
-    setText('fiscal-year', d.data_year ? '(' + d.data_year + ')' : '');
-  }
+    function makeRows(metric) {
+      return cities.map(function(c) {
+        return { name: c.name, value: c[metric], isPk: c.key === 'parksville' };
+      });
+    }
 
-  // ---- Main fetch ----
+    // Reserves
+    rankedTable(makeRows('reserves_months'), 'table-reserves', fmtMonths, 'desc');
+    rankedTable(makeRows('reserves_per_cap'), 'table-reserves-cap', fmtDollars, 'desc');
+
+    // Infrastructure gap
+    rankedTable(makeRows('infra_ratio'), 'table-infra', fmtPct, 'desc');
+
+    // Debt
+    rankedTable(makeRows('debt_rev_pct'), 'table-debt-rev', fmtPct, 'asc');
+    rankedTable(makeRows('debt_per_cap'), 'table-debt-cap', fmtDollars, 'asc');
+
+    // Tax
+    rankedTable(makeRows('tax_rate'), 'table-taxrate', fmtRate, 'asc');
+    rankedTable(makeRows('tax_dependence'), 'table-taxdep', fmtPct, 'asc');
+
+    // Spending
+    rankedTable(makeRows('protective_per_cap'), 'table-protective', fmtDollars, 'asc');
+    rankedTable(makeRows('parks_rec_per_cap'), 'table-parksrec', fmtDollars, 'desc');
+    rankedTable(makeRows('general_per_cap'), 'table-admin', fmtDollars, 'asc');
+    rankedTable(makeRows('expenses_per_cap'), 'table-totalexp', fmtDollars, 'asc');
+
+    setText('fiscal-updated', 'Updated ' + timeAgo(d.fetched_at));
+    setText('fiscal-year', d.data_year ? '(' + d.data_year + ' financial data)' : '');
+    setText('data-year-hero', d.data_year || '');
+  }
 
   function loadData() {
     fetch(API)
       .then(function(res) { return res.json(); })
       .then(function(json) {
-        if (!json.ok || !json.data) {
-          console.error('[prepared] API returned error');
-          return;
-        }
-        var d = json.data;
-        renderRiver(d.river_flow_latest);
-        renderSnowpack(d.snowpack_latest);
-        renderFire(d.fire_weather_latest);
-        renderRoads(d.road_events_latest);
-        renderWildfire(d.wildfire_latest);
-        renderAQHI(d.air_quality_latest);
-        renderHousing(d.housing_latest);
-        renderTaxRates(d.tax_rates_latest);
-        renderFiscalHealth(d.fiscal_health_latest);
+        if (!json.ok || !json.data) return;
+        renderFiscal(json.data.fiscal_health_latest);
       })
       .catch(function(err) {
         console.error('[prepared] Fetch failed:', err);
-        markAllStale();
       });
   }
 
