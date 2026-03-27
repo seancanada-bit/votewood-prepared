@@ -1,6 +1,6 @@
 # Security Headers
 <IfModule mod_headers.c>
-    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'self'"
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'self'"
     Header set X-Frame-Options "SAMEORIGIN"
     Header set X-Content-Type-Options "nosniff"
     Header set Referrer-Policy "strict-origin-when-cross-origin"
@@ -12,6 +12,36 @@
     # Remove server info leaks
     Header unset X-Powered-By
     Header unset Server
+</IfModule>
+
+# Cache Control
+<IfModule mod_expires.c>
+    ExpiresActive On
+
+    # Fonts — cache for 1 year (they never change)
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+
+    # CSS — cache for 1 week (may update with design changes)
+    ExpiresByType text/css "access plus 1 week"
+
+    # HTML — cache for 5 minutes (content may update)
+    ExpiresByType text/html "access plus 5 minutes"
+</IfModule>
+
+# Immutable cache for font files
+<IfModule mod_headers.c>
+    <FilesMatch "\.(woff2)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    <FilesMatch "\.(css)$">
+        Header set Cache-Control "public, max-age=604800"
+    </FilesMatch>
+</IfModule>
+
+# Gzip compression (backup in case host config changes)
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/plain application/json font/woff2
 </IfModule>
 
 # Force HTTPS
