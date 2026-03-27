@@ -12,7 +12,7 @@ $allowed = [
   'river_flow_latest', 'snowpack_latest', 'fire_weather_latest',
   'air_quality_latest', 'road_events_latest', 'city_scores_latest',
   'demographics_latest', 'wildfire_latest', 'local_events_latest',
-  'housing_latest', 'tax_rates_latest',
+  'housing_latest', 'tax_rates_latest', 'fiscal_health_latest',
 ];
 
 $table = $_GET['table'] ?? '';
@@ -30,7 +30,7 @@ if ($table === 'all') {
         $stmt = $pdo->query("SELECT * FROM `{$t}` WHERE id = 1 LIMIT 1");
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($row) {
-          foreach (['events_json','fires_json'] as $col) {
+          foreach (['events_json','fires_json','data_json'] as $col) {
             if (isset($row[$col])) $row[$col] = json_decode($row[$col], true) ?? [];
           }
         }
@@ -62,7 +62,7 @@ try {
   $stmt = $pdo->prepare("SELECT * FROM `{$table}` WHERE id = 1 LIMIT 1");
   $stmt->execute();
   $row = $stmt->fetch(PDO::FETCH_ASSOC);
-  foreach (['events_json','fires_json'] as $col) {
+  foreach (['events_json','fires_json','data_json'] as $col) {
     if (isset($row[$col])) $row[$col] = json_decode($row[$col], true) ?? [];
   }
   echo json_encode(['data' => $row, 'ok' => true]);
