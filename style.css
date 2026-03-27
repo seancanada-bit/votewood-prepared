@@ -482,6 +482,47 @@ a { color: var(--yellow); }
 }
 .video-card-meta { font-size: 11px; color: #999; }
 
+/* Council quote cards */
+.quote-card {
+  background: var(--card-bg); color: var(--card-text);
+  border-radius: var(--radius); padding: 28px 28px 20px;
+  box-shadow: var(--shadow); border-left: 4px solid var(--yellow);
+  position: relative;
+}
+.quote-card::before {
+  content: '\201C'; font-family: var(--serif); font-size: 64px;
+  color: rgba(29,145,158,0.12); position: absolute; top: 8px; left: 16px;
+  line-height: 1;
+}
+.quote-text {
+  font-size: 15px; color: #333; line-height: 1.75;
+  font-style: italic; padding-left: 8px; margin-bottom: 14px;
+}
+.quote-source {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 8px;
+}
+.quote-attribution {
+  font-size: 11px; color: #999; font-style: normal;
+}
+.quote-watch {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 700; color: var(--teal) !important;
+  text-decoration: none !important; border-bottom: none !important;
+  background: #e0f2f3; padding: 5px 14px; border-radius: 20px;
+  transition: background 0.15s;
+}
+.quote-watch:hover { background: #c8eaed; }
+.quote-watch::before {
+  content: ''; width: 0; height: 0;
+  border-left: 8px solid var(--teal); border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+.quote-label {
+  font-size: 10px; font-weight: 900; text-transform: uppercase;
+  letter-spacing: 1.5px; color: var(--teal); margin-bottom: 12px;
+}
+
 /* Sticky vote bar — bottom of every page */
 .vote-bar {
   position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
