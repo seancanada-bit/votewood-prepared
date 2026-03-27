@@ -465,6 +465,54 @@ a { color: var(--yellow); }
 }
 .video-meta { font-size: 11px; color: #999; }
 
+/* Sticky vote bar — bottom of every page */
+.vote-bar {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  background: var(--teal-deep); border-top: 2px solid var(--yellow);
+  padding: 10px 24px;
+  display: flex; justify-content: center; align-items: center; gap: 16px;
+  font-size: 13px; letter-spacing: 0.3px;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.25);
+}
+.vote-bar-date {
+  font-family: var(--serif); font-size: 15px; color: var(--yellow);
+}
+.vote-bar-msg { opacity: 0.85; }
+.vote-bar-cta {
+  background: var(--yellow); color: var(--teal-deep);
+  padding: 6px 16px; border-radius: 4px; text-decoration: none;
+  font-weight: 900; font-size: 12px; letter-spacing: 0.5px;
+  transition: transform 0.15s;
+  white-space: nowrap;
+}
+.vote-bar-cta:hover { transform: translateY(-1px); }
+
+/* Election CTA section (homepage) */
+.election-cta {
+  background: var(--teal-deep);
+  padding: 80px 24px; text-align: center;
+  border-top: 2px solid var(--yellow);
+}
+.election-date {
+  font-family: var(--serif); font-size: clamp(32px, 6vw, 52px);
+  color: var(--yellow); font-weight: 400; margin-bottom: 24px;
+  letter-spacing: 1px;
+}
+.election-headline {
+  font-family: var(--serif); font-size: clamp(24px, 4vw, 36px);
+  font-weight: 400; margin-bottom: 28px; line-height: 1.2;
+}
+.election-body {
+  max-width: 520px; margin: 0 auto 12px; font-size: 16px;
+  opacity: 0.85; line-height: 1.8;
+}
+.election-emphasis {
+  font-size: 17px; font-weight: 700; opacity: 1; margin-top: 20px;
+}
+
+/* Body padding to account for sticky bar */
+body { padding-bottom: 52px; }
+
 /* About section (homepage) */
 .about { padding: 64px 24px; max-width: 720px; margin: 0 auto; text-align: center; }
 .about h2 {
