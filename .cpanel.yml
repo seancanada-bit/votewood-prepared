@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/seanw2/public_html/votewood.ca
+    - /bin/rsync -a --delete --exclude='.git' --exclude='.cpanel.yml' --exclude='README.md' --exclude='wp-*' --exclude='xmlrpc.php' --exclude='.htaccess.wp-bak' --exclude='index.php.bak' ./ $DEPLOYPATH/
