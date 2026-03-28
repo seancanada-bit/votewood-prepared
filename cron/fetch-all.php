@@ -15,10 +15,7 @@ if (php_sapi_name() !== 'cli') {
     exit(1);
 }
 
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'seanw2_prepared');
-define('DB_USER', 'seanw2_claudeprepared');
-define('DB_PASS', 'mivnic-refmaV-kubxe7'); // Injected at deploy time
+require_once(__DIR__ . '/../../db-config.php');
 
 $startTime = microtime(true);
 $log = [];
