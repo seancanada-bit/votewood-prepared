@@ -18,7 +18,7 @@ if (php_sapi_name() !== 'cli') {
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'seanw2_prepared');
 define('DB_USER', 'seanw2_claudeprepared');
-define('DB_PASS', '__DB_PASSWORD__'); // Injected at deploy time
+define('DB_PASS', 'mivnic-refmaV-kubxe7'); // Injected at deploy time
 
 $startTime = microtime(true);
 $log = [];

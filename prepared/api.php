@@ -6,7 +6,7 @@ header('Cache-Control: public, max-age=300');
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'seanw2_prepared');
 define('DB_USER', 'seanw2_claudeprepared');
-define('DB_PASS', '__DB_PASSWORD__');
+define('DB_PASS', 'mivnic-refmaV-kubxe7');
 
 $allowed = [
   'river_flow_latest', 'snowpack_latest', 'fire_weather_latest',
