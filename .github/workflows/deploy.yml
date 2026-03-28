@@ -11,9 +11,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Inject DB password into all api.php files
+      - name: Inject DB password into PHP files
         run: |
           find . -name "api.php" -exec sed -i "s|__DB_PASSWORD__|${{ secrets.DB_PASSWORD }}|g" {} +
+          find . -name "fetch-all.php" -exec sed -i "s|__DB_PASSWORD__|${{ secrets.DB_PASSWORD }}|g" {} +
 
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
