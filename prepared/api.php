@@ -3,7 +3,7 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: https://votewood.ca');
 header('Cache-Control: public, max-age=300');
 
-require_once(__DIR__ . '/../../db-config.php');
+require_once('/home/seanw2/db-config.php');
 
 $allowed = [
   'river_flow_latest', 'snowpack_latest', 'fire_weather_latest',

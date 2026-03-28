@@ -15,7 +15,7 @@ if (php_sapi_name() !== 'cli') {
     exit(1);
 }
 
-require_once(__DIR__ . '/../../db-config.php');
+require_once('/home/seanw2/db-config.php');
 
 $startTime = microtime(true);
 $log = [];
