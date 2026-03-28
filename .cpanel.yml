@@ -1,5 +1,15 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/seanw2/public_html/votewood.ca
-    - /bin/rsync -a --delete --exclude='.git' --exclude='.cpanel.yml' --exclude='README.md' --exclude='wp-*' --exclude='xmlrpc.php' --exclude='.htaccess.wp-bak' --exclude='index.php.bak' ./ $DEPLOYPATH/
+    - /bin/cp -rf index.html style.css .htaccess /home/seanw2/public_html/votewood.ca/
+    - /bin/cp -rf prepared/ /home/seanw2/public_html/votewood.ca/
+    - /bin/cp -rf cron/ /home/seanw2/public_html/votewood.ca/
+    - /bin/cp -rf water/ /home/seanw2/public_html/votewood.ca/
+    - /bin/cp -rf housing/ /home/seanw2/public_html/votewood.ca/
+    - /bin/cp -rf downtown/ /home/seanw2/public_html/votewood.ca/
+    - /bin/cp -rf parks/ /home/seanw2/public_html/votewood.ca/
+    - /bin/cp -rf safety/ /home/seanw2/public_html/votewood.ca/
+    - /bin/cp -rf community/ /home/seanw2/public_html/votewood.ca/
+    - /bin/cp -rf environment/ /home/seanw2/public_html/votewood.ca/
+    - /bin/cp -rf infrastructure/ /home/seanw2/public_html/votewood.ca/
+    - /bin/cp -rf grants/ /home/seanw2/public_html/votewood.ca/
