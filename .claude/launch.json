@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "votewood-prepared",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8082"],
+      "cwd": "prepared",
+      "port": 8082
+    }
+  ]
+}
