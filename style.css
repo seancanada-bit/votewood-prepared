@@ -586,6 +586,47 @@ a { color: var(--yellow); }
 /* Body padding to account for sticky bar */
 body { padding-bottom: 52px; }
 
+/* About Sean section (homepage) */
+.about-sean {
+  padding: 64px 24px;
+  background: rgba(0,0,0,0.12);
+}
+.about-sean-inner {
+  max-width: 780px; margin: 0 auto;
+  display: flex; gap: 36px; align-items: flex-start;
+}
+.about-sean-photo {
+  width: 200px; height: 200px; border-radius: 50%;
+  object-fit: cover; flex-shrink: 0;
+  border: 4px solid var(--yellow);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+}
+.about-sean-text h2 {
+  font-family: var(--serif); font-size: 32px;
+  color: var(--yellow); font-weight: 400; margin-bottom: 4px;
+}
+.about-sean-role {
+  font-size: 14px; color: rgba(255,255,255,0.6);
+  margin-bottom: 16px; font-weight: 700;
+  letter-spacing: 0.3px;
+}
+.about-sean-text p {
+  font-size: 15px; opacity: 0.85; line-height: 1.8;
+  margin-bottom: 12px;
+}
+.about-sean-why {
+  font-style: italic; opacity: 0.95 !important;
+  border-left: 3px solid var(--yellow);
+  padding-left: 16px; margin-top: 16px !important;
+}
+@media (max-width: 640px) {
+  .about-sean-inner {
+    flex-direction: column; align-items: center; text-align: center;
+  }
+  .about-sean-photo { width: 160px; height: 160px; }
+  .about-sean-why { border-left: none; padding-left: 0; border-top: 3px solid var(--yellow); padding-top: 16px; }
+}
+
 /* About section (homepage) */
 .about { padding: 64px 24px; max-width: 720px; margin: 0 auto; text-align: center; }
 .about h2 {
