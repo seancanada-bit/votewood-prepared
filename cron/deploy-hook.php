@@ -1,7 +1,7 @@
 <?php
 // GitHub webhook auto-deploy
 // Called by GitHub on every push to main
-// Pulls latest code and triggers .cpanel.yml deploy
+// Pulls latest code and copies to live directory
 
 // Simple secret token validation
 $secret = file_get_contents('/home/seanw2/deploy-secret.txt');
@@ -30,14 +30,25 @@ if (($data['ref'] ?? '') !== 'refs/heads/main') {
     exit;
 }
 
-// Pull and deploy
+// Pull latest
 $repo = '/home/seanw2/votewood-prepared';
+$dest = '/home/seanw2/public_html/votewood.ca';
 $output = [];
-exec("cd $repo && /usr/local/cpanel/3rdparty/bin/git pull origin main 2>&1", $output);
-exec("cd $repo && /usr/local/cpanel/3rdparty/bin/git checkout -- . 2>&1", $output);
 
-// Trigger .cpanel.yml deploy via API
-exec("/usr/local/cpanel/bin/uapi VersionControl update repository_root=$repo branch=main 2>&1", $output);
+exec("cd $repo && /usr/local/cpanel/3rdparty/bin/git pull origin main 2>&1", $output);
+
+// Copy files directly (same as .cpanel.yml)
+$dirs = ['prepared', 'cron', 'water', 'housing', 'downtown', 'parks', 'safety',
+         'community', 'environment', 'infrastructure', 'grants', 'photos', 'fonts'];
+
+exec("/bin/cp -f $repo/index.html $repo/style.css $repo/.htaccess $dest/ 2>&1", $output);
+
+foreach ($dirs as $dir) {
+    if (is_dir("$repo/$dir")) {
+        exec("/bin/cp -rf $repo/$dir/ $dest/ 2>&1", $output);
+    }
+}
 
 header('Content-Type: text/plain');
+echo "Deployed at " . date('Y-m-d H:i:s') . "\n";
 echo implode("\n", $output);
