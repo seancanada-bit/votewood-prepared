@@ -102,23 +102,31 @@ a { color: var(--yellow); }
 .header-contact { font-size: 12px; opacity: 0.7; }
 .header-contact a { color: var(--yellow); text-decoration: none; }
 
-/* Hero photo — full-width image, no overlay */
+/* Split hero — photo left, text right on desktop; stacked on mobile */
+.hero-split {
+  display: flex; min-height: 420px;
+}
 .hero-photo {
-  width: 100%; height: 320px; object-fit: cover;
-  display: block;
+  width: 50%; object-fit: cover; display: block;
 }
-@media (max-width: 640px) {
-  .hero-photo { height: 220px; }
-}
-
-/* Hero text — clean background below photo */
 .hero {
   text-align: center;
-  padding: 56px 24px 48px;
+  padding: 56px 32px 48px;
   background: linear-gradient(180deg, var(--teal-deep) 0%, var(--teal-dark) 100%);
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
 }
-/* Homepage has no photo above, so more top padding */
-.hero-no-photo { padding-top: 72px; padding-bottom: 56px; }
+/* When inside split, hero takes remaining 50% */
+.hero-split .hero { width: 50%; text-align: left; align-items: flex-start; }
+/* Homepage has no photo — full-width hero */
+.hero-no-photo {
+  padding-top: 72px; padding-bottom: 56px;
+  text-align: center; align-items: center;
+}
+@media (max-width: 768px) {
+  .hero-split { flex-direction: column; min-height: auto; }
+  .hero-photo { width: 100%; height: 280px; }
+  .hero-split .hero { width: 100%; text-align: center; align-items: center; }
+}
 
 .hero-eyebrow {
   font-family: var(--sans);
