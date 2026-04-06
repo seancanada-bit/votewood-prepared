@@ -39,7 +39,8 @@ body {
   font-family: var(--sans);
   background: var(--teal-dark);
   color: var(--white);
-  line-height: 1.6;
+  font-size: 17px;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -200,7 +201,7 @@ a { color: var(--yellow); }
 
 /* Card label */
 .card-label {
-  font-size: 11px; font-weight: 900; text-transform: uppercase;
+  font-size: 12px; font-weight: 900; text-transform: uppercase;
   letter-spacing: 1.5px; color: #999; margin-bottom: 16px;
 }
 
@@ -224,7 +225,7 @@ a { color: var(--yellow); }
 .rank-red   { background: #ffebee; color: var(--red); }
 
 .card-hero-context {
-  font-size: 13px; color: #888; font-style: italic; margin-bottom: 20px;
+  font-size: 14px; color: #888; font-style: italic; margin-bottom: 20px;
 }
 
 /* Card title */
@@ -235,12 +236,12 @@ a { color: var(--yellow); }
 
 /* Card detail text */
 .card-detail {
-  font-size: 14px; color: #555; margin-bottom: 6px; line-height: 1.7;
+  font-size: 15px; color: #555; margin-bottom: 6px; line-height: 1.7;
 }
 
 /* Card meta / source */
 .card-meta {
-  font-size: 12px; color: #999; margin-top: 14px;
+  font-size: 13px; color: #999; margin-top: 14px;
   padding-top: 12px; border-top: 1px solid #eee;
 }
 
@@ -272,16 +273,16 @@ a { color: var(--yellow); }
 
 /* Data tables */
 .data-table {
-  width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0;
+  width: 100%; border-collapse: collapse; font-size: 14px; margin: 12px 0;
 }
 .data-table th {
-  text-align: left; font-size: 10px; font-weight: 900;
+  text-align: left; font-size: 12px; font-weight: 900;
   text-transform: uppercase; letter-spacing: 1px; color: #bbb;
-  padding: 6px 8px; border-bottom: 1px solid #e8e8e8;
+  padding: 8px 10px; border-bottom: 1px solid #e8e8e8;
 }
 .data-table th:last-child { text-align: right; }
 .data-table td {
-  padding: 7px 8px; border-bottom: 1px solid #f4f4f4; color: #666;
+  padding: 8px 10px; border-bottom: 1px solid #f4f4f4; color: #555;
 }
 .data-table td:last-child {
   text-align: right; font-variant-numeric: tabular-nums; font-weight: 700;
@@ -293,12 +294,12 @@ a { color: var(--yellow); }
 
 /* Ranked table */
 .rank-table {
-  width: 100%; border-collapse: collapse; font-size: 13px;
+  width: 100%; border-collapse: collapse; font-size: 14px;
 }
 .rank-table th {
-  text-align: left; font-size: 10px; font-weight: 900;
+  text-align: left; font-size: 12px; font-weight: 900;
   text-transform: uppercase; letter-spacing: 1px; color: #bbb;
-  padding: 6px 8px; border-bottom: 1px solid #e8e8e8;
+  padding: 8px 10px; border-bottom: 1px solid #e8e8e8;
 }
 .rank-table th:last-child { text-align: right; }
 .rank-table td {
@@ -340,7 +341,7 @@ a { color: var(--yellow); }
   box-shadow: var(--shadow); border-left: 4px solid var(--teal);
 }
 .chart-card-label {
-  font-size: 11px; font-weight: 900; text-transform: uppercase;
+  font-size: 12px; font-weight: 900; text-transform: uppercase;
   letter-spacing: 1.5px; color: #999; margin-bottom: 4px;
 }
 .chart-card-hero {
@@ -358,14 +359,14 @@ a { color: var(--yellow); }
 .chart-svg { width: 100%; height: 180px; display: block; }
 .chart-legend {
   display: flex; flex-wrap: wrap; gap: 16px;
-  margin-top: 12px; font-size: 11px; color: #888;
+  margin-top: 12px; font-size: 13px; color: #888;
 }
 .chart-legend-item { display: flex; align-items: center; gap: 6px; }
 .chart-legend-swatch {
   width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0;
 }
 .chart-source {
-  font-size: 11px; color: #bbb; margin-top: 12px;
+  font-size: 13px; color: #bbb; margin-top: 12px;
   padding-top: 10px; border-top: 1px solid #f0f0f0;
 }
 
@@ -373,13 +374,13 @@ a { color: var(--yellow); }
 .chart-notes {
   margin-top: 16px; padding: 16px 18px;
   background: #f7fbfb; border-left: 3px solid var(--teal);
-  border-radius: 0 8px 8px 0; font-size: 12.5px; color: #555;
+  border-radius: 0 8px 8px 0; font-size: 14px; color: #555;
   line-height: 1.75; letter-spacing: 0.01em;
 }
 .chart-notes strong { color: var(--teal-dark); }
 .chart-notes-links {
   margin-top: 10px; padding-top: 8px; border-top: 1px solid #e8eeee;
-  font-size: 11px;
+  font-size: 13px;
 }
 .chart-notes-links a {
   color: var(--teal); text-decoration: none; margin-right: 12px;
@@ -424,7 +425,7 @@ a { color: var(--yellow); }
 .source-card {
   background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
   border-radius: var(--radius); padding: 28px; color: rgba(255,255,255,0.7);
-  font-size: 13px; line-height: 1.8;
+  font-size: 14px; line-height: 1.8;
 }
 .source-card strong { color: rgba(255,255,255,0.9); }
 
@@ -474,7 +475,7 @@ a { color: var(--yellow); }
   margin-bottom: 8px; line-height: 1;
 }
 .topic-desc {
-  font-size: 14px; color: #555; line-height: 1.7; margin-bottom: 18px;
+  font-size: 15px; color: #555; line-height: 1.7; margin-bottom: 18px;
 }
 .topic-arrow {
   font-size: 13px; font-weight: 900; color: var(--teal);
@@ -529,7 +530,7 @@ a { color: var(--yellow); }
   line-height: 1;
 }
 .quote-text {
-  font-size: 16px; color: #333; line-height: 1.8;
+  font-size: 17px; color: #333; line-height: 1.8;
   font-style: italic; padding-left: 12px; margin-bottom: 18px;
   letter-spacing: 0.01em;
 }
@@ -538,7 +539,7 @@ a { color: var(--yellow); }
   flex-wrap: wrap; gap: 8px;
 }
 .quote-attribution {
-  font-size: 11px; color: #999; font-style: normal;
+  font-size: 13px; color: #999; font-style: normal;
 }
 .quote-watch {
   display: inline-flex; align-items: center; gap: 6px;
@@ -667,39 +668,39 @@ body { padding-bottom: 52px; }
 @media (max-width: 640px) {
   .header { flex-direction: column; gap: 4px; text-align: center; }
   .hero { padding: 48px 20px 40px; }
-  .hero h1 { font-size: 26px; line-height: 1.25; }
-  .hero-sub { font-size: 15px; }
+  .hero h1 { font-size: 28px; line-height: 1.25; }
+  .hero-sub { font-size: 16px; }
   .section { padding: 40px 16px; }
   .section-title { font-size: 24px; }
-  .card { padding: 20px; font-size: 14px; }
-  .card-title { font-size: 19px; }
+  .card { padding: 20px; font-size: 16px; }
+  .card-title { font-size: 20px; }
   .card-hero-value { font-size: 40px; }
-  .card-hero-rank { min-width: 44px; height: 44px; font-size: 12px; }
+  .card-hero-rank { min-width: 44px; height: 44px; font-size: 13px; }
   .card-grid { grid-template-columns: 1fr; }
-  .rank-table { font-size: 12px; }
-  .rank-table td, .rank-table th { padding: 5px 6px; }
+  .rank-table { font-size: 13px; }
+  .rank-table td, .rank-table th { padding: 7px 8px; }
   .chart-card { padding: 20px 16px; }
-  .chart-card-label { font-size: 10px; letter-spacing: 1px; }
-  .chart-card-trend { font-size: 11px; }
+  .chart-card-label { font-size: 11px; letter-spacing: 1px; }
+  .chart-card-trend { font-size: 13px; }
   .chart-svg { height: 160px; }
-  .chart-notes { font-size: 12px; padding: 12px 14px; }
-  .chart-notes-links { font-size: 10.5px; }
-  .chart-legend { font-size: 10px; gap: 10px; }
-  .chart-source { font-size: 10px; }
+  .chart-notes { font-size: 14px; padding: 14px 16px; }
+  .chart-notes-links { font-size: 12px; }
+  .chart-legend { font-size: 12px; gap: 10px; }
+  .chart-source { font-size: 12px; }
   .topics { padding: 48px 16px; }
   .topic-grid { grid-template-columns: 1fr; }
   .topic-stat { font-size: 28px; }
-  .topic-desc { font-size: 13px; }
+  .topic-desc { font-size: 15px; }
   .stat-row { gap: 16px; }
-  .stat-value { font-size: 22px; }
+  .stat-value { font-size: 24px; }
   .narrative { padding: 56px 20px; }
-  .narrative p { font-size: 15px; }
+  .narrative p { font-size: 16px; }
   .about { padding: 48px 16px; }
-  .quote-text { font-size: 14px; padding-left: 8px; }
+  .quote-text { font-size: 16px; padding-left: 8px; }
   .quote-card { padding: 22px 20px 18px; }
-  .vote-bar { flex-direction: column; gap: 6px; padding: 8px 16px; font-size: 12px; }
-  .vote-bar-date { font-size: 13px; }
+  .vote-bar { flex-direction: column; gap: 6px; padding: 8px 16px; font-size: 13px; }
+  .vote-bar-date { font-size: 14px; }
   body { padding-bottom: 72px; }
   .election-cta { padding: 56px 20px; }
-  .election-body { font-size: 15px; }
+  .election-body { font-size: 16px; }
 }
