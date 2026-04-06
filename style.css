@@ -126,7 +126,7 @@ a { color: var(--yellow); }
 @media (max-width: 768px) {
   .hero-split { flex-direction: column; min-height: auto; }
   .hero-photo { width: 100%; height: 280px; }
-  .hero-split .hero { width: 100%; text-align: center; align-items: center; }
+  .hero-split .hero { width: 100%; text-align: left; align-items: flex-start; }
 }
 
 .hero-eyebrow {
@@ -144,6 +144,7 @@ a { color: var(--yellow); }
   max-width: 580px; margin: 0 auto 36px; font-size: 17px;
   opacity: 0.85; line-height: 1.8;
   letter-spacing: 0.01em;
+  text-align: left;
 }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 10px;
@@ -411,6 +412,7 @@ a { color: var(--yellow); }
 .narrative p {
   max-width: 560px; margin: 0 auto 18px;
   font-size: 16px; opacity: 0.85; line-height: 1.85;
+  text-align: left;
 }
 .cta-btn {
   display: inline-block; margin-top: 28px; padding: 16px 40px;
@@ -599,6 +601,7 @@ a { color: var(--yellow); }
 .election-body {
   max-width: 520px; margin: 0 auto 12px; font-size: 16px;
   opacity: 0.85; line-height: 1.8;
+  text-align: left;
 }
 .election-emphasis {
   font-size: 17px; font-weight: 700; opacity: 1; margin-top: 20px;
@@ -649,7 +652,7 @@ body { padding-bottom: 52px; }
 }
 
 /* About section (homepage) */
-.about { padding: 64px 24px; max-width: 720px; margin: 0 auto; text-align: center; }
+.about { padding: 64px 24px; max-width: 720px; margin: 0 auto; text-align: left; }
 .about h2 {
   font-family: var(--serif); font-size: 28px; color: var(--yellow);
   font-weight: 400; margin-bottom: 20px;
