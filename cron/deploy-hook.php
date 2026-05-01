@@ -39,7 +39,8 @@ exec("cd $repo && /usr/local/cpanel/3rdparty/bin/git pull origin main 2>&1", $ou
 
 // Copy files directly (same as .cpanel.yml)
 $dirs = ['prepared', 'cron', 'water', 'housing', 'downtown', 'parks', 'safety',
-         'community', 'environment', 'infrastructure', 'grants', 'photos', 'fonts'];
+         'community', 'environment', 'infrastructure', 'grants', 'donate',
+         'photos', 'fonts'];
 
 exec("/bin/cp -f $repo/index.html $repo/style.css $repo/.htaccess $dest/ 2>&1", $output);
 

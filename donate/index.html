@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support the Campaign | Parksville. Prepared.</title>
+<meta name="description" content="Support Sean Wood's campaign for Parksville Mayor 2026. Contribute by credit card or Interac e-Transfer. BC residents only.">
+<meta property="og:title" content="Support the Campaign — Sean Wood for Parksville Mayor 2026">
+<meta property="og:description" content="Parksville. Prepared. Help make it happen.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="/style.css?v=11">
+<style>
+.donate-card { margin-bottom: 0; }
+.option-label {
+  display: inline-block; font-size: 11px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  color: var(--teal); margin-bottom: 8px;
+}
+.donate-btn {
+  display: inline-block; padding: 16px 32px;
+  background: var(--teal); color: #fff;
+  border-radius: 30px; font-weight: 700; font-size: 16px;
+  text-decoration: none !important; border-bottom: none !important;
+  transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 2px 8px rgba(29,145,158,0.25);
+  margin-top: 14px;
+}
+.donate-btn:hover {
+  background: #0a6e7a; color: #fff !important; transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(29,145,158,0.35);
+}
+.donate-btn .arrow { display: inline-block; margin-left: 6px; }
+.email-box {
+  display: inline-block; padding: 16px 28px;
+  background: var(--teal); border: none;
+  border-radius: 30px; cursor: pointer;
+  transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 2px 8px rgba(29,145,158,0.25);
+  margin: 14px 0 6px; user-select: none;
+}
+.email-box:hover { background: #0a6e7a; transform: translateY(-1px); }
+.email-box code {
+  font-family: var(--serif); font-size: 22px; font-weight: 400;
+  color: #fff; background: none;
+}
+.email-box .tap-hint {
+  display: block; font-family: var(--sans); font-size: 12px;
+  color: rgba(255,255,255,0.75); margin-top: 4px; font-weight: 400;
+  letter-spacing: 0.5px;
+}
+.memo-callout {
+  padding: 14px 16px; border-left: 3px solid var(--teal);
+  background: #f7fbfb; border-radius: 0 8px 8px 0;
+  margin: 14px 0; font-size: 14px; color: #555;
+  line-height: 1.7;
+}
+.memo-callout strong { display: block; color: var(--teal-dark); margin-bottom: 4px; }
+.fee-note {
+  font-size: 13px; color: #777; margin-top: 10px;
+  font-style: italic;
+}
+.rules-list { margin: 10px 0 6px 18px; }
+.rules-list li { margin-bottom: 8px; line-height: 1.6; color: #555; font-size: 15px; }
+.rules-list strong { color: var(--teal-dark); }
+.copy-confirm {
+  display: inline-block; margin-left: 10px;
+  font-size: 13px; color: var(--green); font-weight: 700;
+  opacity: 0; transition: opacity 0.2s;
+}
+.copy-confirm.visible { opacity: 1; }
+
+/* Modal */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(14,74,80,0.6); backdrop-filter: blur(4px);
+  display: none; align-items: center; justify-content: center;
+  z-index: 2000; padding: 20px;
+}
+.modal-overlay.visible { display: flex; }
+.modal-content {
+  background: #fff; padding: 28px 24px; border-radius: 14px;
+  max-width: 440px; width: 100%;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  animation: modalIn 0.22s ease;
+}
+.modal-content h3 {
+  font-family: var(--serif); color: var(--teal-dark);
+  font-size: 22px; font-weight: 400; margin-bottom: 14px;
+  line-height: 1.2;
+}
+.modal-content p {
+  font-size: 15px; color: #555; margin-bottom: 10px; line-height: 1.6;
+}
+.modal-content .modal-emphasis {
+  background: #f7fbfb; border-left: 3px solid var(--teal);
+  padding: 12px 14px; border-radius: 0 6px 6px 0;
+  font-weight: 700; color: var(--teal-dark); margin: 12px 0;
+}
+.modal-btn {
+  display: block; width: 100%; margin-top: 8px;
+  padding: 14px 18px; border-radius: 30px; border: none;
+  font-size: 15px; font-weight: 700; cursor: pointer;
+  transition: background 0.15s;
+}
+.modal-btn-primary {
+  background: var(--teal); color: #fff;
+  box-shadow: 0 2px 8px rgba(29,145,158,0.2);
+}
+.modal-btn-primary:hover { background: #0a6e7a; }
+.modal-btn-secondary {
+  background: #f5f5f5; color: #555;
+}
+.modal-btn-secondary:hover { background: #ebebeb; }
+@keyframes modalIn {
+  from { transform: scale(0.96); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 640px) {
+  .donate-btn, .email-box { display: block; text-align: center; width: 100%; }
+  .email-box code { font-size: 19px; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a href="https://votewood.ca">&larr; votewood.ca</a>
+  <div class="header-right">SEAN WOOD &middot; PARKSVILLE. PREPARED.</div>
+</header>
+
+<div class="hero-split">
+  <img class="hero-photo" src="/photos/sean-community-event.jpg" alt="Sean Wood at a Parksville community event" loading="eager">
+  <div class="hero">
+    <div class="hero-eyebrow">Parksville. Prepared.</div>
+    <h1>Help make it happen.</h1>
+    <p class="hero-sub">Campaigns are built by communities. If this platform speaks to you and you'd like to help with the basics - signs, printing, outreach - your contribution is genuinely appreciated. There is no obligation.</p>
+    <div class="hero-badge">
+      BC residents only &middot; Individual contributions &middot; Not tax-deductible
+    </div>
+  </div>
+</div>
+
+<!-- Two ways to give -->
+<section class="section">
+  <h2 class="section-title">Two ways to contribute</h2>
+  <p class="section-subtitle">Both options are secure and meet Elections BC requirements. E-Transfer means 100% of your contribution goes to the campaign.</p>
+
+  <div class="card-grid">
+
+    <div class="card donate-card">
+      <span class="option-label">Option 1 &middot; Recommended</span>
+      <div class="card-label" style="margin-top:0;">Interac e-Transfer</div>
+      <p style="color:#444;font-size:16px;line-height:1.7;">No processing fees. 100% of your contribution goes directly to the campaign account.</p>
+
+      <div class="memo-callout">
+        <strong>Please include in your e-Transfer memo:</strong>
+        Your full legal name, residential address, and a way to reach you (phone or email).
+      </div>
+
+      <p style="font-size:14px;color:#666;">No password is needed - the transfer deposits automatically.</p>
+
+      <div class="email-box" id="emailBox" role="button" tabindex="0" aria-label="Copy donation email address">
+        <code>donate@votewood.ca</code>
+        <span class="tap-hint">Tap to copy</span>
+      </div>
+      <span id="copyConfirm" class="copy-confirm">Copied!</span>
+
+      <div class="card-meta">
+        Deposits directly into the campaign's Elections BC-required account.
+      </div>
+    </div>
+
+    <div class="card donate-card">
+      <span class="option-label">Option 2</span>
+      <div class="card-label" style="margin-top:0;">Credit Card via Square</div>
+      <p style="color:#444;font-size:16px;line-height:1.7;">Quick and easy. Processed securely through Square - no campaign staff sees your card details.</p>
+
+      <p class="fee-note">
+        Heads up: Processing fees count toward the annual contribution limit. If you plan to contribute at the maximum, e-Transfer is the better option.
+      </p>
+
+      <a class="donate-btn" href="https://square.link/u/TflyqQCE" target="_blank" rel="noopener">
+        Continue to secure payment <span class="arrow">&rarr;</span>
+      </a>
+
+      <div class="card-meta">
+        You'll be redirected to Square's secure payment page.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Rules -->
+<section class="section section-alt">
+  <h2 class="section-title">Before you contribute</h2>
+  <p class="section-subtitle">BC's Local Elections Campaign Financing Act requires the following. We have to ask, and you have to qualify.</p>
+
+  <div class="card-grid">
+    <div class="card card-full">
+      <div class="card-label">Contribution Rules</div>
+      <ul class="rules-list">
+        <li><strong>BC residents only.</strong> You must be a resident of British Columbia using your own personal funds.</li>
+        <li><strong>Canadian citizen or permanent resident.</strong> No minimum age applies.</li>
+        <li><strong>No businesses, organizations, or unions.</strong> Only individuals can contribute to local BC campaigns.</li>
+        <li><strong>Annual limit set by Elections BC.</strong> If you contribute by credit card, processing fees count toward this limit.</li>
+        <li><strong>Full legal name and residential address required.</strong> This information is required for campaign finance reporting.</li>
+        <li><strong>Contributions are not tax-deductible.</strong> This is a political contribution, not a charitable donation.</li>
+      </ul>
+      <div class="card-meta">
+        Source: <a href="https://elections.bc.ca/local-elections/campaign-financing/" target="_blank" rel="noopener">Elections BC - Local Elections Campaign Financing</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Narrative -->
+<div class="narrative">
+  <h2>"Thank you for being part of this."</h2>
+  <p>Whether you contribute money, time, or just a conversation with a neighbour - this campaign is what the community makes it. Every voice matters. Every contribution helps reach more residents with the data, the questions, and the thinking that good governance needs.</p>
+  <a href="https://votewood.ca" class="cta-btn">Explore all 10 topics &rarr; votewood.ca</a>
+</div>
+
+<footer class="footer">
+  Authorized by Sean Wood, Candidate for Mayor &middot; 604-868-7914<br>
+  Contributions can only be made by eligible BC residents using personal funds. Not tax-deductible.
+</footer>
+
+<!-- Modal -->
+<div id="etransferModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-content">
+    <h3 id="modalTitle">Before you send your e-Transfer</h3>
+    <p>Please make sure to include in the memo:</p>
+    <div class="modal-emphasis">Your full legal name, residential address, and a way to reach you.</div>
+    <p>Elections BC requires this information for campaign finance reporting. The transfer deposits automatically - no password needed.</p>
+    <button id="modalCopyBtn" class="modal-btn modal-btn-primary">Copy donate@votewood.ca</button>
+    <span id="modalCopyStatus" class="copy-confirm" style="display:block;text-align:center;margin-top:8px;"></span>
+    <button id="modalCloseBtn" class="modal-btn modal-btn-secondary">Got it</button>
+  </div>
+</div>
+
+<div class="vote-bar"><span class="vote-bar-date">October 17, 2026</span><span class="vote-bar-msg">One conversation at a time.</span><a href="/" class="vote-bar-cta">Know someone who should see this?</a></div>
+
+<script>
+(function() {
+  const modal = document.getElementById('etransferModal');
+  const modalClose = document.getElementById('modalCloseBtn');
+  const modalCopyBtn = document.getElementById('modalCopyBtn');
+  const modalCopyStatus = document.getElementById('modalCopyStatus');
+  const emailBox = document.getElementById('emailBox');
+  const copyConfirm = document.getElementById('copyConfirm');
+  const email = 'donate@votewood.ca';
+
+  function openModal() {
+    modal.classList.add('visible');
+    modalClose.focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove('visible');
+    emailBox.focus();
+  }
+
+  async function copyEmail() {
+    try {
+      await navigator.clipboard.writeText(email);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  emailBox.addEventListener('click', openModal);
+  emailBox.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(); }
+  });
+
+  modalCopyBtn.addEventListener('click', async () => {
+    const ok = await copyEmail();
+    modalCopyStatus.textContent = ok ? 'Copied to clipboard.' : 'Copy failed - tap and hold to copy manually.';
+    modalCopyStatus.classList.add('visible');
+    setTimeout(() => modalCopyStatus.classList.remove('visible'), 2500);
+  });
+
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('visible')) closeModal();
+  });
+})();
+</script>
+
+</body>
+</html>

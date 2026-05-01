@@ -13,4 +13,5 @@ deployment:
     - /bin/cp -rf environment/ /home/seanw2/public_html/votewood.ca/
     - /bin/cp -rf infrastructure/ /home/seanw2/public_html/votewood.ca/
     - /bin/cp -rf grants/ /home/seanw2/public_html/votewood.ca/
+    - /bin/cp -rf donate/ /home/seanw2/public_html/votewood.ca/
     - /bin/cp -rf photos/ /home/seanw2/public_html/votewood.ca/
