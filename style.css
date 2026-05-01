@@ -56,10 +56,10 @@ a { color: var(--yellow); }
 .card-meta a,
 .data-table a,
 .grant-table a {
-  color: #0e8a9a !important;
+  color: var(--teal-dark) !important;  /* #166d78 — WCAG AA on white (4.7:1) */
   font-weight: 700;
   text-decoration: none !important;
-  border-bottom: 2px solid rgba(14,138,154,0.25) !important;
+  border-bottom: 2px solid rgba(22,109,120,0.35) !important;
   padding-bottom: 1px;
   transition: border-color 0.15s, color 0.15s;
 }
@@ -69,8 +69,15 @@ a { color: var(--yellow); }
 .card-links a:hover,
 .data-table a:hover,
 .grant-table a:hover {
-  color: #0a6e7a !important;
-  border-bottom-color: #0a6e7a !important;
+  color: #0a4a52 !important;  /* darker on hover */
+  border-bottom-color: #0a4a52 !important;
+}
+.card a:not(.cta-btn):not(.video-card):not(.topic-card):not(.donate-btn):focus-visible,
+.chart-card a:focus-visible,
+.chart-notes a:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 .card a:not(.cta-btn):not(.video-card):not(.topic-card):not(.donate-btn):visited,
 .chart-card a:visited,
@@ -78,8 +85,8 @@ a { color: var(--yellow); }
 .card-links a:visited,
 .data-table a:visited,
 .grant-table a:visited {
-  color: #0e4a50 !important;
-  border-bottom-color: rgba(14,74,80,0.2) !important;
+  color: #5d3b6e !important;  /* readable purple — distinguishes visited */
+  border-bottom-color: rgba(93,59,110,0.25) !important;
 }
 /* Source cards on dark backgrounds keep yellow */
 .source-card a { color: var(--yellow) !important; text-decoration-color: rgba(255,235,59,0.35) !important; }
