@@ -48,7 +48,7 @@ body {
 a { color: var(--yellow); }
 
 /* Links inside white cards — teal with underline for visibility */
-.card a:not(.cta-btn):not(.video-card):not(.topic-card),
+.card a:not(.cta-btn):not(.video-card):not(.topic-card):not(.donate-btn),
 .chart-card a,
 .chart-notes a,
 .chart-notes-links a,
@@ -63,7 +63,7 @@ a { color: var(--yellow); }
   padding-bottom: 1px;
   transition: border-color 0.15s, color 0.15s;
 }
-.card a:not(.cta-btn):not(.video-card):not(.topic-card):hover,
+.card a:not(.cta-btn):not(.video-card):not(.topic-card):not(.donate-btn):hover,
 .chart-card a:hover,
 .chart-notes a:hover,
 .card-links a:hover,
@@ -72,7 +72,7 @@ a { color: var(--yellow); }
   color: #0a6e7a !important;
   border-bottom-color: #0a6e7a !important;
 }
-.card a:not(.cta-btn):not(.video-card):not(.topic-card):visited,
+.card a:not(.cta-btn):not(.video-card):not(.topic-card):not(.donate-btn):visited,
 .chart-card a:visited,
 .chart-notes a:visited,
 .card-links a:visited,
@@ -614,7 +614,7 @@ a { color: var(--yellow); }
 }
 
 /* Body padding to account for sticky bar */
-body { padding-bottom: 52px; }
+body { padding-bottom: 62px; }
 
 /* About Sean section (homepage) */
 .about-sean {
