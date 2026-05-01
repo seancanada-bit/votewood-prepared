@@ -287,7 +287,8 @@
 
   function openModal() {
     modal.classList.add('visible');
-    modalClose.focus();
+    // Focus the primary action (copy button), not the close button
+    modalCopyBtn.focus();
   }
 
   function closeModal() {
